@@ -11,6 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SearchinputComponent } from './searchinput/searchinput.component';
 import { HowtoComponent } from './howto/howto.component';
 import { HighlightComponent } from './highlight/highlight.component';
+import { HowtosectionComponent } from './howtosection/howtosection.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HighlightComponent } from './highlight/highlight.component';
     FooterComponent,
     SearchinputComponent,
     HowtoComponent,
-    HighlightComponent
+    HighlightComponent,
+    HowtosectionComponent
   ],
   imports: [
     BrowserModule,

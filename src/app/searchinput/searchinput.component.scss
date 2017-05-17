@@ -1,0 +1,6 @@
+@import "../../assets/base.scss";
+
+.searchbar {
+	@extend .flex;
+	@extend .mb10;
+}

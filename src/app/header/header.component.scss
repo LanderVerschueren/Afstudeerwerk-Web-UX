@@ -10,23 +10,8 @@ nav {
 		@extend .flex;
 		@extend .flex_1;
 
-		a {
-			@extend .flex;
-			@extend .flex_center;
-			@extend .flex_middle;
-			@extend .no_style;
-			@extend .prim_text_color;
-			@extend .br2;
-			@extend .prim_bg_color;
-			@extend .shadow_button;
-
-			&:last-child {
-				@extend .ml30;
-			}
-
-			p {
-				@extend .p1520;
-			}
+		a:last-child {
+			@extend .ml30;
 		}
 	}
 

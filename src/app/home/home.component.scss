@@ -2,16 +2,35 @@
 
 .home_top {
 	@extend .flex;
-	@extend .flex_center;
-	@extend .flex_middle;
+	@extend .flex_column;
+	//@extend .flex_center; // <-- justify-content: center;
+	@extend .flex_middle; // <-- align-items: center;
 	@extend .hfull_vh;
 	@extend .mt_neg100;
+	@extend .ptb50;
+
+	p {
+		@extend .mb100;
+	}
+
+	ul {
+		@extend .flex;
+		@extend .prim_text_color;
+		@extend .opac66;
+
+		li {
+			i {
+				@extend h4;
+				@extend .mr10;
+			}
+		}
+	}
 }
 
 .home_middle {
 	@extend .h600;
 	@extend .ptb50;
-	@extend .shadow_parts;
+	@extend .shadow_big;
 	@extend .sec_bg_color;
 	@extend .mb100;
 }
