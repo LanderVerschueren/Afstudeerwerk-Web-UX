@@ -48,4 +48,10 @@
 .home_bottom {
 	@extend .home_middle;
 	@extend .semitrans_bg_color;
+
+	highlight-component {
+		@extend .wfull;
+		@extend .flex;
+		@extend .flex_center;
+	}
 }

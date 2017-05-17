@@ -26,9 +26,12 @@ $sec_font: 'Work Sans', sans-serif;
 
 /*  CLASSES / SHADOWS  */
 .shadow_light		{	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.50);		}
-.shadow_big		{	box-shadow: 0 16px 24px 0 rgba(0,0,0,0.10), 
+.shadow_big			{	box-shadow: 0 16px 24px 0 rgba(0,0,0,0.10), 
 									0 8px 12px 0 rgba(0,0,0,0.20), 
-									0 4px 6px 0 rgba(0,0,0,0.30);		}
+									0 4px 6px 0 rgba(0,0,0,0.30),
+									0 -16px 24px 0 rgba(0,0,0,0.10), 
+									0 -8px 12px 0 rgba(0,0,0,0.20), 
+									0 -4px 6px 0 rgba(0,0,0,0.30);		}
 
 /*  CLASSES / COLOR  */
 .prim_text_color 		{	color: $prim_text_color;						}
@@ -55,13 +58,13 @@ $sec_font: 'Work Sans', sans-serif;
 
 /*  CLASSES / TEXT  */
 h1 				{ 	font-size: 72px; 													}
-h2 				{ 	font-size: 48px; 													}
+h2 				{ 	font-size: 48px; @extend .sec_text_color; @extend .font_bold		}
 h3 				{ 	font-size: 36px; 													}
-h4 				{ 	font-size: 24px; 													}
+h4 				{ 	font-size: 24px; @extend .font_medium; 								}
 p 				{ 	font-size: 18px; 													}
 .main_title 	{	font-size: 124px; @extend .prim_font; @extend .prim_text_color;		}
 .text_center	{	text-align: center;													}
-
+.text_uppercase {	text-transform: uppercase; 											}
 
 /*  CLASSES / MARGIN  */
 .mt50		{	margin-top: 50px;		}
@@ -89,6 +92,7 @@ p 				{ 	font-size: 18px; 													}
 .h500		{	height:	500px;	}
 .h450 		{	height: 450px;	}
 .h340 		{	height: 340px;	}
+.h300 		{	height: 300px;	}
 .h120 		{	height: 120px;	}
 .h100		{	height: 100px;	}
 .h80		{	height: 80px;	}
@@ -103,6 +107,7 @@ p 				{ 	font-size: 18px; 													}
 .wmax 	{	max-width: 1600px;	}
 .w650	{	width: 650px;		}
 .w500	{	width: 500px;		}
+.w300	{	width: 300px;		}
 .w80	{	width: 80px;		}
 .w60 	{	width: 60px;		}
 .w40	{	width: 40px;		}
@@ -116,6 +121,7 @@ p 				{ 	font-size: 18px; 													}
 
 /*  CLASSES / FLEX PROPERTIES  */
 .flex_1				{	flex: 1;								}
+.flex_3				{	flex: 3;								}
 .flex_row			{ 	flex-direction: row;					}
 .flex_column		{	flex-direction: column;					}
 .flex_left 			{	justify-content: flex-start;			}
@@ -148,6 +154,7 @@ p 				{ 	font-size: 18px; 													}
 .btn_navigation {
 	@extend .btn;
 	@extend .prim_bg_color;
+	@extend .text_uppercase;
 
 	p {
 		@extend .p1520;

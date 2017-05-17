@@ -1,0 +1,26 @@
+@import "../../assets/base.scss";
+
+
+.highlight_container {
+	@extend .wfull;
+	@extend .wmax;
+
+	@extend .flex;
+	@extend .flex_column;
+	@extend .flex_spacearound;
+
+	h2 {
+		@extend .text_uppercase;
+		@extend .opac66;
+		@extend .flex_1;
+	}
+
+	div {
+		@extend .flex_3;
+
+		img {
+			@extend .w300;
+			@extend .h300;
+		}
+	}
+}

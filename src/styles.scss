@@ -11,9 +11,9 @@ html, body {
 
 body {
 	background-image: url( $location_images + 'bg_desktop_top-min.jpg' ), url( $location_images + 'bg_desktop_bottom-min.jpg' );
-	background-position: center top, center top;
+	background-position: center top, center bottom;
 	background-repeat: repeat-x, repeat-x;
-	background-size: 100%, 100%;
+	background-size: 1920px, 1920px;
 }
 
 header-component {
