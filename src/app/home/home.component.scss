@@ -28,11 +28,21 @@
 }
 
 .home_middle {
+	@extend .flex;
+	@extend .flex_center;
+	@extend .wfull;
 	@extend .h600;
 	@extend .ptb50;
 	@extend .shadow_big;
 	@extend .sec_bg_color;
 	@extend .mb100;
+
+	howto-component {
+		@extend .wfull;
+		@extend .flex;
+		@extend .flex_center;
+		@extend .flex_middle;
+	}
 }
 
 .home_bottom {

@@ -1,0 +1,32 @@
+@import "../../assets/base.scss";
+
+.howtosection_container {
+	@extend .w500;
+	@extend .h500;
+
+	@extend .flex;
+	@extend .flex_column;
+
+	img {
+		@extend .h100;
+	}
+
+	h4, p {
+		@extend .text_center;
+	}
+
+	div {
+		@extend .flex_1;
+		@extend .flex;
+		@extend .flex_column;
+
+		&:first-child {
+			@extend .flex_right;
+			@extend .pb50;
+		}
+		&:last-child {
+			@extend .flex_left;
+			@extend .pt50;
+		}
+	}
+}

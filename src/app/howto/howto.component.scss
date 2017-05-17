@@ -1,0 +1,10 @@
+@import "../../assets/base.scss";
+
+.howto_container {
+	@extend .wfull;
+	@extend .wmax;
+
+	@extend .flex;
+	@extend .flex_spacebetween;
+	@extend .flex_middle;
+}

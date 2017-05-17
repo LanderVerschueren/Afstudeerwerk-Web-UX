@@ -64,7 +64,9 @@ p 				{ 	font-size: 18px; 													}
 
 
 /*  CLASSES / MARGIN  */
+.mt50		{	margin-top: 50px;		}
 .mb100 		{	margin-bottom: 100px;	}
+.mb50		{	margin-bottom: 50px;	}
 .mb10 		{	margin-bottom: 10px;	}
 .mt_neg100 	{	margin-bottom: -100px;	}
 .ml30 		{	margin-left: 30px;		}
@@ -73,6 +75,8 @@ p 				{ 	font-size: 18px; 													}
 
 
 /*  CLASSES / PADDING  */
+.pt50 	{	box-sizing: border-box; padding-top: 50px;	}
+.pb50 	{	box-sizing: border-box; padding-bottom: 50px;	}
 .ptb50 	{	box-sizing: border-box; padding: 50px 0;		}
 .p20 	{	box-sizing: border-box; padding: 20px;			}
 .p1520 	{ 	box-sizing: border-box;	padding: 15px 20px;		}
@@ -82,6 +86,7 @@ p 				{ 	font-size: 18px; 													}
 .hfull 		{	height: 100%;	}
 .hfull_vh 	{	height: 100vh;	}
 .h600 		{	height: 600px;	}
+.h500		{	height:	500px;	}
 .h450 		{	height: 450px;	}
 .h340 		{	height: 340px;	}
 .h120 		{	height: 120px;	}
@@ -97,6 +102,7 @@ p 				{ 	font-size: 18px; 													}
 .wfull 	{	width: 100%;		}
 .wmax 	{	max-width: 1600px;	}
 .w650	{	width: 650px;		}
+.w500	{	width: 500px;		}
 .w80	{	width: 80px;		}
 .w60 	{	width: 60px;		}
 .w40	{	width: 40px;		}
@@ -109,15 +115,17 @@ p 				{ 	font-size: 18px; 													}
 
 
 /*  CLASSES / FLEX PROPERTIES  */
-.flex_1			{	flex: 1;						}
-.flex_row		{ 	flex-direction: row;			}
-.flex_column	{	flex-direction: column;			}
-.flex_left 		{	justify-content: flex-start;	}
-.flex_center	{	justify-content: center;		}
-.flex_right 	{	justify-content: flex-end;		}
-.flex_top 		{	align-items: flex-start;		}
-.flex_middle	{	align-items: center;			}
-.flex_bottom	{	align-items: flex-end;			}
+.flex_1				{	flex: 1;								}
+.flex_row			{ 	flex-direction: row;					}
+.flex_column		{	flex-direction: column;					}
+.flex_left 			{	justify-content: flex-start;			}
+.flex_center		{	justify-content: center;				}
+.flex_right 		{	justify-content: flex-end;				}
+.flex_spacearound 	{	justify-content: space-spacearound		}
+.flex_spacebetween 	{	justify-content: space-between			}
+.flex_top 			{	align-items: flex-start;				}
+.flex_middle		{	align-items: center;					}
+.flex_bottom		{	align-items: flex-end;					}
 
 
 

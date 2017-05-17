@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'howtosection-component',
@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HowtosectionComponent implements OnInit {
 
+	private image:string;
+	private lead:string;
+	private trail:string;
+	@Input() info;
+
   constructor() { }
 
   ngOnInit() {
+  	this.image = "../../assets/img/" + this.info['image'];
+  	this.lead = this.info['lead'];
+  	this.trail = this.info['trail'];
   }
 
 }
