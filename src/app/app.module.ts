@@ -13,6 +13,8 @@ import { HowtoComponent } from './howto/howto.component';
 import { HighlightComponent } from './highlight/highlight.component';
 import { HowtosectionComponent } from './howtosection/howtosection.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { SearchComponent } from './search/search.component';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
     HowtoComponent,
     HighlightComponent,
     HowtosectionComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    SearchComponent,
+    FilterComponent
   ],
   imports: [
     BrowserModule,

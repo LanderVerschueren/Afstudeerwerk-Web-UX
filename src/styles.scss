@@ -26,6 +26,10 @@ home-component {
 	@extend .flex;
 	@extend .flex_column;
 }
+search-component {
+	@extend .flex;
+	@extend .flex_column;
+}
 
 footer-component {
 	@extend .block;

@@ -1,0 +1,29 @@
+@import "../../assets/base.scss";
+
+div {
+	@extend .flex_1;
+	@extend .hfull;
+
+	border-left: 1px solid white;
+	border-right: 1px solid white; 
+
+	&:first-child {
+		border-left: none;
+	}
+
+	&:last-child {
+		border-right: none;
+	}
+
+	a {
+		@extend .wfull;
+		@extend .hfull;
+		@extend .flex;
+		@extend .flex_center;
+		@extend .flex_middle;
+
+		@extend .no_style;
+		@extend .prim_text_color;
+		@extend .font_regular;
+	}
+}

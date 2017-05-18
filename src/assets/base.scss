@@ -142,7 +142,11 @@ p 				{ 	font-size: 18px; 													}
 
 
 
-
+/*  CONTAINER  */
+.container {
+	@extend .wfull;
+	@extend .wmax;
+}
 
 /*  BUTTONS  */
 .button_hand 	{	cursor: pointer;	}

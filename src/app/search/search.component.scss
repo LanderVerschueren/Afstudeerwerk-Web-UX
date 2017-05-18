@@ -1,0 +1,23 @@
+@import "../../assets/base.scss";
+
+.search-top {
+	@extend .flex;
+	@extend .flex_column;
+	//@extend .flex_center; // <-- justify-content: center;
+	@extend .flex_middle; // <-- align-items: center;
+	@extend .h300;
+	@extend .ptb50;
+}
+
+.search-middle {
+	@extend .flex;
+	@extend .flex_center;
+	@extend .flex_middle;
+	@extend .h50;
+	@extend .prim_bg_color;
+
+	filter-component {
+		@extend .flex;
+		@extend .h50;
+	}
+}
