@@ -12,6 +12,7 @@ import { SearchinputComponent } from './searchinput/searchinput.component';
 import { HowtoComponent } from './howto/howto.component';
 import { HighlightComponent } from './highlight/highlight.component';
 import { HowtosectionComponent } from './howtosection/howtosection.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HowtosectionComponent } from './howtosection/howtosection.component';
     SearchinputComponent,
     HowtoComponent,
     HighlightComponent,
-    HowtosectionComponent
+    HowtosectionComponent,
+    PagenotfoundComponent
   ],
   imports: [
     BrowserModule,
