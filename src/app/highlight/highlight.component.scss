@@ -9,18 +9,45 @@
 	@extend .flex_column;
 	@extend .flex_spacearound;
 
-	h2 {
-		@extend .text_uppercase;
-		@extend .opac66;
-		@extend .flex_1;
+	.highlight_container_title {
+		h2 {
+			@extend .text_uppercase;
+			@extend .opac66;
+		}
 	}
+			
+	.highlight_container_content {
+		@extend .flex;
+		@extend .flex_spacebetween;
+		
+		.highlight_container_content_left {
+			@extend .flex;
 
-	div {
-		@extend .flex_3;
+			img {
+				@extend .w300;
+				@extend .h300;
+				@extend .mr100;
+			}
 
-		img {
-			@extend .w300;
-			@extend .h300;
+			.highlight_container_content_left_info {
+				@extend .flex;
+				@extend .flex_column;
+				@extend .flex_spacebetween;
+
+				.highlight_container_content_left_info_details {
+					.h4_black_bg {
+						&:first-child {
+							@extend .mb10;
+						}
+					}
+				}
+			}
+		}
+		
+		.highlight_container_content_right {
+			@extend .flex;
+			@extend .flex_right;
+			@extend .flex_top;
 		}
 	}
 }
