@@ -13,7 +13,7 @@ ul {
 			@extend .btn_action;
 		}
 	}
-	li a:active {
+	li a.active {
 		@extend .btn_action;
 	}
 }

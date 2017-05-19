@@ -16,6 +16,7 @@ div {
 	}
 
 	a {
+		@extend .button_hand;
 		@extend .wfull;
 		@extend .hfull;
 		@extend .flex;
@@ -25,5 +26,9 @@ div {
 		@extend .no_style;
 		@extend .prim_text_color;
 		@extend .font_regular;
+	}
+
+	a.active, a:hover {
+		@extend .action_bg_color;
 	}
 }

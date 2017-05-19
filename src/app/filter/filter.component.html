@@ -1,9 +1,9 @@
 <div>
-	<a href="#"><h4>Alle</h4></a>
+	<a (click)="changeFilter($event, 'all')" [ngClass]="{'active': filterCategory == 'all'}"><h4>Alle</h4></a>
 </div>
 <div>
-	<a href="#"><h4>Beenhouwerijen</h4></a>
+	<a (click)="changeFilter($event, 'beenhouwer')" [ngClass]="{'active': filterCategory == 'beenhouwer'}"><h4>Beenhouwerijen</h4></a>
 </div>
 <div>
-	<a href="#"><h4>Bakkers</h4></a>
+	<a (click)="changeFilter($event, 'bakker')" [ngClass]="{'active': filterCategory == 'bakker'}"><h4>Bakkerijen</h4></a>
 </div>
