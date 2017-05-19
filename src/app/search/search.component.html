@@ -6,4 +6,12 @@
 		<filter-component></filter-component>
 	</div>
 </section>
-<section class="search-bottom"></section>
+<section class="search-bottom">
+	<div class="search-bottom-inner">
+		<tabs-component></tabs-component>
+		<div>
+			<list-component *ngIf="view=='list'"></list-component>
+			<map-component *ngIf="view=='map'"></map-component>
+		</div>
+	</div>
+</section>

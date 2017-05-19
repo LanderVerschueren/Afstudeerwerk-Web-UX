@@ -1,0 +1,57 @@
+@import "../../assets/base.scss";
+
+.details {
+	position: relative;
+
+	background-position: center center!important;
+	background-size: 100%!important;
+	transition: all 0.3s;
+
+	@extend .button_hand;
+	@extend .wfull;
+	@extend .h300;
+	@extend .shadow_light;
+	@extend .p20;
+
+	@extend .flex;
+	@extend .flex_column;
+	@extend .flex_spacebetween;
+
+
+	.more_details {
+		@extend .flex;
+		@extend .flex_column;
+
+		.h4_black_bg {
+			&:first-child {
+				@extend .mb10;
+			}
+		}
+	}
+
+	&:hover {
+		background-size: 110%!important;
+		transition: all 0.3s ease-in-out;
+
+		.hover_button {
+			opacity: 1;
+
+			transition: opacity 0.3s;
+		}
+	}
+
+	.hover_button {
+		transition: right 0.3s;
+		opacity: 0;
+		position: absolute;
+		right: 40px;
+		top: 50%;
+		@extend .w80;
+		@extend .h80;
+
+		.hover_button_inner {
+			position: relative;
+			top: -50%;
+		}
+	}
+}

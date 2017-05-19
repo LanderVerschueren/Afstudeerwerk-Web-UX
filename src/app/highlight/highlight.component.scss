@@ -2,7 +2,7 @@
 
 
 .highlight_container {
-	@extend .wfull;
+	@extend .w80pct;
 	@extend .wmax;
 
 	@extend .flex;
@@ -10,9 +10,15 @@
 	@extend .flex_spacearound;
 
 	.highlight_container_title {
+		@extend .flex;
+		@extend .flex_center;
+
 		h2 {
+			@extend h1;
+			@extend .prim_font;
+			@extend .prim_text_color;
 			@extend .text_uppercase;
-			@extend .opac66;
+			@extend .shadow_text;
 		}
 	}
 			
@@ -35,6 +41,9 @@
 				@extend .flex_spacebetween;
 
 				.highlight_container_content_left_info_details {
+					@extend .flex;
+					@extend .flex_column;
+
 					.h4_black_bg {
 						&:first-child {
 							@extend .mb10;

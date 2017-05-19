@@ -15,7 +15,7 @@ export class HowtosectionComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  	this.image = "../../assets/img/" + this.info['image'];
+  	this.image = "assets/img/" + this.info['image'];
   	this.lead = this.info['lead'];
   	this.trail = this.info['trail'];
   }

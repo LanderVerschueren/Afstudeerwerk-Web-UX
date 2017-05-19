@@ -1,0 +1,13 @@
+@import "../../assets/base.scss";
+
+.shop_inner {
+	@extend .wfull;
+	@extend .flex;
+	@extend .flex_wrap;
+
+	shop-component {
+		@extend .flex;
+		@extend .whalf;
+		@extend .p20;
+	}
+}

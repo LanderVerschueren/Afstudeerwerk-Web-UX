@@ -1,0 +1,23 @@
+@import "../../assets/base.scss";
+
+ul {
+	@extend .flex;
+
+	li a {
+		@extend .btn_action_shadow;
+
+		&:first-child {
+			@extend .mr10;
+		}
+		&:hover, &:active {
+			@extend .btn_action;
+		}
+	}
+	li a:active {
+		@extend .btn_action;
+	}
+}
+
+div p {
+	@extend .font_light;
+}

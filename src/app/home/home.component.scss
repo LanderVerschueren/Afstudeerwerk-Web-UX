@@ -35,7 +35,6 @@
 	@extend .ptb50;
 	@extend .shadow_big;
 	@extend .sec_bg_color;
-	@extend .mb100;
 
 	howto-component {
 		@extend .wfull;
@@ -48,6 +47,12 @@
 .home_bottom {
 	@extend .home_middle;
 	@extend .semitrans_bg_color;
+	
+	box-shadow: none!important;
+	background: url( '/assets/img/bg_desktop_bottom-min.jpg' );
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;	
 
 	highlight-component {
 		@extend .wfull;

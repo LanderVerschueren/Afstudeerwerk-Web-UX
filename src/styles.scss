@@ -7,13 +7,14 @@
 
 html, body {
 	@extend .wfull;
+	@extend .hfull;
 }
 
 body {
-	background-image: url( $location_images + 'bg_desktop_top-min.jpg' ), url( $location_images + 'bg_desktop_bottom-min.jpg' );
-	background-position: center top, center bottom;
-	background-repeat: repeat-x, repeat-x;
-	background-size: 1920px, 1920px;
+	background-image: url( 'assets/img/bg_desktop_top-min.jpg' );
+	background-position: center top;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 header-component {
@@ -29,6 +30,7 @@ home-component {
 search-component {
 	@extend .flex;
 	@extend .flex_column;
+	@extend .flex_middle;
 }
 
 footer-component {
@@ -36,4 +38,5 @@ footer-component {
 	@extend .sec_bg_color;
 	@extend .h340;
 	@extend .ptb50;
+	@extend .shadow_top;
 }

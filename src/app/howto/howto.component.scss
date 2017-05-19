@@ -1,10 +1,14 @@
 @import "../../assets/base.scss";
 
 .howto_container {
-	@extend .wfull;
+	@extend .w80pct;
 	@extend .wmax;
 
 	@extend .flex;
 	@extend .flex_spacebetween;
 	@extend .flex_middle;
+
+	howtosection-component {
+		@extend .flex_1;
+	}
 }

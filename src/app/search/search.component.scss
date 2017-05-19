@@ -14,10 +14,41 @@
 	@extend .flex_center;
 	@extend .flex_middle;
 	@extend .h50;
+	@extend .wfull;
 	@extend .prim_bg_color;
 
 	filter-component {
 		@extend .flex;
 		@extend .h50;
+	}
+}
+
+.search-bottom {
+	@extend .wfull;
+	@extend .flex;
+	@extend .flex_center;
+	@extend .sec_bg_color;
+	background: $sec_color url("/assets/img/ag-square.png") left top;
+
+	.search-bottom-inner {
+		@extend .flex;
+		@extend .flex_column;
+		@extend .flex_center;
+		@extend .p20;
+		@extend .mtb50;
+		@extend .br2;
+		@extend .shadow_light;
+		@extend .white_bg_color;
+
+		@extend .w80pct;
+		@extend .wmax;
+	}
+
+	tabs-component {
+		@extend .wfull;
+
+		@extend .flex;
+		@extend .flex_spacebetween;
+		@extend .flex_middle;
 	}
 }

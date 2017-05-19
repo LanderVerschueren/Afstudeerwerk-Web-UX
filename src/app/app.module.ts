@@ -15,6 +15,10 @@ import { HowtosectionComponent } from './howtosection/howtosection.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
+import { TabsComponent } from './tabs/tabs.component';
+import { ListComponent } from './list/list.component';
+import { MapComponent } from './map/map.component';
+import { ShopComponent } from './shop/shop.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +32,11 @@ import { FilterComponent } from './filter/filter.component';
     HowtosectionComponent,
     PagenotfoundComponent,
     SearchComponent,
-    FilterComponent
+    FilterComponent,
+    TabsComponent,
+    ListComponent,
+    MapComponent,
+    ShopComponent
   ],
   imports: [
     BrowserModule,
