@@ -1,0 +1,14 @@
+@import "../../assets/base.scss";
+
+div {
+	@extend .w300;
+
+	h3 {
+		@extend .mb10;
+	}
+
+	h4 {
+		@extend .font_light;
+		@extend .pl20;
+	}
+}

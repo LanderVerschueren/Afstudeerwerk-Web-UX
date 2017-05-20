@@ -49,3 +49,24 @@
 	@extend .wfull;
 	@extend .prim_bg_color;
 }
+
+.detail-bottom {
+	@extend .wfull;
+	@extend .flex;
+	@extend .flex_center;
+	@extend .sec_bg_color;
+	@extend .p20;
+	background: $sec_color url("/assets/img/ag-square.png") left top;
+
+	.container {
+		@extend .flex;
+		@extend .p20;
+		@extend .white_bg_color;
+		@extend .br2;
+		@extend .shadow_light;
+
+		product-component {
+			@extend .flex_1;
+		}
+	} 
+}
