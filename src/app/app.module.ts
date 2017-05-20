@@ -19,6 +19,9 @@ import { TabsComponent } from './tabs/tabs.component';
 import { ListComponent } from './list/list.component';
 import { MapComponent } from './map/map.component';
 import { ShopComponent } from './shop/shop.component';
+import { DetailComponent } from './detail/detail.component';
+import { ProductComponent } from './product/product.component';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { ShopComponent } from './shop/shop.component';
     TabsComponent,
     ListComponent,
     MapComponent,
-    ShopComponent
+    ShopComponent,
+    DetailComponent,
+    ProductComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,

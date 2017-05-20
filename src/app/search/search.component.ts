@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
-	view:string = 'map';
+	view:string = 'list';
 
   constructor() { }
 

@@ -1,0 +1,51 @@
+@import "../../assets/base.scss";
+
+.detail-top {
+	@extend .flex;
+	@extend .flex_column;
+	//@extend .flex_center; // <-- justify-content: center;
+	@extend .flex_middle; // <-- align-items: center;
+	@extend .h300;
+
+	.container {
+		@extend .hfull;
+		@extend .flex;
+		@extend .flex_spacebetween;
+
+		h1 {
+			@extend .prim_text_color;
+			@extend .prim_font;
+		}
+
+		.more_details {
+			@extend .flex;
+			@extend .flex_column;
+
+			div:first-child {
+				@extend .mb5;
+			}
+		}
+
+		.cart_button {
+			@extend .flex;
+			@extend .flex_middle;
+
+			.btn_cart {
+				@extend .flex;
+				@extend .flex_column;
+				@extend .rotate10;
+
+				p {
+					@extend .mt20;
+					@extend .text_center;
+				}
+			}
+		}
+	}
+}
+
+.detail-middle {
+	@extend .h50;
+	@extend .wfull;
+	@extend .prim_bg_color;
+}
