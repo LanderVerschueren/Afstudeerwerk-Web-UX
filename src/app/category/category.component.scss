@@ -3,12 +3,42 @@
 div {
 	@extend .w300;
 
-	h3 {
-		@extend .mb10;
-	}
+	ul {
 
-	h4 {
-		@extend .font_light;
-		@extend .pl20;
+		h3 {
+			@extend .mb20;
+		}
+
+		li {
+			@extend .button_hand;
+			@extend .mb10;
+
+			&:hover {
+				a {
+
+					h4 {
+						@extend .font_bold;
+						transition: font-weight 0.12s;
+					}
+				}
+			}
+
+			&:active {
+				a {
+
+					h4 {
+						@extend .font_bold;
+					}
+				}
+			}
+
+			a {
+
+				h4 {
+					@extend .font_light;
+					@extend .pl20;
+				}
+			}
+		}
 	}
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProviderTable extends Migration
+class CreateShopsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateProviderTable extends Migration
      */
     public function up()
     {   
-        Schema::create('providers', function (Blueprint $table) {
-            $table->increments('provider_id');
+        Schema::create('shops', function (Blueprint $table) {
+            $table->increments('shop_id');
             $table->string('name');
             $table->string('type');
             $table->string('email')->unique();
@@ -36,6 +36,6 @@ class CreateProviderTable extends Migration
      */
     public function down()
     {
-        Schema::drop('providers');
+        Schema::drop('shops');
     }
 }

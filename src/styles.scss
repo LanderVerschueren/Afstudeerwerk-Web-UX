@@ -34,7 +34,8 @@ search-component {
 }
 
 footer-component {
-	@extend .block;
+	@extend .flex;
+	@extend .flex_center;
 	@extend .sec_bg_color;
 	@extend .h340;
 	@extend .ptb50;

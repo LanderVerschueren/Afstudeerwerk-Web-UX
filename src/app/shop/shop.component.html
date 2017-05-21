@@ -1,24 +1,24 @@
-<div class="details" [routerLink]="['detail']" [style.background]="backgroundimage">
-	<div class="h3_black_bg"><h3>Beenhouwerij Moortgat</h3></div>
+<div class="details" [routerLink]="['detail', shop.shop_id]" [style.background]="backgroundimage">
+	<div class="h3_black_bg"><h3>{{ shop.name }}</h3></div>
 
 	<div class="more_details">
 		<div class="h4_black_bg">
 			<div>
 				<span class="tag_label"></span>
-				<h4>Beenhouwerij</h4>
+				<h4>{{ shop.type }}</h4>
 			</div>
 		</div>
 		<div class="h4_black_bg">
 			<div>
 				<span class="tag_pin"></span>
-				<h4>Kloosterstraat 72, Beveren</h4>
+				<h4>{{ shop.street + " " + shop.number + ", " + shop.city }}</h4>
 			</div>
 		</div>
 	</div>
 
 	<div class="hover_button">
 		<div class="hover_button_inner">
-			<a [routerLink]="['detail']" class="btn_shop"><img src="assets/img/shopping-cart-white.svg" alt=""></a>
+			<a [routerLink]="['detail', shop.shop_id]" class="btn_shop"><img src="assets/img/shopping-cart-white.svg" alt=""></a>
 		</div>
 	</div>
 </div>

@@ -15,9 +15,5 @@ $app->get('/', function () use ($app) {
     return $app->version();
 });
 
-
-/*Route::group(['prefix' => 'api'], function() {
-
-	Route::get('' , 'ApiController@');
-
-});*/
+$app->get('/shops', 'ApiController@getShops');
+$app->get('/products/{id}', 'ApiController@getProducts');

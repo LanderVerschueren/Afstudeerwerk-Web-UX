@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, JsonpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +22,9 @@ import { ShopComponent } from './shop/shop.component';
 import { DetailComponent } from './detail/detail.component';
 import { ProductComponent } from './product/product.component';
 import { CategoryComponent } from './category/category.component';
+import { ApicallService } from './services/apicall.service';
+import { GeneralService } from './services/general.service';
+
 
 @NgModule({
   declarations: [
@@ -48,9 +51,13 @@ import { CategoryComponent } from './category/category.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    JsonpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    ApicallService,
+    GeneralService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

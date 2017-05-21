@@ -1,0 +1,10 @@
+# Allow cross-origin requests for get.
+<IfModule mod_headers.c>
+	Header set Access-Control-Allow-Origin "*"
+</IfModule>
+
+# Allow cross-origin requests for post.
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept"
+</IfModule>

@@ -9,7 +9,7 @@ import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 const routes: Routes = [
   	{	path: '', 			component: HomeComponent			},
   	{	path: 'search', 	component: SearchComponent			},
-  	{	path: 'detail', 	component: DetailComponent			},
+  	{	path: 'detail/:id', 	component: DetailComponent			},
   	{	path: 'home', 		component: HomeComponent			},
   	{	path: '404', 		component: PagenotfoundComponent	},
 	{	path: '**', 		redirectTo: '/404'					}

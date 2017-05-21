@@ -1,0 +1,60 @@
+@import "../../assets/base.scss";
+
+.category {
+	@extend .mb50;
+
+	h2 {
+		@extend .font_medium;
+		@extend .mb20;
+	}
+}
+
+.product {
+	@extend .flex;
+	@extend .wfull;
+	@extend .h120;
+	@extend .white_bg_color;
+	@extend .shadow_light;
+
+	@extend .mb10;
+	@extend .p20;
+
+	.product_info {
+		@extend .flex_1;
+		@extend .flex;
+		@extend .flex_column;
+		@extend .flex_spacebetween;
+		@extend .hfull;
+
+		p {
+			@extend .fsize_30;
+			@extend .font_light;
+		}
+	}
+
+	.product_price {
+		@extend .flex_1;
+		@extend .flex;
+		@extend .flex_right;
+
+		input {
+			@extend .w150;
+			@extend .h40;
+			@extend .shadow_none;
+			@extend .input_border;
+			@extend .text_right;
+			@extend h4;
+		}
+
+		.btn_action {
+			@extend .ml10;
+			@extend .w150;
+			@extend .h40;
+			@extend .shadow_verylight;
+			@extend .font_regular;
+			@extend h4;
+
+			&:hover {}
+		}
+	}
+}

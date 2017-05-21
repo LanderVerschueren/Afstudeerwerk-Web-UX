@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+
+import { GeneralService } from '../services/general.service';
 
 @Component({
   selector: 'product-component',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductComponent implements OnInit {
 
-  constructor() { }
+	@Input() product;
+	amount:number;
 
-  ngOnInit() {
-  }
+  	constructor( private generalService : GeneralService) { }
+
+ 	ngOnInit() {
+ 		console.log(this.product);
+
+  	}
+
+  	inputChange( event: any) {
+  		console.log( event.target.value );
+  		this.amount = event.target.value;
+  	}
 
 }

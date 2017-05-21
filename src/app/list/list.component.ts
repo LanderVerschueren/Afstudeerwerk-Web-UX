@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
+import { GeneralService } from '../services/general.service';
+
 @Component({
   selector: 'list-component',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-	shops:Array<any> = [
+	shops:any;
+	/*shops:Array<any> = [
 		{
 			'zaaknaam'	: 	'Beenhouwerij Moortgat',
 			'straat'	:	'Kloosterstraat',
@@ -49,11 +52,16 @@ export class ListComponent implements OnInit {
 			'gemeente'	:	'Beveren',
 			'type'		:	'Beenhouwerij'
 		}
-	];
+	];*/
 
-  constructor() { }
+  constructor( private generalService : GeneralService ) { }
 
   ngOnInit() {
+
+  	this.generalService.getShops( (r) => {
+  		console.log( r );
+  		this.shops = r;
+  	});
   }
 
 }

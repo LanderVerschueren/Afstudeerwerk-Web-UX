@@ -6,7 +6,7 @@ $sec_color: #FAFBFF;
 $action_color: #4990E2;
 
 $prim_text_color: #fff;
-$sec_text_color: #000;
+$sec_text_color: #2B2D42;
 $action_text_color: #4990E2;
 
 
@@ -23,6 +23,7 @@ $sec_font: 'Work Sans', sans-serif;
 				text-decoration: none;
 			}
 .no_border 		{	border: none;						}
+.input_border	{	border: 1px solid #757575;			}
 .action_border 	{	border: 2px solid $action_color;	} 
 .br2			{	border-radius: 2px;					}
 .br_circle		{	border-radius: 50%;					}
@@ -30,6 +31,7 @@ $sec_font: 'Work Sans', sans-serif;
 /*  CLASSES / SHADOWS  */
 .shadow_none		{	box-shadow: none;								}
 .shadow_light		{	box-shadow: 0 4px 6px 0 rgba(0,0,0,0.30);		}
+.shadow_verylight		{	box-shadow: 0 2px 2px 0 rgba(0,0,0,0.50);		}
 .shadow_big			{	box-shadow: 0 16px 24px 0 rgba(0,0,0,0.10), 
 									0 8px 12px 0 rgba(0,0,0,0.20), 
 									0 4px 6px 0 rgba(0,0,0,0.30),
@@ -74,7 +76,10 @@ h3 					{ 	font-size: 36px; 													}
 h4 					{ 	font-size: 24px;													}
 p 					{ 	font-size: 18px; 													}
 .main_title 		{	font-size: 124px; @extend .prim_font; @extend .prim_text_color;		}
+.fsize_30 			{	font-size: 30px;													}
+.text_left			{	text-align: left;													}
 .text_center		{	text-align: center;													}
+.text_right			{	text-align: right;													}
 .text_uppercase 	{	text-transform: uppercase; 											}
 .text_capitalize 	{	text-transform: capitalize; 										}
 
@@ -85,6 +90,7 @@ p 					{ 	font-size: 18px; 													}
 .mt10		{	margin-top: 10px;		}
 .mb100 		{	margin-bottom: 100px;	}
 .mb50		{	margin-bottom: 50px;	}
+.mb20		{	margin-bottom: 20px;	}
 .mb10 		{	margin-bottom: 10px;	}
 .mb5 		{	margin-bottom: 5px;		}
 .mt_neg100 	{	margin-bottom: -100px;	}
@@ -100,6 +106,7 @@ p 					{ 	font-size: 18px; 													}
 .ptb50 	{	box-sizing: border-box; padding: 50px 0;		}
 .ptb20 	{	box-sizing: border-box; padding: 20px 0;		}
 .pl20	{	box-sizing: border-box; padding-left: 20px;		}
+.plr10	{	box-sizing: border-box; padding: 0 10px;		}
 .p20 	{	box-sizing: border-box; padding: 20px;			}
 .p1520 	{ 	box-sizing: border-box;	padding: 15px 20px;		}
 
@@ -230,6 +237,7 @@ p 					{ 	font-size: 18px; 													}
 	@extend .font_medium;
 	@extend .h60;
 	@extend .w240;
+	@extend .plr10;
 }
 
 .btn_action_shadow {
@@ -275,6 +283,8 @@ p 					{ 	font-size: 18px; 													}
 		@extend .font_extra_light;
 	}
 }
+
+
 
 /*  TEXT BLOCKS  */
 .h3_black_bg {

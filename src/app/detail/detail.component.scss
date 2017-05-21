@@ -55,7 +55,7 @@
 	@extend .flex;
 	@extend .flex_center;
 	@extend .sec_bg_color;
-	@extend .p20;
+	@extend .ptb50;
 	background: $sec_color url("/assets/img/ag-square.png") left top;
 
 	.container {
@@ -64,9 +64,14 @@
 		@extend .white_bg_color;
 		@extend .br2;
 		@extend .shadow_light;
-
-		product-component {
+	
+		.products {
 			@extend .flex_1;
+
+			h2 {
+				@extend .font_medium;
+				@extend .mb20;
+			}
 		}
 	} 
 }
