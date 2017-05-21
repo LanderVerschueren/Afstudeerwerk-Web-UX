@@ -11,17 +11,18 @@ export class ProductComponent implements OnInit {
 
 	@Input() product;
 	amount:number;
+	total_price: number;
 
   	constructor( private generalService : GeneralService) { }
 
  	ngOnInit() {
  		console.log(this.product);
-
+ 		this.total_price = 0;
   	}
 
   	inputChange( event: any) {
-  		console.log( event.target.value );
-  		this.amount = event.target.value;
+  		let amount = event.target.value / 1000;
+  		this.total_price = Math.round( (amount * this.product['price']) *100 ) / 100;
+  		console.log( this.total_price );
   	}
-
 }

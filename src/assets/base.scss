@@ -7,6 +7,7 @@ $action_color: #4990E2;
 
 $prim_text_color: #fff;
 $sec_text_color: #2B2D42;
+$third_text_color: #000;
 $action_text_color: #4990E2;
 
 
@@ -27,6 +28,8 @@ $sec_font: 'Work Sans', sans-serif;
 .action_border 	{	border: 2px solid $action_color;	} 
 .br2			{	border-radius: 2px;					}
 .br_circle		{	border-radius: 50%;					}
+.pos_rel 		{	position: relative;					}
+.pos_absolute	{	position: absolute;					}
 
 /*  CLASSES / SHADOWS  */
 .shadow_none		{	box-shadow: none;								}
@@ -46,6 +49,7 @@ $sec_font: 'Work Sans', sans-serif;
 /*  CLASSES / COLOR  */
 .prim_text_color 		{	color: $prim_text_color;						}
 .sec_text_color 		{	color: $sec_text_color;							}
+.third_text_color 		{	color: $third_text_color;						}
 .action_text_color 		{	color: $action_text_color;						}
 .prim_bg_color 			{	background-color: $prim_color;					}
 .sec_bg_color 			{	background-color: $sec_color;					}
@@ -106,6 +110,7 @@ p 					{ 	font-size: 18px; 													}
 .ptb50 	{	box-sizing: border-box; padding: 50px 0;		}
 .ptb20 	{	box-sizing: border-box; padding: 20px 0;		}
 .pl20	{	box-sizing: border-box; padding-left: 20px;		}
+.pr40	{	box-sizing: border-box; padding-right: 40px;	}
 .plr10	{	box-sizing: border-box; padding: 0 10px;		}
 .p20 	{	box-sizing: border-box; padding: 20px;			}
 .p1520 	{ 	box-sizing: border-box;	padding: 15px 20px;		}

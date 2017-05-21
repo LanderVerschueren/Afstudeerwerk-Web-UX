@@ -37,6 +37,21 @@
 		@extend .flex;
 		@extend .flex_right;
 
+		span {
+			@extend .h40;
+
+			@extend .flex;
+			@extend .flex_middle;
+			@extend h4;
+
+			@extend .pos_rel;
+			right: 30px;
+
+			@extend .third_text_color;
+			@extend .font_light;
+			opacity: 0.5;
+		}
+
 		input {
 			@extend .w150;
 			@extend .h40;
@@ -44,6 +59,25 @@
 			@extend .input_border;
 			@extend .text_right;
 			@extend h4;
+			@extend .pr40;
+
+			&::placeholder {
+				@extend .third_text_color;
+				@extend .font_light;
+				opacity: 0.5;
+			}
+
+			&::-webkit-inner-spin-button,
+			&::-webkit-outer-spin-button {
+				-webkit-appearance: none;
+			    -moz-appearance: none;
+			    appearance: none;
+			    margin: 0; 
+			}
+
+			&:focus + span {
+				opacity: 1;
+			}
 		}
 
 		.btn_action {

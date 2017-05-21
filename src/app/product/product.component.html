@@ -5,8 +5,9 @@
 			<p>{{ product.price | currency:'EUR':true:'1.2-2'}}</p>
 		</div>
 		<div class="product_price">
-			<input class="input" (keyup)="inputChange($event)" placeholder="100 g" type="text">
-			<a class="btn_action">{{ product.price | currency:'EUR':true:'1.2-2'}}</a>
+			<input class="input" (keyup)="inputChange($event)" placeholder="100" type="number">
+			<span>g</span>
+			<a class="btn_action">{{  total_price | currency:'EUR':true:'1.2-2'}}</a>
 		</div>
 	</div>
 </div>
