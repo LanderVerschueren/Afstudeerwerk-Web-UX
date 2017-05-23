@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { GeneralService } from '../services/general.service';
+
 @Component({
   selector: 'header-component',
   templateUrl: './header.component.html',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor( private generalService: GeneralService ) { }
 
   ngOnInit() {
   }

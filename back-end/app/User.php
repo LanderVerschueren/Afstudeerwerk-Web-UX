@@ -2,17 +2,12 @@
 
 namespace App;
 
-use Illuminate\Auth\Authenticatable;
-use Laravel\Lumen\Auth\Authorizable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-use Illuminate\Support\Facades\Hash;
-
-class User extends Model implements AuthenticatableContract, AuthorizableContract, JWTSubject
+class User extends Authenticatable
 {
-    use Authenticatable, Authorizable;
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -38,24 +33,5 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     public function payments() {
         return $this->hasMany('App\Payment');
-    }
-
-    /**
-     * Get the identifier that will be stored in the subject claim of the JWT.
-     *
-     * @return mixed
-     */
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-    /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
-     * @return array
-     */
-    public function getJWTCustomClaims()
-    {
-        return [];
     }
 }

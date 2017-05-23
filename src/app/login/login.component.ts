@@ -11,7 +11,7 @@ import { GeneralService } from '../services/general.service';
 })
 export class LoginComponent implements OnInit {
 
-  model: any = {};
+  	model: any = {};
     loading = false;
     error = '';
  
@@ -26,8 +26,21 @@ export class LoginComponent implements OnInit {
  
     login() {
         this.loading = true;
-        this.generalService.login(this.model.username, this.model.password, (r) => {
-        	console.log( r );
+        this.generalService.login(this.model.email, this.model.password, (r) => {
+        	if( r.token ) {
+        		this.generalService.getUser( (res) => {
+        			if( res.user ) {
+        				this.router.navigate(['']);
+        			}
+        			else {
+        				this.error = res;
+        			}
+        		});
+        	}
+        	else {
+        		this.error = r;
+        	}
+        	this.loading = false;
         });
     }
 

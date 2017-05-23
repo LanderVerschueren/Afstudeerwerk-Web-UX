@@ -11,9 +11,21 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        $this->call('UsersTableSeeder');
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        DB::table('users')->insert([
+            'firstName' => 'Lander',
+            'lastName' => 'Verschueren',
+            'email' => 'verschueren@live.nl',
+            'phonenumber' => '0494378589',
+            'password' => bcrypt('Lander1994'),
+        ]);
+        
+        DB::table('users')->insert([
+            'firstName' => 'test',
+            'lastName' => 'test',
+            'email' => 'test@test.com',
+            'phonenumber' => '0000000000',
+            'password' => bcrypt('test'),
+        ]);
 
         DB::table('shops')->insert([
             'name' => 'Beenhouwerij Moortgat',
