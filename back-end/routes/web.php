@@ -11,9 +11,13 @@
 |
 */
 
-$app->get('/', function () use ($app) {
-    return $app->version();
+$app->get('/key', function() {
+    return str_random(32);
 });
 
-$app->get('/shops', 'ApiController@getShops');
-$app->get('/products/{id}', 'ApiController@getProducts');
+$app->group(['prefix' => 'api'], function () use ($app) {
+    $app->get('/shops', 'ApiController@getShops');
+    $app->get('/products/{id}', 'ApiController@getProducts');
+});
+
+$app->POST('/auth/login', 'AuthController@loginPost');

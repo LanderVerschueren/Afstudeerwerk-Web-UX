@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
 
             $table->foreign('fk_shop_id')
                 ->references('shop_id')
-                ->on('shops');
+                ->on('shops')->onDelete('cascade')->onUpdate('cascade');;
 
             $table->string('product_name');
             $table->double('price');

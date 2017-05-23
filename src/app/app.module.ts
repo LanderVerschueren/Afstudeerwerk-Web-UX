@@ -24,6 +24,9 @@ import { ProductComponent } from './product/product.component';
 import { CategoryComponent } from './category/category.component';
 import { ApicallService } from './services/apicall.service';
 import { GeneralService } from './services/general.service';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { CartComponent } from './cart/cart.component';
 
 
 @NgModule({
@@ -45,7 +48,10 @@ import { GeneralService } from './services/general.service';
     ShopComponent,
     DetailComponent,
     ProductComponent,
-    CategoryComponent
+    CategoryComponent,
+    LoginComponent,
+    SignupComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
