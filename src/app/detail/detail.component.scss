@@ -35,6 +35,10 @@
 				@extend .flex_column;
 				@extend .rotate10;
 
+				.svg_text {
+					@extend p;
+				}
+
 				p {
 					@extend .mt20;
 					@extend .text_center;

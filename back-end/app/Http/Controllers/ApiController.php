@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\User;
 use DB;
 
 class ApiController extends Controller
@@ -36,5 +39,19 @@ class ApiController extends Controller
         else {
             return response()->json(['message' => 'no products found']);
         }
+    }
+
+    public function register( Request $request) {
+        $input = $request->all();
+
+        $user = new User;
+
+        $user->firstName    = $input['firstName'];
+        $user->lastName     = $input['lastName'];
+        $user->phonenumber  = $input['phonenumber'];
+        $user->email        = $input['email'];
+        $user->password     = Hash::make($input['password']);
+
+        $user->save();
     }
 }

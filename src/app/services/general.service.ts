@@ -4,21 +4,37 @@ import { ApicallService } from './apicall.service';
 
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class GeneralService {
 
+	private subject = new Subject<any>();
 	public token: string;
 	public loggedIn:boolean;
 	public loggedInUser: Array<any>;
+	public cart: any = {
+		'total_price': 0,
+		'total_products' : 0,
+		'products' : []
+	};
+	public shops: any;
 	apilink:string = "http://localhost:8888/eindwerk/Afstudeerwerk-Web-UX/back-end/public/api/";
 
   	constructor( private apicallService : ApicallService, private http: Http ) {
-  		var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  		let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+  		let cart = JSON.parse(localStorage.getItem('cart'));
+        
         this.token = currentUser && currentUser.token;
         if( this.token ) {
         	this.getUser( (r:any) => {});
         }
+
+        if( cart ) {
+        	this.cart = cart;
+        }
+
+		this.subject.next( this.cart );
   	}
 
   	login(email: string, password: string, cb:any) {
@@ -57,9 +73,14 @@ export class GeneralService {
         localStorage.removeItem('currentUser');
     }
 
-  	getShops( cb:any ) {
-  		this.apicallService.get( this.apilink + "shops", (r:any) => {
-  			cb(r);
+    register( model ) {
+    	this.apicallService.post( this.apilink + 'register', model );
+    }
+
+  	getShops() {
+  		this.apicallService.get( this.apilink + "shops", (r) => {
+  			console.log( r );
+  			this.shops = r;
   		});
 	}
 
@@ -69,4 +90,26 @@ export class GeneralService {
 			return r;
 		} );
 	}
+
+	addToCart( order ) {
+		let old_amount = this.cart['products'].length;
+		if( Object.keys(order).length > 0 ) {
+			this.cart['products'].push( order );
+
+			if ( old_amount < this.cart['products'].length ) {
+				this.cart.total_price += order.total_price;
+				this.cart.total_products++;
+				this.subject.next( this.cart );
+				localStorage.setItem( 'cart', JSON.stringify(this.cart) );
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+	}
+
+	getCart(): Observable<any> {
+        return this.subject.asObservable();
+    }
 }

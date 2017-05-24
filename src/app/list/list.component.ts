@@ -8,15 +8,11 @@ import { GeneralService } from '../services/general.service';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-	shops:any;
 
   constructor( private generalService : GeneralService ) { }
 
   ngOnInit() {
-  	this.generalService.getShops( (r) => {
-  		console.log( r );
-  		this.shops = r;
-  	});
+  	this.generalService.getShops();
   }
 
 }

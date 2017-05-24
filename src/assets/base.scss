@@ -26,6 +26,7 @@ $sec_font: 'Work Sans', sans-serif;
 .no_border 		{	border: none;						}
 .input_border	{	border: 1px solid #757575;			}
 .action_border 	{	border: 2px solid $action_color;	} 
+.br_none 		{	border-radius: initial;				}
 .br2			{	border-radius: 2px;					}
 .br_circle		{	border-radius: 50%;					}
 .pos_rel 		{	position: relative;					}
@@ -198,6 +199,7 @@ p 					{ 	font-size: 18px; 													}
 	@extend .br2;
 	@extend .shadow_light;
 	@extend .button_hand;
+	@extend .no_border;
 }
 
 .btn_navigation {

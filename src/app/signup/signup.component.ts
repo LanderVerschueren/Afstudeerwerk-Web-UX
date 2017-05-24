@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeneralService } from '../services/general.service';
 
 import { Validators } from '@angular/forms';
 
@@ -10,12 +11,14 @@ import { Validators } from '@angular/forms';
 export class SignupComponent implements OnInit {
 	model: any = {};
 
-  constructor() { }
+  constructor( private generalService : GeneralService ) { }
 
   ngOnInit() {
   }
 
   register() {
   	console.log(this.model);
+
+  	this.generalService.register( this.model );
   }
 }

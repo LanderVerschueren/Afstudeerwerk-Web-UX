@@ -37,6 +37,10 @@
 		@extend .flex;
 		@extend .flex_right;
 
+		form {
+			@extend .flex;
+		}
+
 		span {
 			@extend .h40;
 
