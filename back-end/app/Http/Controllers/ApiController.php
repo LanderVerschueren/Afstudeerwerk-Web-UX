@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 use DB;
+use Validator;
+use Illuminate\Database\QueryException;
 
 class ApiController extends Controller
 {
@@ -44,14 +46,38 @@ class ApiController extends Controller
     public function register( Request $request) {
         $input = $request->all();
 
-        $user = new User;
+        $message = [
+            'email' => 'duplicate',
+        ];
 
-        $user->firstName    = $input['firstName'];
-        $user->lastName     = $input['lastName'];
-        $user->phonenumber  = $input['phonenumber'];
-        $user->email        = $input['email'];
-        $user->password     = Hash::make($input['password']);
+        $validator = Validator::make($input, [
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'email' => 'bail|required|unique:users|email',
+            'phonenumber' => 'required',
+            'password' => 'bail|required|min:6',
+        ], $message);
 
-        $user->save();
+        if( $validator->fails() ) {
+            return response()->json(['error' => $validator]);
+        }
+        else {
+            $user = new User;
+
+            $user->firstName    = $input['firstName'];
+            $user->lastName     = $input['lastName'];
+            $user->phonenumber  = $input['phonenumber'];
+            $user->email        = $input['email'];
+            $user->password     = Hash::make($input['password']);
+
+            $success = $user->save();
+
+            if( $success ) {
+                return response()->json(['message' => true]);
+            }
+            else {
+                return response()->json(['message' => false]);
+            }
+        }
     }
 }

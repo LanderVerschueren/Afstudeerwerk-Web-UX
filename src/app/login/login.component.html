@@ -1,19 +1,44 @@
-<div class="login_wrapper">
+<!--<div class="login_wrapper">
     <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+        <legend><h1>Log in</h1></legend>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
             <label for="email">Email</label>
-            <input type="text" class="form-control" name="email" [(ngModel)]="model.email" #email="ngModel" focus required />
-            <div *ngIf="f.submitted && !email.valid" class="help-block">Email is verplicht</div>
+            <input type="text" class="form-control input_form" name="email" placeholder="Email" [(ngModel)]="model.email" #email="ngModel" focus required />
+            <div *ngIf="f.submitted && !email.valid" class="help-block"><p>Email is verplicht</p></div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
             <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
-            <div *ngIf="f.submitted && !password.valid" class="help-block">Paswoord is verplicht</div>
+            <input type="password" class="form-control input_form" name="password" placeholder="Paswoord" [(ngModel)]="model.password" #password="ngModel" required />
+            <div *ngIf="f.submitted && !password.valid" class="help-block"><p>Paswoord is verplicht</p></div>
         </div>
         <div class="form-group">
-            <button [disabled]="loading" class="btn btn-primary">Login</button>
-            <h3 *ngIf='loading'>Test</h3>
+            <div *ngIf="error" class="alert alert-danger"><p>{{error}}</p></div>
         </div>
-        <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+        <div class="form-group">
+            <button [disabled]="loading" [ngClass]="{'loading': loading}" class="btn_action">Login</button>
+        </div>
+    </form>
+</div>-->
+
+
+<div class="login_wrapper">
+    <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
+        <legend><h1>Log in</h1></legend>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="input_form" name="email" placeholder="Email" [formControl]="loginForm.controls['email']" [ngClass]="{'has-error':!loginForm.controls['email'].valid && loginForm.controls['email'].touched}"/>
+            <div *ngIf="!loginForm.controls['email'].valid && loginForm.controls['email'].touched" class="alert-danger"><p>Email is verplicht.</p></div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="text" class="input_form" name="password" placeholder="Paswoord" [formControl]="loginForm.controls['password']" [ngClass]="{'has-error':!loginForm.controls['email'].valid && loginForm.controls['password'].touched}"/>
+            <div *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].touched" class="alert-danger"><p>Paswoord is verplicht.</p></div>
+        </div>
+        <div class="form-group">
+            <div *ngIf="error" class="alert-danger"><p>{{error}}</p></div>
+        </div>
+        <div class="form-group">
+            <button type="submit" [disabled]="!loginForm.valid" [ngClass]="{'loading': loading}" class="btn_action">Login</button>
+        </div>
     </form>
 </div>

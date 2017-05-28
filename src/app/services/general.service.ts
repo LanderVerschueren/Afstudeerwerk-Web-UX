@@ -43,11 +43,10 @@ export class GeneralService {
         		this.token = r && r.token;
         		localStorage.setItem('currentUser', JSON.stringify({ email: email, token: this.token }));
 
-        		cb( r )
-        	}
-        	else {
         		cb( r );
         	}
+        }, (error) => {
+        	cb( error );
         });
     }
 
@@ -57,9 +56,6 @@ export class GeneralService {
 				this.loggedInUser = r.user;
 				this.loggedIn = true;
 
-				cb( r );
-			}
-			else {
 				cb( r );
 			}
 		});
@@ -73,8 +69,12 @@ export class GeneralService {
         localStorage.removeItem('currentUser');
     }
 
-    register( model ) {
-    	this.apicallService.post( this.apilink + 'register', model );
+    register( value, cb:any ) {
+    	this.apicallService.post( this.apilink + 'register', value, (r:any) => {
+    		cb( r );
+    	}, (error:any) => {
+    		cb( error );
+    	});
     }
 
   	getShops() {
