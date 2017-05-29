@@ -1,4 +1,5 @@
 import { Component, OnInit, NgZone } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { GeneralService } from '../services/general.service';
@@ -10,9 +11,16 @@ import { GeneralService } from '../services/general.service';
 })
 export class ListComponent implements OnInit {
 
-  constructor( private generalService : GeneralService, private zone: NgZone ) { }
+	location:string;
+
+  constructor( private generalService : GeneralService, private zone: NgZone, private route: ActivatedRoute ) { }
 
   ngOnInit() {
-  	this.generalService.loadShops();
+  	this.route.params.subscribe(params => {
+	    	if (params['location']) {
+	    		this.location = params['location'];
+	    	}
+		});
+  	this.generalService.loadShops( this.location );
   }
 }

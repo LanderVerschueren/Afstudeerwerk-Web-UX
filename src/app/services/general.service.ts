@@ -24,6 +24,7 @@ export class GeneralService {
 	public filteredShops:any = [];
 	//public filteredShopsCallback:any = function(r:any){ console.log('godver', r); };
 	public userLocation:any;
+	public userLocationLatLng:any;
 	public numberResults:number;
 
 	private apilink:string = "http://localhost:8888/eindwerk/Afstudeerwerk-Web-UX/back-end/public/api/";
@@ -91,16 +92,19 @@ export class GeneralService {
     	return this.subjectShops.asObservable();
     }*/
 
-  	loadShops() {
+  	loadShops( location ) {
+  		this.userLocation = location;
   		this.apicallService.get( this.apilink + "shops", (r) => {
   			this.shops = r;
-  			this.getGeocoding( "Kloosterstraat 14, 9120 Beveren, België", (r:any) => {
-  				this.userLocation = r;
+  			this.getGeocoding( this.userLocation, (r:any) => {
+  				this.userLocationLatLng = r;
   				this.getDistances( (r) => {
   					for (var i = 0; i < this.shops.length; i++) {
 						this.filteredShops[ i ] = this.shops[ i ];
 						this.filteredShops[ i ].distance = r.rows[0].elements[ i ].distance.value;
 					}
+
+					this.filteredShops.sort(this.compare);
 
 					this.zone.run(() => {})
   				});
@@ -115,7 +119,7 @@ export class GeneralService {
 			destinations[i] = this.shops[i].street + ", " + this.shops[i].number + ", " +  this.shops[i].postalCode + ", " + this.shops[i].city;
 		}
 
-		let origin = this.userLocation.lat + "," + this.userLocation.lng;
+		let origin = this.userLocationLatLng.lat + "," + this.userLocationLatLng.lng;
 
 		let service = new google.maps.DistanceMatrixService();
 
@@ -155,12 +159,20 @@ export class GeneralService {
 		});
 	}
 
-	sort() {
+	/*sort() {
 		this.filteredShops.sort((a,b) => {
 			return a.distance - b.distance;
 		});
 
 		this.subjectShops.next( this.filteredShops );
+	}*/
+
+	compare(a,b) {
+  		if (a.distance < b.distance)
+    		return -1;
+  		if (a.distance > b.distance)
+    		return 1;
+  		return 0;
 	}
 
 	getProducts( id, cb:any ) {

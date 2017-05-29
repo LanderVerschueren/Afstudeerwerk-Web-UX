@@ -1,6 +1,6 @@
 <div class="searchbar">
-	<input class="input" id="search_autocomplete" type="text" name="" placeholder="e.g. Generaal Lemanstraat">
-	<a class="btn_search" [routerLink]="['search']">
+	<input class="input" id="search_autocomplete" type="text" value="{{generalService.userLocation}}" placeholder="e.g. Generaal Lemanstraat">
+	<a class="btn_search" (click)="searchSubmit()">
 		<img src="../../assets/img/magnifying-glass.svg">
 	</a>
 </div>

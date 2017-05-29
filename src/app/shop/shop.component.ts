@@ -15,7 +15,6 @@ export class ShopComponent implements OnInit {
 	constructor() { }
 
 	ngOnInit() {
-
 		if(this.shop.image) {
 
 			let img = new Image();
