@@ -23,9 +23,6 @@ export class ShopComponent implements OnInit {
 			img.src = this.shop.image;
 
 		}
-	
-		console.log( this.shop );
-
 	}
 
 }

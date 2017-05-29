@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { GeneralService } from '../services/general.service';
+
 @Component({
   selector: 'tabs-component',
   templateUrl: './tabs.component.html',
@@ -8,10 +10,9 @@ import { Component, OnInit } from '@angular/core';
 export class TabsComponent implements OnInit {
 	view:string = 'list';
 	
-  constructor() { }
+  constructor( private generalService : GeneralService ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   changeTab(event) {
   	event.stopPropagation();

@@ -13,7 +13,6 @@ export class DetailComponent implements OnInit {
 
 	id:number;
 	products:any;
-	subscription: Subscription;
 
   	constructor( private route: ActivatedRoute, private generalService : GeneralService ) { }
 
@@ -27,8 +26,6 @@ export class DetailComponent implements OnInit {
 	    		});
 	    	}
 		});
-
-		//this.subscription = this.generalService.getCart().subscribe(cart => { this.cart = cart; });
  	}
  	
 }

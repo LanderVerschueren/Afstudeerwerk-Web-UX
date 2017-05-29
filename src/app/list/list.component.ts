@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 
 import { GeneralService } from '../services/general.service';
 
@@ -9,10 +10,9 @@ import { GeneralService } from '../services/general.service';
 })
 export class ListComponent implements OnInit {
 
-  constructor( private generalService : GeneralService ) { }
+  constructor( private generalService : GeneralService, private zone: NgZone ) { }
 
   ngOnInit() {
-  	this.generalService.getShops();
+  	this.generalService.loadShops();
   }
-
 }

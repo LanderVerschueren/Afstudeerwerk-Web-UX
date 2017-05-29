@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 
 import { ApicallService } from './apicall.service';
 
@@ -6,10 +6,12 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 
+declare var google: any;
+
 @Injectable()
 export class GeneralService {
 
-	private subject = new Subject<any>();
+	private subjectShops = new Subject<any>();
 	public token: string;
 	public loggedIn:boolean;
 	public loggedInUser: Array<any>;
@@ -18,10 +20,16 @@ export class GeneralService {
 		'total_products' : 0,
 		'products' : []
 	};
-	public shops: any;
-	apilink:string = "http://localhost:8888/eindwerk/Afstudeerwerk-Web-UX/back-end/public/api/";
+	public shops: any = [];
+	public filteredShops:any = [];
+	//public filteredShopsCallback:any = function(r:any){ console.log('godver', r); };
+	public userLocation:any;
+	public numberResults:number;
 
-  	constructor( private apicallService : ApicallService, private http: Http ) {
+	private apilink:string = "http://localhost:8888/eindwerk/Afstudeerwerk-Web-UX/back-end/public/api/";
+	private googleApiKey:string = "AIzaSyCH7nKkRCoG6ONdK2iBhS_xI1LZSJPkJQs";
+
+  	constructor( private apicallService : ApicallService, private http: Http, private zone: NgZone ) {
   		let currentUser = JSON.parse(localStorage.getItem('currentUser'));
   		let cart = JSON.parse(localStorage.getItem('cart'));
         
@@ -33,8 +41,6 @@ export class GeneralService {
         if( cart ) {
         	this.cart = cart;
         }
-
-		this.subject.next( this.cart );
   	}
 
   	login(email: string, password: string, cb:any) {
@@ -77,17 +83,89 @@ export class GeneralService {
     	});
     }
 
-  	getShops() {
+    getShops() {
+    	return this.filteredShops;
+    }
+
+    /*getShops() {
+    	return this.subjectShops.asObservable();
+    }*/
+
+  	loadShops() {
   		this.apicallService.get( this.apilink + "shops", (r) => {
-  			console.log( r );
   			this.shops = r;
+  			this.getGeocoding( "Kloosterstraat 14, 9120 Beveren, België", (r:any) => {
+  				this.userLocation = r;
+  				this.getDistances( (r) => {
+  					for (var i = 0; i < this.shops.length; i++) {
+						this.filteredShops[ i ] = this.shops[ i ];
+						this.filteredShops[ i ].distance = r.rows[0].elements[ i ].distance.value;
+					}
+
+					this.zone.run(() => {})
+  				});
+  			});
   		});
+	}
+
+	getDistances( cb:any ) {
+		let destinations:string[] = [];
+		
+		for (var i = this.shops.length - 1; i >= 0; i--) {
+			destinations[i] = this.shops[i].street + ", " + this.shops[i].number + ", " +  this.shops[i].postalCode + ", " + this.shops[i].city;
+		}
+
+		let origin = this.userLocation.lat + "," + this.userLocation.lng;
+
+		let service = new google.maps.DistanceMatrixService();
+
+		service.getDistanceMatrix(
+		{
+			origins: [origin],
+		    destinations: destinations,
+		    travelMode: 'DRIVING',
+		},
+			(response, status) => {
+				cb( response );
+			}
+		);
+
+
+	}
+
+	/*processDistances( response, status) {
+
+		let fshops = [];
+
+		for (var i = 0; i < this.shops.length; i++) {
+			fshops[ i ] = this.shops[ i ];
+			fshops[ i ].distance = response.rows[0].elements[ i ].distance.value;
+		}
+
+		this.filteredShops = fshops;
+
+		//this.filteredShopsCallback(fshops);
+
+		this.sort();
+	}*/
+
+	getGeocoding( adres:any, cb:any ) {
+		this.apicallService.get( "https://maps.googleapis.com/maps/api/geocode/json?address=" + adres + "&key=" + this.googleApiKey, (r:any) => {
+			cb( r.results[0].geometry.location );
+		});
+	}
+
+	sort() {
+		this.filteredShops.sort((a,b) => {
+			return a.distance - b.distance;
+		});
+
+		this.subjectShops.next( this.filteredShops );
 	}
 
 	getProducts( id, cb:any ) {
 		this.apicallService.get( this.apilink + "products/" + id, (r:any) => {
 			cb(r);
-			return r;
 		} );
 	}
 
@@ -99,7 +177,6 @@ export class GeneralService {
 			if ( old_amount < this.cart['products'].length ) {
 				this.cart.total_price += order.total_price;
 				this.cart.total_products++;
-				this.subject.next( this.cart );
 				localStorage.setItem( 'cart', JSON.stringify(this.cart) );
 				return true;
 			}
@@ -108,8 +185,4 @@ export class GeneralService {
 			}
 		}
 	}
-
-	getCart(): Observable<any> {
-        return this.subject.asObservable();
-    }
 }

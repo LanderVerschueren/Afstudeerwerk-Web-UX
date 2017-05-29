@@ -3,5 +3,5 @@
 	<li><a class="btn_action_shadow" (click)="changeTab($event)" [ngClass]="{'active': view == 'map'}">kaart</a></li>
 </ul>
 <div>
-	<p>10 resultaten</p>
+	<p>{{ generalService.shops.length }} resultaten</p>
 </div>
