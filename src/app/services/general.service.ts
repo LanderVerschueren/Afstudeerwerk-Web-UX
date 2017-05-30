@@ -15,11 +15,7 @@ export class GeneralService {
 	public token: string;
 	public loggedIn:boolean;
 	public loggedInUser: Array<any>;
-	public cart: any = {
-		'total_price': 0,
-		'total_products' : 0,
-		'products' : []
-	};
+	public cart: any = {};
 	public shops: any = [];
 	public filteredShops:any = [];
 	//public filteredShopsCallback:any = function(r:any){ console.log('godver', r); };
@@ -193,8 +189,25 @@ export class GeneralService {
 		} );
 	}
 
-	addToCart( order ) {
-		let old_amount = this.cart['products'].length;
+	addToCart( shop_id, order ) {
+		if ( Object.keys(order).length > 0 ) {
+			if( this.cart[ shop_id ] ) {
+				console.log( 'exists' );
+			} else {
+				this.cart[ shop_id ] = {
+					'total_price': 0,
+					'total_products': 0,
+					'products': []
+				};
+			}
+
+			this.cart[ shop_id ]['products'].push( order );
+			this.cart[ shop_id ].total_price += order.total_price;
+			this.cart[ shop_id ].total_products++;
+			localStorage.setItem( 'cart', JSON.stringify(this.cart) );
+		}
+
+		/*let old_amount = this.cart['products'].length;
 		if( Object.keys(order).length > 0 ) {
 			this.cart['products'].push( order );
 
@@ -207,7 +220,9 @@ export class GeneralService {
 			else {
 				return false;
 			}
-		}
+		}*/
+
+		console.log( this.cart );
 	}
 
 	setSearchView( view ) {

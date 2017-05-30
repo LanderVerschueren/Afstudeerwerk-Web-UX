@@ -23,7 +23,7 @@
 				<a [routerLink]="['cart']" class="btn_cart">
 					<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 						<text class="svg_text" x='39' y ='45' fill="white">
-							{{ generalService.cart.total_products }}
+							{{ total_products }}
 						</text>
 					    <g id="Home" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
 					        <g id="Desktop-HD" transform="translate(-910.000000, -1250.000000)" fill-rule="nonzero" fill="#FFFFFF">
@@ -41,7 +41,7 @@
 					        </g>
 					    </g>
 					</svg>
-					<p>{{ generalService.cart.total_price | currency:'EUR':true:'1.2-2' }}</p>
+					<p>{{ total_price | currency:'EUR':true:'1.2-2' }}</p>
 				</a>	
 			</div>
 		</div>

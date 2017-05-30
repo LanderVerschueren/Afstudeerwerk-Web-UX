@@ -36,7 +36,6 @@ export class ProductComponent implements OnInit {
     let total_price     = this.total_price;
 
     let order: any = {
-      'shop_id': shop_id,
       'product_id': product_id,
       'product_name': product_name,
       'amount': amount,
@@ -44,13 +43,13 @@ export class ProductComponent implements OnInit {
       'total_price': total_price
     }
 
-    let add = this.generalService.addToCart( order );
+    this.generalService.addToCart( shop_id, order );
 
-    if( add ) {
+    /*if( add ) {
       this.adding = false;
     }
     else {
       this.adding = false;
-    }
+    }*/
   }
 }

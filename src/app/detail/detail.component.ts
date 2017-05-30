@@ -13,6 +13,8 @@ export class DetailComponent implements OnInit {
 
 	id:number;
 	products:any;
+	total_price:number = 0;
+	total_products:number = 0;
 
   	constructor( private route: ActivatedRoute, private generalService : GeneralService ) { }
 
@@ -21,7 +23,7 @@ export class DetailComponent implements OnInit {
 	    	if (params['id']) {
 	    		this.id = params['id'];
 
-	    		console.log( this.generalService.shops );
+	    		console.log( this.generalService.cart[ this.id ] );
 
 	    		this.products = this.generalService.getProducts( this.id, (r:any) => {
 	    			this.products = r;
