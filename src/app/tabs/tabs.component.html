@@ -1,7 +1,7 @@
 <ul>
-	<li><a class="btn_action_shadow" (click)="changeTab($event)" [ngClass]="{'active': view == 'list'}">lijst</a></li>
-	<li><a class="btn_action_shadow" (click)="changeTab($event)" [ngClass]="{'active': view == 'map'}">kaart</a></li>
+	<li><a class="btn_action_shadow" (click)="changeTab($event, 'list')" [ngClass]="{'active': generalService.searchView == 'list'}">lijst</a></li>
+	<li><a class="btn_action_shadow" (click)="changeTab($event, 'map')" [ngClass]="{'active': generalService.searchView == 'map'}">kaart</a></li>
 </ul>
 <div>
-	<p>{{ generalService.shops.length }} resultaten</p>
+	<p>{{ generalService.filteredShops.length }} resultaten</p>
 </div>

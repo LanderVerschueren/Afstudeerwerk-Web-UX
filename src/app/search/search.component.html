@@ -10,8 +10,8 @@
 	<div class="search-bottom-inner">
 		<tabs-component></tabs-component>
 		<div>
-			<list-component *ngIf="view == 'list'"></list-component>
-			<map-component *ngIf="view == 'map'"></map-component>
+			<list-component *ngIf="generalService.searchView == 'list'"></list-component>
+			<map-component *ngIf="generalService.searchView == 'map'"></map-component>
 		</div>
 	</div>
 </section>

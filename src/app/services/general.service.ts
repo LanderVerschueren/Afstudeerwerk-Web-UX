@@ -27,6 +27,9 @@ export class GeneralService {
 	public userLocationLatLng:any;
 	public numberResults:number;
 
+	public searchView:string = 'list';
+	public filterParam:string = 'all';
+
 	private apilink:string = "http://localhost:8888/eindwerk/Afstudeerwerk-Web-UX/back-end/public/api/";
 	private googleApiKey:string = "AIzaSyCH7nKkRCoG6ONdK2iBhS_xI1LZSJPkJQs";
 
@@ -84,9 +87,9 @@ export class GeneralService {
     	});
     }
 
-    getShops() {
+    /*sgetShops() {
     	return this.filteredShops;
-    }
+    }*/
 
     /*getShops() {
     	return this.subjectShops.asObservable();
@@ -98,24 +101,33 @@ export class GeneralService {
   			this.shops = r;
   			this.getGeocoding( this.userLocation, (r:any) => {
   				this.userLocationLatLng = r;
-  				this.getDistances( (r) => {
-  					for (var i = 0; i < this.shops.length; i++) {
-						this.filteredShops[ i ] = this.shops[ i ];
-						this.filteredShops[ i ].distance = r.rows[0].elements[ i ].distance.value;
+
+  				for (let i = 0; i < this.shops.length; i++) {
+  					let adress = this.shops[i].street + ", " + this.shops[i].number + ", " +  this.shops[i].postalCode + ", " + this.shops[i].city;
+	  				this.getGeocoding( adress, (r) => {
+	  					this.shops[i].latlng = r;
+	  				});
+	  			}
+
+	  			this.getDistances( (r) => {
+					for (let i = 0; i < this.shops.length; i++) {
+						this.shops[ i ].distance = r.rows[0].elements[ i ].distance.value;
 					}
+
+					this.filterShops( this.filterParam );
 
 					this.filteredShops.sort(this.compare);
 
-					this.zone.run(() => {})
-  				});
+					this.zone.run(() => {});
+				});
   			});
   		});
 	}
 
 	getDistances( cb:any ) {
 		let destinations:string[] = [];
-		
-		for (var i = this.shops.length - 1; i >= 0; i--) {
+
+		for (let i = 0; i < this.shops.length; i++) {
 			destinations[i] = this.shops[i].street + ", " + this.shops[i].number + ", " +  this.shops[i].postalCode + ", " + this.shops[i].city;
 		}
 
@@ -196,5 +208,21 @@ export class GeneralService {
 				return false;
 			}
 		}
+	}
+
+	setSearchView( view ) {
+		this.searchView = view;
+	}
+
+	filterShops( param ) {
+
+		this.filterParam = param.toLowerCase();
+
+		if(param !== 'all') {
+			this.filteredShops = this.shops.filter(shop => shop.type.toLowerCase() === param.toLowerCase());
+		} else {
+			this.filteredShops = this.shops;
+		}
+
 	}
 }

@@ -1,4 +1,4 @@
-<div class="details" [routerLink]="['detail', shop.shop_id]" [style.background]="backgroundimage">
+<div class="details" [routerLink]="['/detail',{id:shop.shop_id}]" [style.background]="backgroundimage">
 	<div class="h3_black_bg"><h3>{{ shop.name }}</h3></div>
 
 	<div class="more_details">
@@ -18,7 +18,7 @@
 
 	<div class="hover_button">
 		<div class="hover_button_inner">
-			<a [routerLink]="['detail', shop.shop_id]" class="btn_shop"><img src="assets/img/shopping-cart-white.svg" alt=""></a>
+			<a [routerLink]="['detail/' + shop.shop_id]" class="btn_shop"><img src="assets/img/shopping-cart-white.svg" alt=""></a>
 		</div>
 	</div>
 </div>

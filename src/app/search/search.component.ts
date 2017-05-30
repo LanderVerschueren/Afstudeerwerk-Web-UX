@@ -8,8 +8,6 @@ import { GeneralService } from '../services/general.service';
   styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent implements OnInit {
-	view:string = 'list';
-	shops:any;
 
   constructor( private generalService : GeneralService ) { }
 

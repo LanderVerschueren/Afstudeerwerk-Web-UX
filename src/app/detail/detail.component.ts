@@ -21,6 +21,8 @@ export class DetailComponent implements OnInit {
 	    	if (params['id']) {
 	    		this.id = params['id'];
 
+	    		console.log( this.generalService.shops );
+
 	    		this.products = this.generalService.getProducts( this.id, (r:any) => {
 	    			this.products = r;
 	    		});

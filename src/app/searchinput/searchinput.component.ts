@@ -14,25 +14,33 @@ declare var google:any;
 export class SearchinputComponent implements OnInit {
 
 	location:string;
-  old_location:string;
+  place:any;
 
   constructor( private generalService: GeneralService, private router: Router ) { }
 
   ngOnInit() {
-  	var input = document.getElementById('search_autocomplete');
-  	var options = {
+  	let input = document.getElementById('search_autocomplete');
+  	let options = {
   		types: ['geocode'],
   		componentRestrictions: {country: 'be'}
   	};
-  	var autocomplete = new google.maps.places.Autocomplete(input, options);
+  	let autocomplete = new google.maps.places.Autocomplete(input, options);
+
+    google.maps.event.addDomListener(input, 'keydown', function (e) {
+        if (e.keyCode === 13) {
+            e.preventDefault();
+        }
+    });
 
   	autocomplete.addListener('place_changed', () => {
-  		var place = autocomplete.getPlace();
-  		this.location = place.formatted_address;
+  		this.place = autocomplete.getPlace();
+  		this.location = this.place.formatted_address;
   	});
   }
 
   searchSubmit() {
-	  this.router.navigate(['/search', this.location]);
+    if( this.place ) {
+      this.router.navigate(['/search', this.location]);
+    }
   }
 }

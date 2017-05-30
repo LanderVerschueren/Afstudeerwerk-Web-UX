@@ -3,4 +3,8 @@
 .searchbar {
 	@extend .flex;
 	@extend .mb10;
+
+	form {
+		@extend .flex;
+	}
 }
