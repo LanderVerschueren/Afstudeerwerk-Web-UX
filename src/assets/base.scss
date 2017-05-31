@@ -77,6 +77,9 @@ $sec_font: 'Work Sans', sans-serif;
 .br_circle		{	border-radius: 50%;						}
 .pos_rel 		{	position: relative;						}
 .pos_absolute	{	position: absolute;						}
+.pos_fixed		{	position: fixed;						}
+
+.no_scroll 		{	overflow: hidden;					 	}
 
 /*  CLASSES / SHADOWS  */
 .shadow_none		{	box-shadow: none;								}
@@ -454,4 +457,28 @@ p 					{ 	font-size: 18px; 													}
 	@extend .tag_icon;
 	background: url( "/assets/img/pin.svg" );
 	background-repeat: no-repeat;
+}
+
+/* OVERLAY */
+.overlay {
+	@extend .pos_fixed;
+	@extend .blacktrans_bg_color;
+	@extend .wfull;
+	@extend .hfull;
+
+	@extend .flex;
+	@extend .flex_center;
+	@extend .p20;
+
+	top: 0;
+	left: 0;
+	z-index: 999;
+
+	.cart_inner {
+		@extend .shadow_light;
+		@extend .br2;
+		@extend .p20;
+		@extend .sec_bg_color;
+	}
+
 }

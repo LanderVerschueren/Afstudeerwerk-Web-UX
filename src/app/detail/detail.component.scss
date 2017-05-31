@@ -1,5 +1,9 @@
 @import "../../assets/base.scss";
 
+.cart {
+	@extend .overlay;
+}
+
 .detail-top {
 	@extend .flex;
 	@extend .flex_column;

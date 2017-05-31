@@ -83,13 +83,24 @@ export class GeneralService {
     	});
     }
 
-    /*sgetShops() {
+    getShop( id, cb:any ) {
+    	this.apicallService.get( this.apilink + "shop/" + id, (r) => {
+    		cb( r );
+    	}, (error) => {
+    		cb( error );
+    	})
+    }
+
+
+    /*getShops() {
     	return this.filteredShops;
     }*/
 
     /*getShops() {
     	return this.subjectShops.asObservable();
     }*/
+
+
 
   	loadShops( location ) {
   		this.userLocation = location;

@@ -13,6 +13,7 @@
 */
 Route::post(	'register', 'ApiController@register');
 Route::get(		'shops', 'ApiController@getShops');
+Route::get(		'shop/{id}', 'ApiController@getShop');
 Route::get(		'products/{id}', 'ApiController@getProducts');
 
 Route::get( 	'user', 'AuthenticateController@getAuthenticatedUser');

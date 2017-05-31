@@ -32,6 +32,17 @@ class ApiController extends Controller
         }
     }
 
+    public function getShop( $id ) {
+        $shop = DB::table( 'shops' )->where( 'shop_id', '=', $id )->first();
+
+        if( $shop ) {
+            return response()->json( $shop );
+        }
+        else {
+            return response()->json(['message' => 'no shop found']);
+        }
+    }
+
     public function getProducts($id) {
         $products = DB::table( 'products' )->where( 'fk_shop_id', "=", $id )->get();
 
