@@ -11,4 +11,16 @@
 			@extend .p1520;
 		}
 	}
+
+	@include for-phone-only {
+		width: 100%;
+		
+		form {
+			width: 100%;
+
+			input {
+				padding: 0 10px;
+			}
+		}
+	}
 }

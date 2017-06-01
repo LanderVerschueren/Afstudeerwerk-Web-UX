@@ -43,6 +43,17 @@ $location_images: "assets/img/";
 	font-weight: 700;
 }*/
 
+/* MEDIA QUERIES */
+@mixin for-phone-only {
+  @media (max-width: 599px) { @content; }
+}
+@mixin for-tablet-portrait-up {
+  @media (max-width: 899px) { @content; }
+}
+
+
+
+
 /*  COLOR  */
 $prim_color: #2B2D42;
 $sec_color: #FAFBFF;
@@ -131,12 +142,52 @@ $sec_font: 'Work Sans', sans-serif;
 
 
 /*  CLASSES / TEXT  */
-h1 					{ 	font-size: 72px; 													}
-h2 					{ 	font-size: 48px; @extend .sec_text_color; @extend .font_bold		}
-h3 					{ 	font-size: 36px; 													}
-h4 					{ 	font-size: 24px;													}
-p 					{ 	font-size: 18px; 													}
-.main_title 		{	font-size: 124px; @extend .prim_font; @extend .prim_text_color;		}
+h1 { 
+	font-size: 72px;
+
+	@include for-phone-only {
+		font-size: 40px;
+	}
+}
+h2 { 
+	font-size: 48px; 
+	@extend .sec_text_color; 
+	@extend .font_bold;
+
+	@include for-phone-only {
+		font-size: 20px;
+	}		
+}
+h3 { 	
+	font-size: 36px; 													
+	
+	@include for-phone-only {
+		font-size: 18px;
+	}
+}
+h4 { 	
+	font-size: 24px;		
+
+	@include for-phone-only {
+		font-size: 16px;
+	}											
+}
+p { 	
+	font-size: 18px; 
+
+	@include for-phone-only {
+		font-size: 14px;
+	}													
+}
+.main_title {	
+	font-size: 124px; 
+	@extend .prim_font; 
+	@extend .prim_text_color;		
+
+	@include for-phone-only {
+		font-size: 28px;
+	}
+}
 .fsize_30 			{	font-size: 30px;													}
 .text_left			{	text-align: left;													}
 .text_center		{	text-align: center;													}
@@ -202,7 +253,8 @@ p 					{ 	font-size: 18px; 													}
 .wfull 	{	width: 100%;		}
 .whalf 	{	width: 50%;			}
 .wmax 	{	max-width: 1600px;	}
-.w80pct {	width: 80%;			}
+.w_pct_desktop {	width: 80%;			}
+.w_pct_mobile {	width: 96%;			}
 .w800	{	width: 800px;		}	
 .w650	{	width: 650px;		}
 .w500	{	width: 500px;		}
@@ -245,11 +297,21 @@ p 					{ 	font-size: 18px; 													}
 
 
 
+
+
+
+
+
+
 /*  CONTAINER  */
 .container {
-	@extend .w80pct;
+	@extend .w_pct_desktop;
 	@extend .wmax;
 
+	@include for-phone-only {
+		max-width: 96%;
+		width: 100%;
+	}
 }
 
 /*  BUTTONS  */
@@ -277,6 +339,9 @@ p 					{ 	font-size: 18px; 													}
 		@extend .p1520;
 	}
 
+	@include for-phone-only {
+		display: none;
+	}
 }
 .btn_search {
 	@extend .btn;
@@ -290,6 +355,18 @@ p 					{ 	font-size: 18px; 													}
 		@extend .h30;
 		@extend .prim_text_color;
 	}
+
+	@include for-phone-only {
+		width: 34px;
+		height: 34px;
+
+		margin-left: 5px;
+
+		img {
+			width: 16px;
+			height: 16px;
+		}
+	}
 }
 
 .btn_highlight {
@@ -300,6 +377,10 @@ p 					{ 	font-size: 18px; 													}
 	@extend .font_regular;
 	@extend .h60;
 	@extend .w240;
+
+	@include for-phone-only {
+		display: none;
+	}
 }
 
 .btn_action {
@@ -311,6 +392,10 @@ p 					{ 	font-size: 18px; 													}
 	@extend .h60;
 	@extend .w240;
 	@extend .plr10;
+
+	@include for-phone-only {
+		height: 25px;
+	}
 }
 
 .btn_action_shadow {
@@ -324,6 +409,10 @@ p 					{ 	font-size: 18px; 													}
 	@extend .font_light;
 	@extend .h60;
 	@extend .w240;
+
+	@include for-phone-only {
+		height: 25px;
+	}
 }
 
 .btn_shop {
@@ -340,6 +429,10 @@ p 					{ 	font-size: 18px; 													}
 	@extend .br_circle;
 	@extend .w200;
 	@extend .h200;
+
+	@include for-phone-only {
+		display: none;
+	}
 }
 
 /*  INPUTS  */
@@ -353,6 +446,11 @@ p 					{ 	font-size: 18px; 													}
 
 	&::placeholder {
 		@extend .font_extra_light;
+	}
+
+	@include for-phone-only {
+		width: 100%;
+		height: 34px;
 	}
 }
 
@@ -426,6 +524,12 @@ p 					{ 	font-size: 18px; 													}
 		@extend .p1520;
 		@extend .font_light;
 	}
+
+	@include for-phone-only {
+		h3 {
+			padding: 5px 10px;
+		}
+	}
 }
 .h4_black_bg {
 	@extend .inline_flex;
@@ -444,7 +548,16 @@ p 					{ 	font-size: 18px; 													}
 			@extend .font_light;
 		}
 	}
-	
+
+	@include for-phone-only {
+		div {
+			padding-left: 10px;
+
+			h4 {
+				padding: 5px 10px;
+			}
+		}
+	}
 }
 
 /*  ICONS  */
@@ -455,18 +568,25 @@ p 					{ 	font-size: 18px; 													}
 	@extend .w30;
 	@extend .h30;
 	@extend .prim_text_color;
+
+	@include for-phone-only {
+		width: 10px;
+		height: 10px;
+	}
 }
 .tag_label {
 	@extend .tag_icon;
 	background: url( "/assets/img/tag.svg" );
 	background-repeat: no-repeat;
 	background-position: center;
+	background-size: contain;
 }
 
 .tag_pin {
 	@extend .tag_icon;
 	background: url( "/assets/img/pin.svg" );
 	background-repeat: no-repeat;
+	background-size: contain;
 }
 
 /* OVERLAY */

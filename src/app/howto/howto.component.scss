@@ -1,7 +1,7 @@
 @import "../../assets/base.scss";
 
 .howto_container {
-	@extend .w80pct;
+	@extend .w_pct_desktop;
 	@extend .wmax;
 
 	@extend .flex;
@@ -10,5 +10,11 @@
 
 	howtosection-component {
 		@extend .flex_1;
+	}
+
+	@include for-phone-only {
+		flex-direction: column;
+		max-width: 96%;
+		width: 100%;
 	}
 }

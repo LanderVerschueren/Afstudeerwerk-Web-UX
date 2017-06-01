@@ -2,7 +2,7 @@
 
 
 .highlight_container {
-	@extend .w80pct;
+	@extend .w_pct_desktop;
 	@extend .wmax;
 
 	@extend .flex;
@@ -57,6 +57,33 @@
 			@extend .flex;
 			@extend .flex_right;
 			@extend .flex_top;
+		}
+	}
+
+	@include for-phone-only {
+		width: 100%;
+
+		.highlight_container_title {
+			margin-bottom: 10px;
+		}
+
+		.highlight_container_content {
+			.highlight_container_content_left {
+				flex-direction: column;
+				
+				img {
+					width: 100px;
+					height: 100px;
+
+					margin-bottom: 10px;
+				}
+
+				.highlight_container_content_left_info {
+					.h3_black_bg {
+						margin-bottom: 10px;
+					}
+				}
+			}
 		}
 	}
 }

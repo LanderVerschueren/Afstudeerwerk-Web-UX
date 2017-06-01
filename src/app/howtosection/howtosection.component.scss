@@ -33,4 +33,19 @@
 			@extend .pt50;
 		}
 	}
+
+	@include  for-phone-only {
+		height: 220px;
+
+		img {
+			height: 80px;
+		}
+
+		div:first-child {
+			padding-bottom: 10px;
+		}
+		div:last-child {
+			padding-top: 10px;
+		}
+	}
 }

@@ -34,12 +34,19 @@ header-component {
 	@extend .flex;
 	@extend .flex_center;
 	@extend .h100;
+
+	@include for-phone-only {
+		height: 50px;
+		box-shadow: 0 2px 2px 0 rgba(0,0,0,0.50);
+		background-color: $prim_color;
+	}
 }
 
 home-component {
 	@extend .flex;
 	@extend .flex_column;
 }
+
 search-component, user-component {
 	@extend .flex;
 	@extend .flex_column;
@@ -63,4 +70,8 @@ footer-component {
 	right: 0;
 	bottom: 0;
 	left: 0;
+
+	@include for-phone-only {
+		padding: 20px 0;
+	}
 }
