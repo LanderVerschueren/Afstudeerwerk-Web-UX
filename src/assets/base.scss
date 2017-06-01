@@ -48,6 +48,9 @@ $prim_color: #2B2D42;
 $sec_color: #FAFBFF;
 $action_color: #4990E2;
 $alert_color: #f2dede;
+$black_opac66: rgba(0, 0, 0, 0.66);
+$black_opac33: rgba(0, 0, 0, 0.33);
+$black_opac15: rgba(0, 0, 0, 0.15);
 
 $prim_text_color: #fff;
 $sec_text_color: #2B2D42;
@@ -68,18 +71,20 @@ $sec_font: 'Work Sans', sans-serif;
 				list-style-type: none;
 				text-decoration: none;
 			}
-.no_border 		{	border: none;							}
-.input_border	{	border: 1px solid #757575;				}
-.action_border 	{	border: 2px solid $action_color;		} 
-.error_border 	{	border: 2px solid $alert_text_color;	} 
-.br_none 		{	border-radius: initial;					}
-.br2			{	border-radius: 2px;						}
-.br_circle		{	border-radius: 50%;						}
-.pos_rel 		{	position: relative;						}
-.pos_absolute	{	position: absolute;						}
-.pos_fixed		{	position: fixed;						}
+.no_border 					{	border: none;							}
+.input_border				{	border: 1px solid #757575;				}
+.action_border 				{	border: 2px solid $action_color;		} 
+.error_border 				{	border: 2px solid $alert_text_color;	} 
+.bottom_border_black		{	border-bottom: 1px solid $black_opac66;	}
+.bottom_border_lightblack	{	border-bottom: 1px solid $black_opac15;	}
+.br_none 					{	border-radius: initial;					}
+.br2						{	border-radius: 2px;						}
+.br_circle					{	border-radius: 50%;						}
+.pos_rel 					{	position: relative;						}
+.pos_absolute				{	position: absolute;						}
+.pos_fixed					{	position: fixed;						}
 
-.no_scroll 		{	overflow: hidden;					 	}
+.no_scroll 					{	overflow: hidden;					 	}
 
 /*  CLASSES / SHADOWS  */
 .shadow_none		{	box-shadow: none;								}
@@ -156,18 +161,20 @@ p 					{ 	font-size: 18px; 													}
 
 
 /*  CLASSES / PADDING  */
-.pt50 	{	box-sizing: border-box; padding-top: 50px;	}
-.pb50 	{	box-sizing: border-box; padding-bottom: 50px;	}
-.ptb50 	{	box-sizing: border-box; padding: 50px 0;		}
-.ptb20 	{	box-sizing: border-box; padding: 20px 0;		}
-.pl30	{	box-sizing: border-box; padding-left: 30px;		}
-.pl20	{	box-sizing: border-box; padding-left: 20px;		}
-.pl10	{	box-sizing: border-box; padding-left: 10px;		}
-.pr40	{	box-sizing: border-box; padding-right: 40px;	}
-.plr10	{	box-sizing: border-box; padding: 0 10px;		}
-.p20 	{	box-sizing: border-box; padding: 20px;			}
-.p1520 	{ 	box-sizing: border-box;	padding: 15px 20px;		}
-.p510 	{ 	box-sizing: border-box;	padding: 5px 10px;		}
+.pt50 		{	box-sizing: border-box; padding-top: 50px;		}
+.pb50 		{	box-sizing: border-box; padding-bottom: 50px;	}
+.ptb50 		{	box-sizing: border-box; padding: 50px 0;		}
+.ptb20 		{	box-sizing: border-box; padding: 20px 0;		}
+.ptb2010	{	box-sizing: border-box; padding: 20px 0 10px;	}
+.pl30		{	box-sizing: border-box; padding-left: 30px;		}
+.pl20		{	box-sizing: border-box; padding-left: 20px;		}
+.pl10		{	box-sizing: border-box; padding-left: 10px;		}
+.pr40		{	box-sizing: border-box; padding-right: 40px;	}
+.plr10		{	box-sizing: border-box; padding: 0 10px;		}
+.p20 		{	box-sizing: border-box; padding: 20px;			}
+.p5 		{	box-sizing: border-box; padding: 5px;			}
+.p1520 		{ 	box-sizing: border-box;	padding: 15px 20px;		}
+.p510 		{ 	box-sizing: border-box;	padding: 5px 10px;		}
 
 
 /*  CLASSES / HEIGHT  */
@@ -216,6 +223,7 @@ p 					{ 	font-size: 18px; 													}
 
 /*  CLASSES / FLEX PROPERTIES  */
 .flex_1				{	flex: 1;								}
+.flex_2				{	flex: 2;								}
 .flex_3				{	flex: 3;								}
 .flex_row			{ 	flex-direction: row;					}
 .flex_column		{	flex-direction: column;					}
@@ -468,17 +476,45 @@ p 					{ 	font-size: 18px; 													}
 
 	@extend .flex;
 	@extend .flex_center;
+	@extend .flex_top;
 	@extend .p20;
 
 	top: 0;
 	left: 0;
 	z-index: 999;
+	overflow-y: auto;
+}
 
-	.cart_inner {
-		@extend .shadow_light;
-		@extend .br2;
-		@extend .p20;
-		@extend .sec_bg_color;
+/* TABS */
+.tab {
+	@extend .flex_1;
+	@extend .hfull;
+
+	border-left: 1px solid white;
+	border-right: 1px solid white; 
+
+	&:first-child {
+		border-left: none;
 	}
 
+	&:last-child {
+		border-right: none;
+	}
+
+	a {
+		@extend .button_hand;
+		@extend .wfull;
+		@extend .hfull;
+		@extend .flex;
+		@extend .flex_center;
+		@extend .flex_middle;
+
+		@extend .no_style;
+		@extend .prim_text_color;
+		@extend .font_regular;
+	}
+
+	a.active, a:hover {
+		@extend .action_bg_color;
+	}
 }

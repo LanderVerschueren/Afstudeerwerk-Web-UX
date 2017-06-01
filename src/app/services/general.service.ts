@@ -48,7 +48,6 @@ export class GeneralService {
         	if( r.token ) {
         		this.token = r && r.token;
         		localStorage.setItem('currentUser', JSON.stringify({ email: email, token: this.token }));
-
         		cb( r );
         	}
         }, (error) => {
@@ -123,7 +122,7 @@ export class GeneralService {
 
 					this.filterShops( this.filterParam );
 
-					this.filteredShops.sort(this.compare);
+					this.filteredShops.sort(this.compare('distance'));
 
 					this.zone.run(() => {});
 				});
@@ -186,36 +185,58 @@ export class GeneralService {
 		this.subjectShops.next( this.filteredShops );
 	}*/
 
-	compare(a,b) {
-  		if (a.distance < b.distance)
-    		return -1;
-  		if (a.distance > b.distance)
-    		return 1;
-  		return 0;
+	compare(param) {
+		return function(a,b) {
+			if (a[param] < b[param])
+	    		return -1;
+	  		if (a[param] > b[param])
+	    		return 1;
+	  		return 0;
+		}
 	}
 
 	getProducts( id, cb:any ) {
 		this.apicallService.get( this.apilink + "products/" + id, (r:any) => {
+			r.sort( this.compare( 'category' ) );
 			cb(r);
 		} );
 	}
 
 	addToCart( shop_id, order ) {
 		if ( Object.keys(order).length > 0 ) {
+
 			if( this.cart[ shop_id ] ) {
-				console.log( 'exists' );
+				let old_amount = this.cart[shop_id].products.length;
+				
+				this.cart[ shop_id ]['products'].push( order );
+
+				if ( old_amount < this.cart[shop_id].products.length ) {
+					this.cart[ shop_id ].total_price += order.total_price;
+					this.cart[ shop_id ].total_products++;
+					localStorage.setItem( 'cart', JSON.stringify(this.cart) );
+					return true;
+				}
+				else {
+					return false;
+				}
 			} else {
 				this.cart[ shop_id ] = {
 					'total_price': 0,
 					'total_products': 0,
 					'products': []
 				};
-			}
+				this.cart[ shop_id ]['products'].push( order );
 
-			this.cart[ shop_id ]['products'].push( order );
-			this.cart[ shop_id ].total_price += order.total_price;
-			this.cart[ shop_id ].total_products++;
-			localStorage.setItem( 'cart', JSON.stringify(this.cart) );
+				if ( this.cart[shop_id].products.length ) {
+					this.cart[ shop_id ].total_price += order.total_price;
+					this.cart[ shop_id ].total_products++;
+					localStorage.setItem( 'cart', JSON.stringify(this.cart) );
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
 		}
 
 		/*let old_amount = this.cart['products'].length;
@@ -232,8 +253,6 @@ export class GeneralService {
 				return false;
 			}
 		}*/
-
-		console.log( this.cart );
 	}
 
 	setSearchView( view ) {

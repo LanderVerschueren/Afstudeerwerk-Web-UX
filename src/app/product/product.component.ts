@@ -27,29 +27,31 @@ export class ProductComponent implements OnInit {
 	}
 
   add() {
-    this.adding = true;
-    let shop_id         = this.product['fk_shop_id'];
-    let product_id      = this.product['product_id'];
-    let product_name    = this.product['product_name'];
-    let amount          = this.model['amount'];
-    let price           = this.product['price'];
-    let total_price     = this.total_price;
+    if( this.model['amount'] ) {
+      this.adding = true;
+      let shop_id         = this.product['fk_shop_id'];
+      let product_id      = this.product['product_id'];
+      let product_name    = this.product['product_name'];
+      let amount          = this.model['amount'];
+      let price           = this.product['price'];
+      let total_price     = this.total_price;
 
-    let order: any = {
-      'product_id': product_id,
-      'product_name': product_name,
-      'amount': amount,
-      'price': price,
-      'total_price': total_price
+      let order: any = {
+        'product_id': product_id,
+        'product_name': product_name,
+        'amount': amount,
+        'price': price,
+        'total_price': total_price
+      }
+
+      let add = this.generalService.addToCart( shop_id, order );
+
+      if( add ) {
+        this.adding = false;
+      }
+      else {
+        this.adding = false;
+      }
     }
-
-    this.generalService.addToCart( shop_id, order );
-
-    /*if( add ) {
-      this.adding = false;
-    }
-    else {
-      this.adding = false;
-    }*/
   }
 }

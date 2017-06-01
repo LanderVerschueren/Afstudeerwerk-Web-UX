@@ -32,10 +32,8 @@ export class LoginComponent implements OnInit {
     }
  
     login(value: any) {
-        console.log(value);
         this.loading = true;
         this.generalService.login(value.email, value.password, (r) => {
-            console.log( r );
         	if( r.token ) {
         		this.generalService.getUser( (res) => {
         			if( res.user ) {

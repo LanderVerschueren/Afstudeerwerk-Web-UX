@@ -1,0 +1,9 @@
+@import '../../assets/base.scss';
+
+.container {
+
+	.tabs {
+		@extend .flex;
+		
+	}
+}

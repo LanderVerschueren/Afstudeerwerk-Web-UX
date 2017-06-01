@@ -1,12 +1,45 @@
 <section class="cart" *ngIf="cartShowing" (click)="toggleDisplayCart($event)">
 	<div class="cart_inner">
 		<h2>{{ shop.name }}</h2>
-		<div class="cart_inner_products">
-			<ul>
-				<li *ngFor=" let product of generalService.cart[id].products ">
-					{{ product.product_name }}
-				</li>
-			</ul>
+		<div class="cart_inner_wrapper" *ngIf="generalService.cart[id]">
+			<div class="cart_inner_products">
+				<table>
+					<thead>
+						<tr>
+							<td class="td_product">Product</td>
+							<td class="td_amount">#</td>
+							<td class="td_price">Price</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="tr_product" *ngFor="let product of generalService.cart[id].products">
+							<td class="td_product"><p>{{ product.product_name }}</p></td>
+							<td class="td_amount"><p>{{ shop.type.toLowerCase() == 'bakkerij' ? product.amount : product.amount + ' g' }}</p></td>
+							<td class="td_price"><p>{{ product.total_price | currency:'EUR':true:'1.2-2' }}</p></td>
+						</tr>
+					</tbody>
+				</table>
+				<!--<ul>
+					<li *ngFor=" let product of generalService.cart[id].products ">
+						<div class="cart_inner_products_name">
+							<h4>{{ product.product_name }}</h4>
+						</div>
+						<div class="cart_inner_products_info">
+							<p>Aantal: {{ product.amount }}</p>
+							<p>Prijs: {{ product.total_price | currency:'EUR':true:'1.2-2' }}</p>
+						</div>
+					</li>
+				</ul>-->
+			</div>
+			<div class="summary">
+				<form>
+					<button type="button" [routerLink]="['/pay',{id:id}]" class="btn_action">Plaats bestelling: {{ generalService.cart[ id ].total_price | currency:'EUR':true:'1.2-2' }}</button>
+				</form>
+			</div>
+		</div>
+		<div class="no_products" *ngIf="!generalService.cart[id]">
+			<p>Er zitten nog geen producten in je winkelkarretje!</p>
+			<button (click)="toggleDisplayCart($event)" class="btn_action_shadow cart_close">Sluiten</button>
 		</div>
 	</div>
 </section>

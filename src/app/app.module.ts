@@ -27,6 +27,8 @@ import { GeneralService } from './services/general.service';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { CartComponent } from './cart/cart.component';
+import { PayComponent } from './pay/pay.component';
+import { UserComponent } from './user/user.component';
 
 
 @NgModule({
@@ -51,7 +53,9 @@ import { CartComponent } from './cart/cart.component';
     CategoryComponent,
     LoginComponent,
     SignupComponent,
-    CartComponent
+    CartComponent,
+    PayComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

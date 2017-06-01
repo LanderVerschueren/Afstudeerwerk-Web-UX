@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Shop extends Model
+class Shop extends Authenticatable
 {
     /**
      * The attributes that are mass assignable.
@@ -20,7 +21,9 @@ class Shop extends Model
      *
      * @var array
      */
-    protected $hidden = [];
+    protected $hidden = [
+        'password',
+    ];
 
     public function products() {
         return $this->hasMany('App\Product');

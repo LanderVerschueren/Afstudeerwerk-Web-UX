@@ -8,7 +8,7 @@
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="text" class="input_form" name="password" placeholder="Paswoord" [formControl]="loginForm.controls['password']" [ngClass]="{'has-error':!loginForm.controls['email'].valid && loginForm.controls['password'].touched}"/>
+            <input type="password" class="input_form" name="password" placeholder="Paswoord" [formControl]="loginForm.controls['password']" [ngClass]="{'has-error':!loginForm.controls['email'].valid && loginForm.controls['password'].touched}"/>
             <div *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].touched" class="alert-danger"><p>Paswoord is verplicht.</p></div>
         </div>
         <div class="form-group" *ngIf="error" >

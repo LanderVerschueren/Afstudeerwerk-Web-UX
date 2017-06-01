@@ -10,7 +10,7 @@
 	</div>
 
 	<div class="buttons" *ngIf="generalService.loggedIn">
-		<p>Hallo, {{ generalService.loggedInUser['firstName'] }}</p>
+		<a [routerLink]="['user']">Hallo, {{ generalService.loggedInUser['firstName'] }}</a>
 		<a class="btn_navigation" [routerLink]="['login']">
 			<p>LOGOUT</p>
 		</a>

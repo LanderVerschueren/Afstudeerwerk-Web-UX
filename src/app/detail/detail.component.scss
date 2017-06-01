@@ -2,6 +2,80 @@
 
 .cart {
 	@extend .overlay;
+
+	.cart_inner {
+		@extend .shadow_light;
+		@extend .br2;
+		@extend .p20;
+		@extend .sec_bg_color;
+
+		h2 {
+			@extend .mb20;
+		}
+		
+		.cart_inner_wrapper {
+			.cart_inner_products {
+				table {
+					@extend .flex;
+					@extend .flex_column;
+					@extend .mb20;
+
+					thead {
+						@extend .bottom_border_black;
+						@extend .mb10;
+
+						font-size: 12px;
+					}
+
+					tr {
+						@extend .flex;
+						@extend .p5;
+
+						.td_product {
+							@extend .flex_3;
+						}
+						
+						.td_amount {
+							@extend .flex;
+							@extend .flex_center;
+						}
+
+						.td_price {
+							@extend .flex;
+							@extend .flex_right;
+						}
+
+						td {
+							@extend .flex_1;
+						}
+					}
+
+					.tr_product {
+						@extend .bottom_border_lightblack;
+
+						td {
+							@extend .ptb2010;
+						}
+					}
+				}
+			}
+
+			.summary {
+				@extend .flex;
+				@extend .flex_right;
+			}
+		}
+
+		.no_products {
+			p {
+				@extend .mb20;
+			}
+
+			.cart_close {
+				margin: 0;
+			}
+		}
+	}
 }
 
 .detail-top {

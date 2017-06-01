@@ -44,14 +44,12 @@ export class DetailComponent implements OnInit {
  	}
 
  	toggleDisplayCart(e) {
- 		console.log( this.generalService.cart[this.id].products );
  		if( !this.cartShowing ) {
  			this.cartShowing = true;
  			document.body.className += 'no_scroll';
- 		} else if ( this.cartShowing && ( e.target.className == 'cart' || e.target.className == 'cart_close' ) ) {
+ 		} else if ( this.cartShowing && ( e.target.classList.contains( 'cart' ) || e.target.classList.contains( 'cart_close' ) ) ) {
  			this.cartShowing = false;
- 			document.body.className = document.body.className.replace("no-javascript","");
+ 			document.body.className = document.body.className.replace("no_scroll","");
  		}
  	}
- 	
 }

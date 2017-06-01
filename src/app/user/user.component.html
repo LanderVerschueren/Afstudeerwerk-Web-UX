@@ -1,0 +1,18 @@
+<div class="container">
+	<div class="tabs">
+		<div class="tab">
+			<a (click)="changeTab('gegevens')" [ngClass]="{'active': tab == 'gegevens'}"><h4>Gegevens</h4></a>
+		</div>
+		<div class="tab">
+			<a (click)="changeTab('bestellingen')" [ngClass]="{'active': tab == 'bestellingen'}"><h4>Bestellingen</h4></a>
+		</div>
+		<div class="tab">
+			<a (click)="changeTab('nogiets')" [ngClass]="{'active': tab == 'nogiets'}"><h4> Nog iets</h4></a>
+		</div>
+	</div>
+	<div class="content">
+		<div *ngIf="tab == 'gegevens'">Gegevens</div>
+		<div *ngIf="tab == 'bestellingen'">Bestellingen</div>
+		<div *ngIf="tab == 'nogiets'">Nog iets</div>
+	</div>
+</div>
