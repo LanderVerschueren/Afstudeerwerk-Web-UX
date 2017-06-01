@@ -1,9 +1,22 @@
 @import '../../assets/base.scss';
 
 .container {
+	@extend .br2;
+	@extend .shadow_light;
 
 	.tabs {
 		@extend .flex;
-		
+		@extend .prim_bg_color;
+		@extend .h50;
+		@extend .shadow_light;
+	}
+
+	.content {
+		@extend .bg_pattern;
+		@extend .p20;
+
+		.content_inner {
+			@extend .ptb50,
+		}
 	}
 }

@@ -63,7 +63,7 @@ export class GeneralService {
 
 				cb( r );
 			}
-		});
+		}, (error) => { console.log(error) });
     }
  
     logout(): void {

@@ -6,13 +6,13 @@
 		<div class="tab">
 			<a (click)="changeTab('bestellingen')" [ngClass]="{'active': tab == 'bestellingen'}"><h4>Bestellingen</h4></a>
 		</div>
-		<div class="tab">
-			<a (click)="changeTab('nogiets')" [ngClass]="{'active': tab == 'nogiets'}"><h4> Nog iets</h4></a>
-		</div>
 	</div>
 	<div class="content">
-		<div *ngIf="tab == 'gegevens'">Gegevens</div>
-		<div *ngIf="tab == 'bestellingen'">Bestellingen</div>
-		<div *ngIf="tab == 'nogiets'">Nog iets</div>
+		<div class="content_inner" *ngIf="(tab == 'gegevens') && user">
+			<h3>{{ user.firstName + " " + user.lastName }}</h3>
+			<p>{{ user.email }}</p>
+			<p>{{ user.phonenumber }}</p>
+		</div>
+		<div class="content_inner" *ngIf="(tab == 'bestellingen')">Bestellingen</div>
 	</div>
 </div>

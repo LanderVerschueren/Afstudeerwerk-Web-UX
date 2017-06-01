@@ -17,6 +17,19 @@ body {
 	background-size: cover;
 }
 
+app-root {
+	/*
+	Footer always at the bottom, 
+	if content in viewport is big enough push footer down, 
+	else stick the footer to the bottom of the viewport
+	*/
+	min-height: 100%;
+	position: relative;
+	display: block;
+	padding-bottom: 200px; /* Same as footer height */
+	box-sizing: border-box;
+}
+
 header-component {
 	@extend .flex;
 	@extend .flex_center;
@@ -33,12 +46,21 @@ search-component, user-component {
 	@extend .flex_middle;
 }
 
+user-component {
+	@extend .ptb50;
+}
+
 footer-component {
 	@extend .flex;
 	@extend .flex_center;
 	@extend .sec_bg_color;
-	@extend .h340;
+	@extend .h_footer;
 	@extend .wfull;
 	@extend .ptb50;
 	@extend .shadow_top;
+
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
 }

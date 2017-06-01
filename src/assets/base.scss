@@ -102,18 +102,19 @@ $sec_font: 'Work Sans', sans-serif;
 .shadow_text		{	text-shadow: 0px 4px 11px rgba(0, 0, 0, 0.7);	}
 
 /*  CLASSES / COLOR  */
-.prim_text_color 		{	color: $prim_text_color;						}
-.sec_text_color 		{	color: $sec_text_color;							}
-.third_text_color 		{	color: $third_text_color;						}
-.action_text_color 		{	color: $action_text_color;						}
-.alert_text_color 		{	color: $alert_text_color;						}
-.prim_bg_color 			{	background-color: $prim_color;					}
-.sec_bg_color 			{	background-color: $sec_color;					}
-.action_bg_color 		{	background-color: $action_color;				}
-.trans_bg_color 		{	background-color: rgba(0, 0, 0, 0);				}
-.blacktrans_bg_color	{	background-color: rgba(0, 0, 0, 0.7);			}
-.semitrans_bg_color 	{	background-color: rgba(250, 251, 255, 0.33);	}
-.white_bg_color 		{	background-color: white;						}
+.prim_text_color 		{	color: $prim_text_color;											}
+.sec_text_color 		{	color: $sec_text_color;												}
+.third_text_color 		{	color: $third_text_color;											}
+.action_text_color 		{	color: $action_text_color;											}
+.alert_text_color 		{	color: $alert_text_color;											}
+.prim_bg_color 			{	background-color: $prim_color;										}
+.sec_bg_color 			{	background-color: $sec_color;										}
+.action_bg_color 		{	background-color: $action_color;									}
+.trans_bg_color 		{	background-color: rgba(0, 0, 0, 0);									}
+.blacktrans_bg_color	{	background-color: rgba(0, 0, 0, 0.7);								}
+.semitrans_bg_color 	{	background-color: rgba(250, 251, 255, 0.33);						}
+.white_bg_color 		{	background-color: white;											}
+.bg_pattern				{	background: $sec_color url("/assets/img/ag-square.png") left top;	}	
 
 /*  CLASSES / OPACITY  */
 .opac66 	{	opacity: 0.66;	}
@@ -193,6 +194,8 @@ p 					{ 	font-size: 18px; 													}
 .h50 		{	height: 50px;	}
 .h40 		{	height: 40px;	}
 .h30 		{	height: 30px;	}
+
+.h_footer 	{	@extend .h200; 	}
 
 
 /*  CLASSES / WIDTH */
@@ -343,7 +346,6 @@ p 					{ 	font-size: 18px; 													}
 .input {
 	@extend .w650;
 	@extend .h60;
-	@extend .p1520;
 	@extend .br2;
 	@extend .shadow_light;
 	@extend .no_border;

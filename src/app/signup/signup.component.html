@@ -3,7 +3,7 @@
         <legend><h1>Registreer</h1></legend>
         <div class="form-group">
             <label for="firstName">Voornaam <span *ngIf="registerForm.controls['firstName'].hasError('required') && registerForm.controls['firstName'].touched" class="alert-danger">- Voornaam is verplicht.</span></label>
-            <input name="firstName" type="text" placeholder="Voornaam" class="input_form" [formControl]="registerForm.controls['firstName']" [ngClass]="{'has-error':!registerForm.controls['firstName'].valid && registerForm.controls['firstName'].touched}">
+            <input name="firstName" type="text" placeholder="Voornaam" class="input_form" autofocus [formControl]="registerForm.controls['firstName']" [ngClass]="{'has-error':!registerForm.controls['firstName'].valid && registerForm.controls['firstName'].touched}">
             
         </div>
         <div class="form-group">

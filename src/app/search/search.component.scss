@@ -28,7 +28,7 @@
 	@extend .flex;
 	@extend .flex_center;
 	@extend .sec_bg_color;
-	background: $sec_color url("/assets/img/ag-square.png") left top;
+	@extend .bg_pattern;
 
 	.search-bottom-inner {
 		@extend .flex;

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { GeneralService } from '../services/general.service';
 
 @Component({
   selector: 'user-component',
@@ -8,10 +11,20 @@ import { Component, OnInit } from '@angular/core';
 export class UserComponent implements OnInit {
 
 	tab:string = 'gegevens';
+	user:any;
 
-  constructor() { }
+  constructor( private generalService : GeneralService, private router : Router ) { }
 
   ngOnInit() {
+  	this.generalService.getUser( (res) => {
+		if( res.user ) {
+			this.user = res.user;
+			console.log( this.user );
+		}
+		else {
+			this.router.navigate(['login']);
+		}
+	});
   }
 
   changeTab( param ) {
