@@ -12,7 +12,7 @@ declare var google: any;
 export class GeneralService {
 
 	private subjectShops = new Subject<any>();
-	public token: string;
+	public token: string = '';
 	public loggedIn:boolean;
 	public loggedInUser: Array<any>;
 	public cart: any = {};
@@ -63,7 +63,7 @@ export class GeneralService {
 
 				cb( r );
 			}
-		}, (error) => { console.log(error) });
+		}, (error) => { cb( error ) });
     }
  
     logout(): void {

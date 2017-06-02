@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 import { GeneralService } from '../services/general.service';
 
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
     constructor(
         private router: Router,
         private generalService: GeneralService,
+        private location : Location,
         private fb: FormBuilder
     ) {
         this.loginForm = fb.group ({
@@ -27,7 +29,6 @@ export class LoginComponent implements OnInit {
     }
  
     ngOnInit() {
-        // reset login status
         this.generalService.logout();
     }
  
@@ -37,7 +38,7 @@ export class LoginComponent implements OnInit {
         	if( r.token ) {
         		this.generalService.getUser( (res) => {
         			if( res.user ) {
-        				this.router.navigate(['']);
+        				this.location.back();
         			}
         			else {
         				this.error = res;

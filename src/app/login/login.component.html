@@ -2,12 +2,12 @@
     <form class="form_login_register" [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
         <legend><h1>Log in</h1></legend>
         <div class="form-group">
-            <label for="email">Email</label>
+            <label for="email">E-mailadres</label>
             <input type="text" class="input_form" name="email" placeholder="Email" autofocus [formControl]="loginForm.controls['email']" [ngClass]="{'has-error':!loginForm.controls['email'].valid && loginForm.controls['email'].touched}"/>
             <div *ngIf="!loginForm.controls['email'].valid && loginForm.controls['email'].touched" class="alert-danger"><p>Email is verplicht.</p></div>
         </div>
         <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password">Paswoord</label>
             <input type="password" class="input_form" name="password" placeholder="Paswoord" [formControl]="loginForm.controls['password']" [ngClass]="{'has-error':!loginForm.controls['email'].valid && loginForm.controls['password'].touched}"/>
             <div *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].touched" class="alert-danger"><p>Paswoord is verplicht.</p></div>
         </div>

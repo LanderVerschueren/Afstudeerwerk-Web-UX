@@ -10,14 +10,19 @@ nav {
 		@extend .flex;
 		@extend .flex_1;
 
+		@extend .no_style;
+	}
+
+	div.buttons {
 		a:last-child {
 			@extend .ml30;
-			@extend .no_style;
 		}
 	}
 
 	.logo {
 		@extend .flex_left;
+		@extend .prim_font;
+		@extend h2;
 	}
 
 	.buttons {

@@ -10,8 +10,8 @@
 	<div class="content">
 		<div class="content_inner" *ngIf="(tab == 'gegevens') && user">
 			<h3>{{ user.firstName + " " + user.lastName }}</h3>
-			<p>{{ user.email }}</p>
-			<p>{{ user.phonenumber }}</p>
+			<div><span class="tag_email"></span><p>{{ user.email }}</p></div>
+			<div><span class="tag_phone"></span><p>{{ user.phonenumber }}</p></div>
 		</div>
 		<div class="content_inner" *ngIf="(tab == 'bestellingen')">Bestellingen</div>
 	</div>

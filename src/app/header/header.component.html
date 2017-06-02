@@ -1,18 +1,20 @@
 <nav>
-	<div class="logo"></div>
+	<div class="logo">
+		<h1><a class="no_style" [routerLink]="['']">Komiskes</a></h1>
+	</div>
 	<div class="buttons" *ngIf="!generalService.loggedIn">
 		<a class="btn_navigation" [routerLink]="['login']">
-			<p>LOG IN</p>
+			<p>Inloggen</p>
 		</a>
 		<a class="btn_navigation" [routerLink]="['signup']">
-			<p>SIGN IN</p>
+			<p>Registreren</p>
 		</a>
 	</div>
 
 	<div class="buttons" *ngIf="generalService.loggedIn">
-		<a [routerLink]="['user']">Hallo, {{ generalService.loggedInUser['firstName'] }}</a>
+		<a class="no_style" [routerLink]="['user']">Hallo, {{ generalService.loggedInUser['firstName'] }}</a>
 		<a class="btn_navigation" [routerLink]="['login']">
-			<p>LOGOUT</p>
+			<p>Uitloggen</p>
 		</a>
 	</div>
 </nav>

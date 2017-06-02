@@ -16,7 +16,20 @@
 		@extend .p20;
 
 		.content_inner {
-			@extend .ptb50,
+			@extend .ptb50;
+
+			h3 {
+				@extend .mb20;
+			}
+			div {
+				@extend .flex;
+				@extend .flex_middle; 
+				@extend .mb10;
+
+				span {
+					@extend .mr10;
+				}
+			}
 		}
 	}
 }

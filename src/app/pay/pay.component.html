@@ -1,3 +1,44 @@
-<p>
-  pay works!
-</p>
+<div class="container">
+	<section class="order_form">
+		<form class="form" (ngSubmit)="saveOrder()">
+			<div class="form-section">
+				<h3>Gegevens: </h3>
+				<div class="form-group">
+		            <label for="">Naam</label>
+		            <input name="name" type="text" placeholder="Naam" class="input_form" [formControl]="payForm.controls['name']" [ngClass]="{'has-error':!payForm.controls['name'].valid && payForm.controls['name'].touched}"><div *ngIf="payForm.controls['name'].hasError('required') && payForm.controls['name'].touched" class="alert-danger">Naam is verplicht.</div>
+		        </div>
+		        <div class="form-group">
+		            <label for="email">Email</label>
+		            <input name="email" type="text" placeholder="Email" class="input_form" [formControl]="payForm.controls['email']" [ngClass]="{'has-error':!payForm.controls['email'].valid && payForm.controls['email'].touched}">
+		            <div *ngIf="payForm.controls['email'].hasError('required') && payForm.controls['email'].touched" class="alert-danger">Email is verplicht.</div>
+		        </div>
+		        <div class="form-group">
+		            <label for="phonenumber">Telefoonnummer</label>
+		            <input name="phonenumber" type="text" placeholder="Telefoonnummer" class="input_form" [formControl]="payForm.controls['phonenumber']" [ngClass]="{'has-error':!payForm.controls['phonenumber'].valid && payForm.controls['phonenumber'].touched}">
+		            <div *ngIf="payForm.controls['phonenumber'].hasError('required') && payForm.controls['phonenumber'].touched" class="alert-danger">Telefoonnummer is verplicht.</div>
+		        </div>
+			</div>
+
+			<div class="form-section">
+				<h3>Afhalen: </h3>
+				<div class="form-group">
+					<label for="collection_day">Dag van ophaling</label>
+					<input name="collection_day" type="date" class="input_form" [formControl]="payForm.controls['collection_day']" [ngClass]="{'has-error':!payForm.controls['collection_day'].valid && payForm.controls['collection_day'].touched}">
+		            <div *ngIf="payForm.controls['collection_day'].hasError('required') && payForm.controls['collection_day'].touched" class="alert-danger">Dag van ophaling is verplicht.</div>
+				</div>
+				<div class="form-group">
+					<label>Periode van ophaling</label>
+					<label class="radio_label_input" for="collection_period"><input name="collection_period" type="radio" class="input_form" value="Voormiddag" [formControl]="payForm.controls['collection_period']" [ngClass]="{'has-error':!payForm.controls['collection_period'].valid && payForm.controls['collection_period'].touched}">Voormiddag</label>
+		            <div *ngIf="payForm.controls['collection_period'].hasError('required') && payForm.controls['collection_period'].touched" class="alert-danger">Periode van ophaling is verplicht.</div>
+				</div>
+
+			</div>
+		</form>
+	</section>
+
+	<section class="order_info" *ngIf="shop">
+		<h3>{{ shop.name }}</h3>
+		<h4># : {{ total_products }}</h4>
+		<h4>€ : {{ total_price }}</h4>
+	</section>
+</div>

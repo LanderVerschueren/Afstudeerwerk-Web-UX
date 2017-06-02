@@ -47,7 +47,7 @@ home-component {
 	@extend .flex_column;
 }
 
-search-component, user-component {
+search-component, user-component, pay-component {
 	@extend .flex;
 	@extend .flex_column;
 	@extend .flex_middle;

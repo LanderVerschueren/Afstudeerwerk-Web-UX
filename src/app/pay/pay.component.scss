@@ -1,0 +1,36 @@
+@import "../../assets/base.scss";
+
+.container {
+	@extend .p20;
+	@extend .bg_pattern;
+	@extend .mt50;
+
+	@extend .shadow_light;
+	@extend .br2;
+
+	@extend .flex;
+
+	.order_info {
+		@extend .p20;
+		@extend .sec_bg_color;
+
+		@extend .shadow_light;
+		@extend .br2;
+
+		@extend .ml20;
+
+		@extend .flex_1;
+	}
+
+	.order_form {
+		@extend .flex_2;
+		
+		.form-section {
+			@extend .mb20;
+			
+			h3 {
+				@extend .mb20;
+			}	
+		}
+	}
+}

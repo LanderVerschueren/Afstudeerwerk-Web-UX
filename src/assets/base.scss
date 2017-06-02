@@ -79,6 +79,7 @@ $sec_font: 'Work Sans', sans-serif;
 
 /*  CLASSES / GENERAL  */
 .no_style 	{
+				@extend .prim_text_color;
 				list-style-type: none;
 				text-decoration: none;
 			}
@@ -207,6 +208,7 @@ p {
 .mb5 		{	margin-bottom: 5px;		}
 .mt_neg100 	{	margin-bottom: -100px;	}
 .ml30 		{	margin-left: 30px;		}
+.ml20 		{	margin-left: 20px;		}
 .ml10 		{	margin-left: 10px;		}
 .mr100 		{	margin-right: 100px;	}
 .mr10 		{	margin-right: 10px;		}
@@ -463,11 +465,14 @@ p {
 
 
 /* FORM */
-.form_login_register {
+.form {
 	@extend .flex;
 	@extend .flex_column;
 	@extend .br2;
 	@extend .shadow_light;
+
+	@extend .p20;
+	@extend .sec_bg_color;
 
 	legend {
 		@extend .prim_font;
@@ -509,7 +514,17 @@ p {
 		div {
 			@extend .pl20;
 		} 
+
+		.radio_label_input {
+			input {
+				width: auto;
+			}
+		}
 	}
+}
+
+.form_login_register {
+	@extend .form;
 }
 
 
@@ -586,6 +601,22 @@ p {
 	@extend .tag_icon;
 	background: url( "/assets/img/pin.svg" );
 	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.tag_email {
+	@extend .tag_icon;
+	background: url( "/assets/img/mail.svg" );
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
+}
+
+.tag_phone {
+	@extend .tag_icon;
+	background: url( "/assets/img/phone.svg" );
+	background-repeat: no-repeat;
+	background-position: center;
 	background-size: contain;
 }
 
