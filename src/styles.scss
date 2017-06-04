@@ -60,11 +60,11 @@ user-component {
 footer-component {
 	@extend .flex;
 	@extend .flex_center;
-	@extend .sec_bg_color;
 	@extend .h_footer;
 	@extend .wfull;
 	@extend .ptb50;
 	@extend .shadow_top;
+	@extend .prim_bg_color;
 
 	position: absolute;
 	right: 0;

@@ -1,7 +1,7 @@
 @import "../../assets/base.scss";
 
 .container {
-	@extend .p20;
+	@extend .p_normal;
 	@extend .bg_pattern;
 	@extend .mt50;
 
@@ -11,7 +11,7 @@
 	@extend .flex;
 
 	.order_info {
-		@extend .p20;
+		@extend .p_normal;
 		@extend .sec_bg_color;
 
 		@extend .shadow_light;

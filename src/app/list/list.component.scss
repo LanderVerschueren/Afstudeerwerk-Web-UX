@@ -8,6 +8,15 @@
 	shop-component {
 		@extend .flex;
 		@extend .whalf;
-		@extend .p20;
+		@extend .p_normal;
+	}
+
+	@include for-phone-only {
+		flex-direction: column;
+
+		shop-component {
+			width: 100%;
+			height: 80px;
+		}
 	}
 }

@@ -230,6 +230,14 @@ p {
 .p1520 		{ 	box-sizing: border-box;	padding: 15px 20px;		}
 .p510 		{ 	box-sizing: border-box;	padding: 5px 10px;		}
 
+.p_normal {
+	box-sizing: border-box; padding: 20px;
+
+	@include for-phone-only {
+		box-sizing: border-box; padding: 5px;
+	}
+}
+
 
 /*  CLASSES / HEIGHT  */
 .hfull 		{	height: 100%;	}
@@ -471,7 +479,7 @@ p {
 	@extend .br2;
 	@extend .shadow_light;
 
-	@extend .p20;
+	@extend .p_normal;
 	@extend .sec_bg_color;
 
 	legend {
@@ -630,7 +638,7 @@ p {
 	@extend .flex;
 	@extend .flex_center;
 	@extend .flex_top;
-	@extend .p20;
+	@extend .p_normal;
 
 	top: 0;
 	left: 0;

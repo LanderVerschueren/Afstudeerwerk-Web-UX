@@ -11,7 +11,7 @@
 	@extend .wfull;
 	@extend .h300;
 	@extend .shadow_light;
-	@extend .p20;
+	@extend .p_normal;
 
 	@extend .flex;
 	@extend .flex_column;
@@ -57,5 +57,11 @@
 				@extend .w40;
 			}
 		}
+	}
+
+	@include for-phone-only {
+		height: 100%;
+
+		background-image: none!important;
 	}
 }

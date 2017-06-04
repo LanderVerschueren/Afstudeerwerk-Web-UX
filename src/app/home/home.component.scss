@@ -64,15 +64,18 @@
 	}
 }
 
-.home_bottom {
-	@extend .home_middle;
-	@extend .semitrans_bg_color;
-	
-	box-shadow: none!important;
+.home_divider {
 	background: url( '/assets/img/bg_desktop_bottom-min.jpg' );
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;	
+
+	@extend .h300;
+}
+
+.home_bottom {
+	@extend .home_middle;
+	@extend .sec_bg_color;
 
 	highlight-component {
 		@extend .wfull;

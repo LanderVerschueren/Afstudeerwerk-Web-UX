@@ -1,6 +1,8 @@
 @import "../../assets/base.scss";
 
 ul {
+	color: white;
+
 	h4 {
 		@extend .mb20;
 	}
@@ -11,7 +13,6 @@ ul {
 
 		&:hover {
 			a {
-
 				p {
 					@extend .font_bold;
 					transition: font-weight 0.12s;
@@ -29,6 +30,8 @@ ul {
 		}
 
 		a {
+			@extend .no_style;
+			@extend .prim_text_color;
 
 			p {
 				@extend .font_light;

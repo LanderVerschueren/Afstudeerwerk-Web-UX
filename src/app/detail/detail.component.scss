@@ -6,7 +6,7 @@
 	.cart_inner {
 		@extend .shadow_light;
 		@extend .br2;
-		@extend .p20;
+		@extend .p_normal;
 		@extend .sec_bg_color;
 
 		h2 {
@@ -142,7 +142,7 @@
 
 	.container {
 		@extend .flex;
-		@extend .p20;
+		@extend .p_normal;
 		@extend .white_bg_color;
 		@extend .br2;
 		@extend .shadow_light;
