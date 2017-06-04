@@ -550,6 +550,8 @@ p {
 
 	@include for-phone-only {
 		h3 {
+			background: transparent;
+			color: $third_text_color;
 			padding: 5px 10px;
 		}
 	}
@@ -575,9 +577,11 @@ p {
 	@include for-phone-only {
 		div {
 			padding-left: 10px;
+			background: transparent;
 
 			h4 {
 				padding: 5px 10px;
+				color: $third_text_color;
 			}
 		}
 	}
