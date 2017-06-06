@@ -14,11 +14,11 @@ class CreateProductsTable extends Migration
     public function up()
     {   
         Schema::create('products', function (Blueprint $table) {
-            $table->increments('product_id');
-            $table->integer('fk_shop_id')->unsigned();
+            $table->increments('id');
+            $table->integer('shop_id')->unsigned();
 
-            $table->foreign('fk_shop_id')
-                ->references('shop_id')
+            $table->foreign('shop_id')
+                ->references('id')
                 ->on('shops')->onDelete('cascade')->onUpdate('cascade');
 
             $table->string('product_name');

@@ -238,6 +238,14 @@ p {
 	}
 }
 
+.p_small {
+	box-sizing: border-box; padding: 10px;
+
+	@include for-phone-only {
+		box-sizing: border-box; padding: 3px;
+	}
+}
+
 
 /*  CLASSES / HEIGHT  */
 .hfull 		{	height: 100%;	}

@@ -12,7 +12,7 @@ class OrderDetails extends Model
      * @var array
      */
     protected $fillable = [
-        'fk_order_id', 'item_name', 'amount', 'price',
+        'order_id', 'item_name', 'amount', 'price',
     ];
 
     /**

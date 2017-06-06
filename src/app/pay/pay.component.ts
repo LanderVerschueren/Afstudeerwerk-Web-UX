@@ -16,7 +16,7 @@ import { PayService } from '../services/pay.service';
 export class PayComponent implements OnInit {
 	shop:any;
 	user:any;
-	id:string;
+	id:string = '';
 	payForm: FormGroup;
 
 	total_price:number;
@@ -49,15 +49,17 @@ export class PayComponent implements OnInit {
 	}
 
 	saveOrder(value:any) {
-		let fk_user_id = this.id;
-		let fk_shop_id = this.shop.shop_id;
+		let user_id = this.id;
+		let shop_id = this.shop.id;
 		let name = value.name;
 		let email = value.email;
 		let phonenumber = value.phonenumber;
 		let payment_method = value.payment_method;
-		let products = this.generalService.cart[this.id];
+		let products = JSON.stringify(this.generalService.cart[this.id].products);
+		let date_pickup = value.collection_day;
+		let period_pickup = value.collection_period;
 
-		this.apicallService.post( this.generalService.apilink + "storeOrder", {'fk_user_id': fk_user_id, 'fk_shop_id': fk_shop_id, 'email': email, 'phonenumber': phonenumber, 'name': name, 'payment_method': payment_method, 'products': products}, (r) => {
+		this.apicallService.post( this.generalService.apilink + "storeOrder", {'user_id': user_id, 'shop_id': shop_id, 'email': email, 'phonenumber': phonenumber, 'name': name, 'payment_method': payment_method, 'date_pickup': date_pickup, 'period_pickup': period_pickup, 'products': products}, (r) => {
 			console.log( r );
 		}, (error) => {
 			console.log( error );

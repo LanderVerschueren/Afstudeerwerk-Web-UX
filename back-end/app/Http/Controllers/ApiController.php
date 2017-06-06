@@ -35,7 +35,7 @@ class ApiController extends Controller
     }
 
     public function getShop( $id ) {
-        $shop = DB::table( 'shops' )->where( 'shop_id', '=', $id )->first();
+        $shop = DB::table( 'shops' )->where( 'id', '=', $id )->first();
 
         if( $shop ) {
             return response()->json( $shop );
@@ -46,7 +46,7 @@ class ApiController extends Controller
     }
 
     public function getProducts($id) {
-        $products = DB::table( 'products' )->where( 'fk_shop_id', "=", $id )->get();
+        $products = DB::table( 'products' )->where( 'id', "=", $id )->get();
 
         if( $products ) {
             return $products;
@@ -98,18 +98,64 @@ class ApiController extends Controller
         $input = $request->all();
 
         $validator = Validator::make( $input, [
-            'fk_shop_id' => 'required',
+            'user_id' => 'required',
+            'shop_id' => 'required',
             'payment_method' => 'required',
             'name' => 'required',
             'email' => 'required',
             'phonenumber' => 'required',
+            'products' => 'required',
         ]);
 
         if( $validator->fails() ) {
             return response()->json(['error' => $validator->failed()]);
         }
         else {
+            $order = new Order;
 
+            $order->user_id      = $input['user_id'];
+            $order->shop_id      = $input['shop_id'];
+            $order->name            = $input['name'];
+            $order->email           = $input['email'];
+            $order->phonenumber     = $input['phonenumber'];
+            $order->payment_method  = $input['payment_method'];
+            $order->date_pickup     = $input['date_pickup'];
+            $order->period_pickup   = $input['period_pickup'];
+
+            $success = $order->save();
+
+            if( $success ) {
+                $order_id = $order->id;
+                foreach( json_decode($input['products'], true) as $product ) {
+                    $order_details = new OrderDetails;
+
+                    $order_details->order_id        = $order_id;
+                    $order_details->item_name       = $product['product_name'];
+                    $order_details->amount          = $product['amount'];
+                    $order_details->price           = $product['price'];
+
+                    $success_details = $order_details->save();
+
+                    if( !$success_details ) {
+                        return response()->json(['message' => false]);
+                    }
+                }
+
+                return response()->json(['message' => true]);
+            }
+            else {
+                return response()->json(['message' => false]);
+            }
         }
+    }
+
+    public function getOrders( $id ) {
+        $orders = Order::where('user_id', '=', $id)->with('order_details')->get();
+
+        foreach( $orders as $order ) {
+            $order->shop;
+        }
+
+        return $orders;
     }
 }

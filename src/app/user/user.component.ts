@@ -12,6 +12,7 @@ export class UserComponent implements OnInit {
 
 	tab:string = 'gegevens';
 	user:any;
+	orders:any;
 
   constructor( private generalService : GeneralService, private router : Router ) { }
 
@@ -19,7 +20,14 @@ export class UserComponent implements OnInit {
   	this.generalService.getUser( (res) => {
 		if( res.user ) {
 			this.user = res.user;
-			console.log( this.user );
+
+			this.generalService.getOrders( (res) => {
+				this.orders = res;
+
+				this.orders.sort(this.generalService.compare('created_at'));
+
+				console.log( res );
+			});
 		}
 		else {
 			this.router.navigate(['login']);
@@ -30,5 +38,4 @@ export class UserComponent implements OnInit {
   changeTab( param ) {
   	this.tab = param;
   }
-
 }

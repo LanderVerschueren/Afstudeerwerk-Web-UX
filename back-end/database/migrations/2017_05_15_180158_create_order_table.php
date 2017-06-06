@@ -14,19 +14,24 @@ class CreateOrderTable extends Migration
     public function up()
     {   
         Schema::create('orders', function (Blueprint $table) {
-            $table->increments('order_id');
+            $table->increments('id');
+            $table->string('name');
+            $table->string('email');
+            $table->string('phonenumber');
 
-            $table->integer('fk_user_id')->unsigned();
-            $table->integer('fk_shop_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+            $table->integer('shop_id')->unsigned();
 
-            $table->foreign('fk_user_id')
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('fk_shop_id')
-                ->references('shop_id')
+            $table->foreign('shop_id')
+                ->references('id')
                 ->on('shops')->onDelete('cascade')->onUpdate('cascade');
                 
-            $table->boolean('status_payed');
+            $table->string('payment_method');
+            $table->date('date_pickup');
+            $table->string('period_pickup');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -16,12 +16,11 @@
 		@extend .p_normal;
 
 		.content_inner {
-			@extend .ptb50;
-
 			h3 {
 				@extend .mb20;
 			}
-			div {
+
+			.user_info {
 				@extend .flex;
 				@extend .flex_middle; 
 				@extend .mb10;
@@ -30,6 +29,37 @@
 					@extend .mr10;
 				}
 			}
+
+			.orders {
+				@extend .flex;
+				@extend .flex_column;
+
+				.order_detail {
+					@extend .sec_bg_color;
+					@extend .mb10;
+					@extend .shadow_light;
+					@extend .p_normal;
+
+					.order_detail_info {
+						@extend .p_small;
+						@extend .font_light;
+
+						div {
+							@extend .mb5;
+
+							@extend .flex;
+
+							p {
+								@extend .flex_1;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.user {
+			@extend .ptb50;
 		}
 	}
 }

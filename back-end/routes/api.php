@@ -16,6 +16,7 @@ Route::post(	'storeOrder', 'ApiController@storeOrder');
 Route::get(		'shops', 'ApiController@getShops');
 Route::get(		'shop/{id}', 'ApiController@getShop');
 Route::get(		'products/{id}', 'ApiController@getProducts');
+Route::get(		'orders/{id}', 'ApiController@getOrders');
 
 Route::get( 	'user', 'AuthenticateController@getAuthenticatedUser');
 Route::post( 	'authenticate', 'AuthenticateController@authenticate' );

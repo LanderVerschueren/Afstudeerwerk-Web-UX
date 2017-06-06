@@ -65,6 +65,14 @@ export class GeneralService {
 			}
 		}, (error) => { cb( error ) });
     }
+
+    getOrders( cb:any ) {
+    	this.apicallService.get( this.apilink + 'orders/' + this.loggedInUser['id'], (r:any) => {
+    		cb( r );
+    	}, ( error ) => {
+    		cb( error );
+    	});
+    }
  
     logout(): void {
         // clear token remove user from local storage to log user out

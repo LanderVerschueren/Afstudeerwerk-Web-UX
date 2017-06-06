@@ -8,11 +8,28 @@
 		</div>
 	</div>
 	<div class="content">
-		<div class="content_inner" *ngIf="(tab == 'gegevens') && user">
+		<div class="content_inner user" *ngIf="(tab == 'gegevens') && user">
 			<h3>{{ user.firstName + " " + user.lastName }}</h3>
-			<div><span class="tag_email"></span><p>{{ user.email }}</p></div>
-			<div><span class="tag_phone"></span><p>{{ user.phonenumber }}</p></div>
+			<div class="user_info"><span class="tag_email"></span><p>{{ user.email }}</p></div>
+			<div class="user_info"><span class="tag_phone"></span><p>{{ user.phonenumber }}</p></div>
 		</div>
-		<div class="content_inner" *ngIf="(tab == 'bestellingen')">Bestellingen</div>
+		<div class="content_inner" *ngIf="(tab == 'bestellingen')">
+			<div class="orders" *ngIf="orders">
+				<div class="order_detail" *ngFor="let order of orders">
+					<div class="order_detail_general">
+						<h3>{{ order.shop.name }}</h3>
+						<p>Datum van bestelling: {{ order.created_at | date: 'd MMMM y' }}</p>
+					</div>
+					<div class="order_detail_info">
+						<div *ngFor="let details of order.order_details">
+							<p>{{ details.item_name }}</p>
+							<p>{{ details.amount }}</p>
+							<p>{{ details.price | currency:'EUR':true:'1.2-2' }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div *ngIf="!orders">Je hebt nog geen bestellingen geplaatst.</div>
+		</div>
 	</div>
 </div>
