@@ -22,13 +22,13 @@ class CreatePaymentTable extends Migration
             
             $table->foreign('fk_user_id')
                 ->references('id')
-                ->on('users')->onDelete('cascade')->onUpdate('cascade');;
+                ->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('fk_shop_id')
                 ->references('shop_id')
-                ->on('shops')->onDelete('cascade')->onUpdate('cascade');;
+                ->on('shops')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('fk_order_id')
                 ->references('order_id')
-                ->on('orders')->onDelete('cascade')->onUpdate('cascade');;
+                ->on('orders')->onDelete('cascade')->onUpdate('cascade');
 
             $table->double('price_total');
             $table->softDeletes();

@@ -505,6 +505,7 @@ p {
 		label {
 			@extend h4;
 			@extend .mb5;
+			@extend .wfull;
 
 			span {
 				font-size: 14px;
@@ -513,6 +514,7 @@ p {
 
 		input {
 			@extend .mb10;
+			@extend .wfull;
 		}
 
 		.loading {
@@ -524,6 +526,9 @@ p {
 		} 
 
 		.radio_label_input {
+			@extend .input_form;
+			@extend .white_bg_color;
+
 			input {
 				width: auto;
 			}
@@ -553,6 +558,7 @@ p {
 			background: transparent;
 			color: $third_text_color;
 			padding: 5px 10px;
+			font-size: 16px;
 		}
 	}
 }
@@ -582,6 +588,7 @@ p {
 			h4 {
 				padding: 5px 10px;
 				color: $third_text_color;
+				font-size: 10px;
 			}
 		}
 	}
@@ -607,6 +614,13 @@ p {
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: contain;
+
+	@include for-phone-only {
+		background: url( "/assets/img/tag_black.svg" );
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: center;
+	}
 }
 
 .tag_pin {
@@ -614,6 +628,13 @@ p {
 	background: url( "/assets/img/pin.svg" );
 	background-repeat: no-repeat;
 	background-size: contain;
+
+	@include for-phone-only {
+		background: url( "/assets/img/pin_black.svg" );
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: center;
+	}
 }
 
 .tag_email {

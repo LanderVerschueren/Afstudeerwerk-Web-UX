@@ -1,14 +1,5 @@
 @import "../../assets/base.scss";
 
-.category {
-	@extend .mb50;
-
-	h2 {
-		@extend .font_medium;
-		@extend .mb20;
-	}
-}
-
 .product {
 	@extend .flex;
 	@extend .wfull;
@@ -16,7 +7,7 @@
 	@extend .white_bg_color;
 	@extend .shadow_light;
 
-	@extend .mb10;
+	@extend .mb20;
 	@extend .p_normal;
 
 	.product_info {
@@ -39,10 +30,11 @@
 
 		form {
 			@extend .flex;
+			@extend .h40;
 		}
 
 		span {
-			@extend .h40;
+			@extend .hfull;
 
 			@extend .flex;
 			@extend .flex_middle;
@@ -58,7 +50,7 @@
 
 		input {
 			@extend .w150;
-			@extend .h40;
+			@extend .hfull;
 			@extend .shadow_none;
 			@extend .input_border;
 			@extend .text_right;
@@ -87,12 +79,56 @@
 		.btn_action {
 			@extend .ml10;
 			@extend .w150;
-			@extend .h40;
+			@extend .hfull;
 			@extend .shadow_verylight;
 			@extend .font_regular;
 			@extend h4;
 
 			&:hover {}
+		}
+	}
+}
+
+@include for-phone-only {
+	.product {
+		flex-direction: column;
+		height: 80px;
+		margin-bottom: 10px;
+
+		.product_info {
+			display: flex;
+			flex-direction: row;
+			justify-content: flex-start;
+			align-items: center;
+
+			h3 {
+				padding-right: 10px;
+			}
+
+			p {
+				font-size: 12px;
+				font-weight: 300;
+			}
+		}
+
+		.product_price {
+			justify-content: center;
+
+			form {
+				flex: 1;
+
+				height: 30px;
+				justify-content: space-between;
+
+				button {
+					width: 50%;
+					margin-left: 0;
+				}
+
+				input {
+					width: 50%;
+				}
+			}
 		}
 	}
 }

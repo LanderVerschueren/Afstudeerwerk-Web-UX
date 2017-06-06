@@ -10,6 +10,12 @@
 
 	@include for-phone-only {
 		height: 150px;
+		width: 100%;
+		max-width: 96%;
+
+		searchinput-component {
+			width: 100%;
+		}
 	}
 }
 
@@ -90,7 +96,7 @@
 
 	@include for-phone-only {
 		.search-bottom-inner {
-			margin: 10px 0;
+			margin: 0;
 			width: 100%;
 
 			background-color: transparent;

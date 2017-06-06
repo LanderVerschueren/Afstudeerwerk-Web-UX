@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { GeneralService } from '../services/general.service';
+import { ApicallService } from '../services/apicall.service';
 import { PayService } from '../services/pay.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class PayComponent implements OnInit {
 	total_price:number;
 	total_products:number;
 
-	constructor(private route: ActivatedRoute, private payService : PayService, private generalService : GeneralService, 
+	constructor(private route: ActivatedRoute, private payService : PayService, private generalService : GeneralService, private apicallService : ApicallService,
     private fb: FormBuilder) {
 		this.payForm = fb.group({
 			'name': [null, Validators.required],
@@ -43,8 +44,23 @@ export class PayComponent implements OnInit {
 			});
 			this.generalService.getUser( (r) => {
 				this.user = r;
-				console.log( this.user );
 			});
+		});
+	}
+
+	saveOrder(value:any) {
+		let fk_user_id = this.id;
+		let fk_shop_id = this.shop.shop_id;
+		let name = value.name;
+		let email = value.email;
+		let phonenumber = value.phonenumber;
+		let payment_method = value.payment_method;
+		let products = this.generalService.cart[this.id];
+
+		this.apicallService.post( this.generalService.apilink + "storeOrder", {'fk_user_id': fk_user_id, 'fk_shop_id': fk_shop_id, 'email': email, 'phonenumber': phonenumber, 'name': name, 'payment_method': payment_method, 'products': products}, (r) => {
+			console.log( r );
+		}, (error) => {
+			console.log( error );
 		});
 	}
 }

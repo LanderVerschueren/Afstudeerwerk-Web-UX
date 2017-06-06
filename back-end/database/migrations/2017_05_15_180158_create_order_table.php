@@ -21,10 +21,10 @@ class CreateOrderTable extends Migration
 
             $table->foreign('fk_user_id')
                 ->references('id')
-                ->on('users')->onDelete('cascade')->onUpdate('cascade');;
+                ->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('fk_shop_id')
                 ->references('shop_id')
-                ->on('shops')->onDelete('cascade')->onUpdate('cascade');;
+                ->on('shops')->onDelete('cascade')->onUpdate('cascade');
                 
             $table->boolean('status_payed');
             $table->softDeletes();

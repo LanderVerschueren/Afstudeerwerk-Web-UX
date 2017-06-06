@@ -53,6 +53,11 @@ search-component, user-component, pay-component {
 	@extend .flex_middle;
 }
 
+detail-component {
+	display: block;
+	position: relative;
+}
+
 user-component {
 	@extend .ptb50;
 }

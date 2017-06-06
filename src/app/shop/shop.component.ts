@@ -10,7 +10,8 @@ export class ShopComponent implements OnInit {
 
 	@Input() shop;
 	
-	backgroundimage:string = "url('assets/img/card/modern-butchers-shop.jpg')";
+	backgroundimage:string = "assets/img/card/modern-butchers-shop.jpg";
+	backgroundimageUrl:string = "url('assets/img/card/modern-butchers-shop.jpg')";
 
 	constructor() { }
 
@@ -18,10 +19,12 @@ export class ShopComponent implements OnInit {
 		if(this.shop.image) {
 
 			let img = new Image();
-			img.onload = function() { this.backgroundimage = "url(" + img.src + ")"; }.bind(this);
+			img.onload = () => {
+				this.backgroundimage = img.src;
+				this.backgroundimageUrl = img.src;
+			};
 			img.src = this.shop.image;
 
 		}
 	}
-
 }

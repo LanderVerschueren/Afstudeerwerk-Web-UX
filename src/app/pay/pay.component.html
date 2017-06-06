@@ -1,6 +1,6 @@
 <div class="container">
 	<section class="order_form">
-		<form class="form" (ngSubmit)="saveOrder()">
+		<form class="form" (ngSubmit)="saveOrder(payForm.value)">
 			<div class="form-section">
 				<h3>Gegevens: </h3>
 				<div class="form-group">
@@ -28,17 +28,35 @@
 				</div>
 				<div class="form-group">
 					<label>Periode van ophaling</label>
-					<label class="radio_label_input" for="collection_period"><input name="collection_period" type="radio" class="input_form" value="Voormiddag" [formControl]="payForm.controls['collection_period']" [ngClass]="{'has-error':!payForm.controls['collection_period'].valid && payForm.controls['collection_period'].touched}">Voormiddag</label>
+					<label class="radio_label_input" for="collection_period_am">
+						<input id="collection_period_am" name="collection_period" type="radio" value="am" [formControl]="payForm.controls['collection_period']" [ngClass]="{'has-error':!payForm.controls['collection_period'].valid && payForm.controls['collection_period'].touched}">
+						Voormiddag
+					</label>
+					<label class="radio_label_input" for="collection_period_pm">
+						<input id="collection_period_pm" name="collection_period" type="radio" value="pm" [formControl]="payForm.controls['collection_period']" [ngClass]="{'has-error':!payForm.controls['collection_period'].valid && payForm.controls['collection_period'].touched}">
+						Namiddag
+					</label>
 		            <div *ngIf="payForm.controls['collection_period'].hasError('required') && payForm.controls['collection_period'].touched" class="alert-danger">Periode van ophaling is verplicht.</div>
 				</div>
-
 			</div>
+			<div class="form-section">
+				<h3>Betalingswijze: </h3>
+				<div class="form-group">
+					<label class="radio_label_input" for="payment_method_cash">
+						<input id="payment_method_cash" name="payment_method" type="radio" value="cash" [formControl]="payForm.controls['payment_method']" [ngClass]="{'has-error':!payForm.controls['payment_method'].valid && payForm.controls['payment_method'].touched}">
+						Contant
+					</label>
+				</div>
+			</div>
+			
+			<button type="submit" [disabled]="!payForm.valid" class="btn_action">Betalen</button>
+
 		</form>
 	</section>
 
 	<section class="order_info" *ngIf="shop">
 		<h3>{{ shop.name }}</h3>
-		<h4># : {{ total_products }}</h4>
-		<h4>€ : {{ total_price }}</h4>
+		<h4>Aantal producten: {{ total_products }}</h4>
+		<h4>Totaal te betalen: {{ total_price | currency:'EUR':true:'1.2-2' }}</h4>
 	</section>
 </div>

@@ -15,6 +15,9 @@ export class DetailComponent implements OnInit {
 	products:any;
 	shop:any;
 	cartShowing:boolean = false;
+	categories:any = [];
+	categorySelected:string;
+	categorySelecting:boolean = false;
 
   	constructor( private route: ActivatedRoute, private router: Router, private generalService : GeneralService, private zone: NgZone ) { }
 
@@ -38,6 +41,16 @@ export class DetailComponent implements OnInit {
 
 	    		this.products = this.generalService.getProducts( this.id, (r:any) => {
 	    			this.products = r;
+
+	    			this.products.forEach( product => {
+	    				let index = this.categories.find( category => category == product.category );
+	    				
+	    				if ( !index ) {
+	    					this.categories.push( product.category );
+	    				}
+	    			});
+
+	    			this.categorySelected = this.categories[0];
 	    		});
 	    	}
 		});
@@ -51,5 +64,16 @@ export class DetailComponent implements OnInit {
  			this.cartShowing = false;
  			document.body.className = document.body.className.replace("no_scroll","");
  		}
+ 	}
+
+ 	toggleDisplayCategory() {
+ 		( this.categorySelecting ) ? this.categorySelecting = false : this.categorySelecting = true;
+ 		console.log( this.categorySelecting );
+ 	}
+
+ 	selectCategory( category ) {
+ 		this.categorySelected = category;
+
+ 		this.categorySelecting = false;
  	}
 }

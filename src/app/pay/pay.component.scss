@@ -3,7 +3,7 @@
 .container {
 	@extend .p_normal;
 	@extend .bg_pattern;
-	@extend .mt50;
+	@extend .mtb50;
 
 	@extend .shadow_light;
 	@extend .br2;
@@ -13,8 +13,6 @@
 	.order_info {
 		@extend .p_normal;
 		@extend .sec_bg_color;
-
-		@extend .shadow_light;
 		@extend .br2;
 
 		@extend .ml20;
@@ -24,12 +22,29 @@
 
 	.order_form {
 		@extend .flex_2;
+
+		form {
+			@extend .shadow_none;
+		}
 		
 		.form-section {
 			@extend .mb20;
 			
 			h3 {
 				@extend .mb20;
+			}
+
+			.form-group {
+				.radio_label_input {
+					display: flex;
+					align-items: center;
+					width: 100%;
+
+					input {
+						margin: 0;
+						margin-right: 10px
+					}
+				} 
 			}	
 		}
 	}

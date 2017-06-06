@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Order;
+use App \OrderDetails;
 use DB;
 use Validator;
 use Illuminate\Database\QueryException;
@@ -70,7 +72,7 @@ class ApiController extends Controller
         ], $message);
 
         if( $validator->fails() ) {
-            return response()->json(['error' => $validator]);
+            return response()->json(['error' => $validator->failed()]);
         }
         else {
             $user = new User;
@@ -89,6 +91,25 @@ class ApiController extends Controller
             else {
                 return response()->json(['message' => false]);
             }
+        }
+    }
+
+    public function storeOrder( Request $request ) {
+        $input = $request->all();
+
+        $validator = Validator::make( $input, [
+            'fk_shop_id' => 'required',
+            'payment_method' => 'required',
+            'name' => 'required',
+            'email' => 'required',
+            'phonenumber' => 'required',
+        ]);
+
+        if( $validator->fails() ) {
+            return response()->json(['error' => $validator->failed()]);
+        }
+        else {
+
         }
     }
 }

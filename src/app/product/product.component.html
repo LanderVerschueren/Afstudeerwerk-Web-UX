@@ -1,15 +1,13 @@
-<div class="category">
-	<div class="product">
-		<div class="product_info">
-			<h3>{{ product.product_name }}</h3>
-			<p>{{ product.price | currency:'EUR':true:'1.2-2'}}</p>
-		</div>
-		<div class="product_price">
-			<form>
-				<input class="input" (keyup)="inputChange($event)" placeholder="100" type="number" name="amount" [(ngModel)]="model.amount" required>
-				<span>g</span>
-				<button type="submit" (click)="add()" [disabled]="adding" class="btn_action">{{  total_price | currency:'EUR':true:'1.2-2'}}</button>
-			</form>
-		</div>
+<div class="product">
+	<div class="product_info">
+		<h3>{{ product.product_name }}</h3>
+		<p>{{ product.price | currency:'EUR':true:'1.2-2'}}</p>
+	</div>
+	<div class="product_price">
+		<form>
+			<input class="input" (keyup)="inputChange($event)" placeholder="100" type="number" name="amount" [(ngModel)]="model.amount" required>
+			<span>g</span>
+			<button type="submit" (click)="add()" [disabled]="adding" class="btn_action">{{  total_price | currency:'EUR':true:'1.2-2'}}</button>
+		</form>
 	</div>
 </div>

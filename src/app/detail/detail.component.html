@@ -95,13 +95,26 @@
 	</div>
 </section>
 <section class="detail-middle" *ngIf="shop">
+	<a (click)="toggleDisplayCategory()"><p>Categorieën</p></a>
 </section>
 
-<section class="detail-bottom" *ngIf="shop">
+<section class="detail-bottom" *ngIf="shop && products">
 	<div class="container">
 		<category-component></category-component>
-		<div class="products">
-			<product-component *ngFor="let product of products" [product]="product"></product-component>
+		<div class="category_container" *ngFor="let category of categories" [hidden]="categorySelected != category">
+			<div class="products" >
+				<h2>{{ category }}</h2>
+				<product-component *ngFor="let product of products" [hidden]="product.category != category" [product]="product"></product-component>
+			</div>
 		</div>
 	</div>
 </section>
+
+<div class="select_category_container" *ngIf="categorySelecting">	
+	<p>Selecteer een categorie:</p>
+	<ul>
+		<li (click)="selectCategory( category )" *ngFor="let category of categories">
+			{{ category }}
+		</li>
+	</ul>
+</div>

@@ -12,6 +12,7 @@
 |
 */
 Route::post(	'register', 'ApiController@register');
+Route::post(	'storeOrder', 'ApiController@storeOrder');
 Route::get(		'shops', 'ApiController@getShops');
 Route::get(		'shop/{id}', 'ApiController@getShop');
 Route::get(		'products/{id}', 'ApiController@getProducts');
