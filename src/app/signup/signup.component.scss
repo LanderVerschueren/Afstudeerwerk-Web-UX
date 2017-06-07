@@ -28,4 +28,12 @@
 			@extend .h200;
 		}
 	}
+
+	@include for-phone-only {
+		padding: 0;
+
+		form {
+			border-radius: 0;
+		}
+	}
 }

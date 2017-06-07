@@ -9,9 +9,11 @@ import { GeneralService } from '../services/general.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor( private generalService: GeneralService ) { }
+	navShowing:boolean = false;
 
-  ngOnInit() {
-  }
+	constructor( private generalService: GeneralService ) { }
+
+	ngOnInit() {
+	}
 
 }

@@ -1,4 +1,4 @@
-<div class="tab">
+<!-- <div class="tab">
 	<a (click)="changeFilter($event, 'all')" [ngClass]="{'active': filterCategory == 'all'}"><h4>Alle</h4></a>
 </div>
 <div class="tab">
@@ -6,4 +6,32 @@
 </div>
 <div class="tab">
 	<a (click)="changeFilter($event, 'bakker')" [ngClass]="{'active': filterCategory == 'bakkerij'}"><h4>Bakkerijen</h4></a>
+</div> -->
+
+
+<ul *ngIf='windowWidth > 599'>
+	<li class="tab">
+		<a (click)="changeFilter($event, 'all')" [ngClass]="{'active': filterCategory == 'all'}"><h4>Alle</h4></a>
+	</li>
+	<li class="tab">
+		<a (click)="changeFilter($event, 'beenhouwer')" [ngClass]="{'active': filterCategory == 'beenhouwerij'}"><h4>Beenhouwerijen</h4></a>
+	</li>
+	<li class="tab">
+		<a (click)="changeFilter($event, 'bakker')" [ngClass]="{'active': filterCategory == 'bakkerij'}"><h4>Bakkerijen</h4></a>
+	</li>
+</ul>
+
+<div *ngIf='windowWidth <= 599'>
+	<p>Selecteer een type van winkel:</p>
+	<ul>
+		<li>
+			<a (click)="changeFilter($event, 'all')" [ngClass]="{'active': filterCategory == 'all'}"><h4>Alle</h4></a>
+		</li>
+		<li>
+			<a (click)="changeFilter($event, 'beenhouwer')" [ngClass]="{'active': filterCategory == 'beenhouwerij'}"><h4>Beenhouwerijen</h4></a>
+		</li>
+		<li>
+			<a (click)="changeFilter($event, 'bakker')" [ngClass]="{'active': filterCategory == 'bakkerij'}"><h4>Bakkerijen</h4></a>
+		</li>
+	</ul>
 </div>

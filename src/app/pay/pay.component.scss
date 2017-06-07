@@ -6,14 +6,14 @@
 	@extend .mtb50;
 
 	@extend .shadow_light;
-	@extend .br2;
+	@extend .br_normal;
 
 	@extend .flex;
 
 	.order_info {
 		@extend .p_normal;
 		@extend .sec_bg_color;
-		@extend .br2;
+		@extend .br_normal;
 
 		@extend .ml20;
 

@@ -11,4 +11,14 @@
 		@extend .p_normal;
 		@extend .sec_bg_color;
 	}
+
+	@include for-phone-only {
+		padding: 0;
+
+		form {
+			border-radius: 0;
+
+			min-height: 350px;
+		}
+	}
 }

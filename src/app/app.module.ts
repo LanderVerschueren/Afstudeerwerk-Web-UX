@@ -1,5 +1,5 @@
 import { BrowserModule                        } from '@angular/platform-browser';
-import { NgModule                             } from '@angular/core';
+import { NgModule, LOCALE_ID                  } from '@angular/core';
 import { FormsModule, ReactiveFormsModule     } from '@angular/forms';
 import { HttpModule, JsonpModule              } from '@angular/http';
 
@@ -68,7 +68,8 @@ import { GeneralService               } from './services/general.service';
   providers: [
     ApicallService,
     GeneralService,
-    PayService
+    PayService,
+    { provide: LOCALE_ID, useValue: "nl-BE" },
   ],
   bootstrap: [AppComponent]
 })

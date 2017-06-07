@@ -90,7 +90,7 @@ $sec_font: 'Work Sans', sans-serif;
 .bottom_border_black		{	border-bottom: 1px solid $black_opac66;	}
 .bottom_border_lightblack	{	border-bottom: 1px solid $black_opac15;	}
 .br_none 					{	border-radius: initial;					}
-.br2						{	border-radius: 2px;						}
+.br_normal					{	border-radius: 4px;						}
 .br_circle					{	border-radius: 50%;						}
 .pos_rel 					{	position: relative;						}
 .pos_absolute				{	position: absolute;						}
@@ -144,7 +144,7 @@ $sec_font: 'Work Sans', sans-serif;
 
 /*  CLASSES / TEXT  */
 h1 { 
-	font-size: 72px;
+	font-size: 64px;
 
 	@include for-phone-only {
 		font-size: 40px;
@@ -181,12 +181,13 @@ p {
 	}													
 }
 .main_title {	
-	font-size: 124px; 
+	font-size: 100px; 
 	@extend .prim_font; 
-	@extend .prim_text_color;		
+	@extend .prim_text_color;	
+	@extend .shadow_text;	
 
 	@include for-phone-only {
-		font-size: 28px;
+		font-size: 40px;
 	}
 }
 .fsize_30 			{	font-size: 30px;													}
@@ -341,7 +342,7 @@ p {
 	@extend .flex_middle;
 	@extend .no_style;
 	@extend .prim_text_color;
-	@extend .br2;
+	@extend .br_normal;
 	@extend .shadow_light;
 	@extend .button_hand;
 	@extend .no_border;
@@ -352,6 +353,7 @@ p {
 	@extend .btn;
 	@extend .prim_bg_color;
 	@extend .text_uppercase;
+	@extend .ml20;
 
 	p {
 		@extend .p1520;
@@ -375,14 +377,14 @@ p {
 	}
 
 	@include for-phone-only {
-		width: 34px;
-		height: 34px;
+		width: 40px;
+		height: 40px;
 
 		margin-left: 5px;
 
 		img {
-			width: 16px;
-			height: 16px;
+			width: 18px;
+			height: 18px;
 		}
 	}
 }
@@ -412,7 +414,7 @@ p {
 	@extend .plr10;
 
 	@include for-phone-only {
-		height: 25px;
+		height: 40px;
 	}
 }
 
@@ -429,7 +431,7 @@ p {
 	@extend .w240;
 
 	@include for-phone-only {
-		height: 25px;
+		height: 40px;
 	}
 }
 
@@ -457,7 +459,7 @@ p {
 .input {
 	@extend .w650;
 	@extend .h60;
-	@extend .br2;
+	@extend .br_normal;
 	@extend .shadow_light;
 	@extend .no_border;
 	@extend p;
@@ -468,7 +470,7 @@ p {
 
 	@include for-phone-only {
 		width: 100%;
-		height: 34px;
+		height: 40px;
 	}
 }
 
@@ -484,7 +486,7 @@ p {
 .form {
 	@extend .flex;
 	@extend .flex_column;
-	@extend .br2;
+	@extend .br_normal;
 	@extend .shadow_light;
 
 	@extend .p_normal;
@@ -542,10 +544,21 @@ p {
 			}
 		}
 	}
+
+	@include for-phone-only {
+		.form-group {
+			padding-left: 0;
+		}
+	}
 }
 
 .form_login_register {
 	@extend .form;
+	@extend .w650;
+
+	@include for-phone-only {
+		width: 100%;
+	}
 }
 
 
@@ -558,7 +571,6 @@ p {
 		@extend h3;
 		@extend .prim_text_color;
 		@extend .p1520;
-		@extend .font_light;
 	}
 
 	@include for-phone-only {

@@ -46,7 +46,7 @@ class ApiController extends Controller
     }
 
     public function getProducts($id) {
-        $products = DB::table( 'products' )->where( 'id', "=", $id )->get();
+        $products = DB::table( 'products' )->where( 'shop_id', "=", $id )->get();
 
         if( $products ) {
             return $products;

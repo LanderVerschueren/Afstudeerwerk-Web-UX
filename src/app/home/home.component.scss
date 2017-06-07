@@ -71,6 +71,10 @@
 	background-position: center;	
 
 	@extend .h300;
+
+	@include for-phone-only {
+		height: 150px;
+	}
 }
 
 .home_bottom {

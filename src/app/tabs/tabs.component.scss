@@ -1,6 +1,6 @@
 @import "../../assets/base.scss";
 
-ul {
+.list_desktop {
 	@extend .flex;
 
 	li a {
@@ -21,3 +21,37 @@ ul {
 div p {
 	@extend .font_light;
 }
+
+@include for-phone-only {
+	ul {
+		background-color: $sec_color;
+		flex-direction: column;
+	}
+
+	.list_mobile {
+		box-sizing: border-box;
+		padding: 5px;
+		background-color: $sec_color;
+
+		width: 100%;
+		height: 100%;
+
+		p {
+			font-weight: 300;
+			margin-bottom: 10px;
+		}
+
+		ul {
+			padding-left: 20px;
+
+			li {
+				margin-bottom: 5px;
+
+				a {
+					color: $sec_text_color;
+					text-transform: capitalize;
+				}
+			}
+		}
+	}
+} 

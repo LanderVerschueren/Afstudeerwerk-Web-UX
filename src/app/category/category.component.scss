@@ -14,30 +14,21 @@ div {
 			@extend .mb10;
 
 			&:hover {
-				a {
-
-					h4 {
-						@extend .font_bold;
-						transition: font-weight 0.12s;
-					}
+				h4 {
+					@extend .font_bold;
+					transition: font-weight 0.12s;
 				}
 			}
 
 			&:active {
-				a {
-
-					h4 {
-						@extend .font_bold;
-					}
+				h4 {
+					@extend .font_bold;
 				}
 			}
 
-			a {
-
-				h4 {
-					@extend .font_light;
-					@extend .pl20;
-				}
+			h4 {
+				@extend .font_light;
+				@extend .pl20;
 			}
 		}
 	}

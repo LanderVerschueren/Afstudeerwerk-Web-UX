@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MapComponent } from '../map/map.component';
+import { SearchComponent } from '../search/search.component';
 import { GeneralService } from '../services/general.service';
 
 @Component({
@@ -9,11 +10,14 @@ import { GeneralService } from '../services/general.service';
   providers: [MapComponent]
 })
 export class FilterComponent implements OnInit {
-	filterCategory:string = 'all';
 
-  constructor( private generalService: GeneralService, private mapComponent: MapComponent ) { }
+	filterCategory:string = 'all';
+  windowWidth:number;
+
+  constructor( private generalService: GeneralService, private mapComponent: MapComponent, private searchComponent: SearchComponent ) { }
 
   ngOnInit() {
+    this.windowWidth = this.searchComponent.windowWidth;
   }
 
   changeFilter(event, category) {
@@ -31,6 +35,8 @@ export class FilterComponent implements OnInit {
         this.filterCategory = 'bakkerij';
   			break;
   	}
+
+    this.searchComponent.toggleOverlay( 'filter' );
 
     if( this.generalService.searchView == 'map' ) {
       this.mapComponent.updateMarkers();

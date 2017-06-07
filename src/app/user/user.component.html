@@ -21,10 +21,10 @@
 						<p>Datum van bestelling: {{ order.created_at | date: 'd MMMM y' }}</p>
 					</div>
 					<div class="order_detail_info">
-						<div *ngFor="let details of order.order_details">
-							<p>{{ details.item_name }}</p>
-							<p>{{ details.amount }}</p>
-							<p>{{ details.price | currency:'EUR':true:'1.2-2' }}</p>
+						<div class="order_properties" *ngFor="let details of order.order_details">
+							<p class="order_properties_name">{{ details.item_name }}</p>
+							<p class="order_properties_amount">{{ details.amount }}</p>
+							<p class="order_properties_price">{{ details.price | currency:'EUR':true:'1.2-2' }}</p>
 						</div>
 					</div>
 				</div>

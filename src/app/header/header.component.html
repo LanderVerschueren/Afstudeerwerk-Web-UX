@@ -1,20 +1,60 @@
 <nav>
-	<div class="logo">
-		<h1><a class="no_style" [routerLink]="['']">Komiskes</a></h1>
-	</div>
-	<div class="buttons" *ngIf="!generalService.loggedIn">
-		<a class="btn_navigation" [routerLink]="['login']">
-			<p>Inloggen</p>
-		</a>
-		<a class="btn_navigation" [routerLink]="['signup']">
-			<p>Registreren</p>
-		</a>
+	<div class="nav_top">
+		<div class="logo">
+			<h1><a class="no_style" [routerLink]="['']">Komiskes</a></h1>
+		</div>
+		<div class="buttons" *ngIf="!generalService.loggedIn">
+			<a class="btn_navigation" [routerLink]="['login']">
+				<p>Inloggen</p>
+			</a>
+			<a class="btn_navigation" [routerLink]="['signup']">
+				<p>Registreren</p>
+			</a>
+		</div>
+
+		<div class="buttons" *ngIf="generalService.loggedIn">
+			<a class="no_style" [routerLink]="['user']">
+				<p>Hallo, {{ generalService.loggedInUser['firstName'] }}</p>
+			</a>
+			<a class="btn_navigation" [routerLink]="['login']">
+				<p>Uitloggen</p>
+			</a>
+		</div>
+
+		<div (click)="navShowing = !navShowing" [ngClass]="{'open': navShowing }" id="hamburger">
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
 	</div>
 
-	<div class="buttons" *ngIf="generalService.loggedIn">
-		<a class="no_style" [routerLink]="['user']">Hallo, {{ generalService.loggedInUser['firstName'] }}</a>
-		<a class="btn_navigation" [routerLink]="['login']">
-			<p>Uitloggen</p>
-		</a>
+	<div class="nav_mobile" (click)="navShowing = false" [hidden]="!navShowing">
+		<ul *ngIf="!generalService.loggedIn">
+			<li>
+				<a class="no_style" [routerLink]="['login']">
+					<p>Inloggen</p>
+				</a>
+			</li>
+			<li>
+				<a class="no_style" [routerLink]="['signup']">
+					<p>Registreren</p>
+				</a>
+			</li>
+		</ul>
+
+		<ul *ngIf="generalService.loggedIn && generalService.loggedInUser">
+			<li>
+				<a class="no_style" [routerLink]="['user']">
+					<p>Hallo, {{ generalService.loggedInUser['firstName'] }}</p>
+				</a>
+			</li>
+			<li>
+				<a class="no_style" [routerLink]="['login']">
+					<p>Uitloggen</p>
+				</a>
+			</li>
+		</ul>
 	</div>
 </nav>
+

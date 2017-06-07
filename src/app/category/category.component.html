@@ -1,11 +1,10 @@
-<div>
+<div class="select_category_container">	
 	<ul>
 		<h3>Categorieën</h3>
-		<li>
-			<a><h4>Charcuterie</h4></a>
-		</li>
-		<li>
-			<a><h4>Kaas</h4></a>
+		<li (click)="selectCategory( category )" *ngFor="let category of categories">
+			<h4>{{ category }}</h4>
 		</li>
 	</ul>
 </div>
+
+<!-- *ngIf="detailComponent.categorySelecting" -->

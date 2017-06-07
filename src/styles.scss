@@ -15,6 +15,10 @@ body {
 	background-position: center top;
 	background-repeat: no-repeat;
 	background-size: cover;
+
+	@include for-phone-only {
+		background-image: url( 'assets/img/bg_mobile_top-min.jpg' );
+	}
 }
 
 app-root {
@@ -53,7 +57,7 @@ search-component, user-component, pay-component {
 	@extend .flex_middle;
 }
 
-detail-component {
+detail-component, search-component {
 	display: block;
 	position: relative;
 }

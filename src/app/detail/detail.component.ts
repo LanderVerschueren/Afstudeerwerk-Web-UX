@@ -35,7 +35,7 @@ export class DetailComponent implements OnInit {
 		    			}
 	    			});
 	    		} else {
-	    			let index = this.generalService.shops.findIndex( r => r.shop_id == this.id);
+	    			let index = this.generalService.shops.findIndex( r => r.id == this.id);
 	    			this.shop = this.generalService.shops[ index ];
 	    		}
 
@@ -50,6 +50,7 @@ export class DetailComponent implements OnInit {
 	    				}
 	    			});
 
+	    			this.categories.sort();
 	    			this.categorySelected = this.categories[0];
 	    		});
 	    	}
@@ -68,7 +69,6 @@ export class DetailComponent implements OnInit {
 
  	toggleDisplayCategory() {
  		( this.categorySelecting ) ? this.categorySelecting = false : this.categorySelecting = true;
- 		console.log( this.categorySelecting );
  	}
 
  	selectCategory( category ) {

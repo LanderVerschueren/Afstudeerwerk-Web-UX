@@ -22,6 +22,12 @@
 	}
 
 	.detail {
+		@extend .flex;
+		@extend .flex_column;
+		@extend .flex_spacebetween;
+
+		@extend .hfull;
+
 		.more_details {
 			@extend .flex;
 			@extend .flex_column;
@@ -30,17 +36,6 @@
 				&:first-child {
 					@extend .mb10;
 				}
-			}
-		}
-
-		&:hover {
-			background-size: 110%!important;
-			transition: all 0.3s ease-in-out;
-
-			.hover_button {
-				opacity: 1;
-
-				transition: opacity 0.3s;
 			}
 		}
 
@@ -61,6 +56,16 @@
 					@extend .w40;
 				}
 			}
+		}
+	}
+	&:hover {
+		background-size: 110%!important;
+		transition: all 0.3s ease-in-out;
+
+		.detail .hover_button {
+			opacity: 1;
+
+			transition: opacity 0.3s;
 		}
 	}
 

@@ -12,6 +12,7 @@
 		height: 150px;
 		width: 100%;
 		max-width: 96%;
+		margin: 0 auto;
 
 		searchinput-component {
 			width: 100%;
@@ -30,6 +31,9 @@
 	filter-component {
 		@extend .flex;
 		@extend .h50;
+
+		@extend .wfull;
+		@extend .wmax;
 	}
 
 	.container_mobile {
@@ -42,15 +46,14 @@
 
 		p {
 			@extend .prim_text_color;
-			@extend .font_extra_light;
 		}
 	}
 
 	@include for-phone-only {
-		height: 30px;
+		height: 40px;
 
 		.container {
-			display: none;
+			visibility: hidden;
 		}
 
 		.container_mobile {
@@ -58,7 +61,14 @@
 		}
 
 		filter-component {
-			height: 30px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			z-index: 990;
+
+			height: 100%;
+			width: 100%;
 		}
 	}
 
@@ -78,7 +88,7 @@
 		@extend .flex_center;
 		@extend .p_normal;
 		@extend .mtb50;
-		@extend .br2;
+		@extend .br_normal;
 		@extend .shadow_light;
 		@extend .white_bg_color;
 
@@ -103,7 +113,14 @@
 		}
 
 		tabs-component {
-			display: none;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			z-index: 990;
+
+			height: 100%;
+			width: 100%;
 		}
 	}
 }

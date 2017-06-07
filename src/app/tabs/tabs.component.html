@@ -1,7 +1,15 @@
-<ul>
+<ul class="list_desktop" *ngIf='windowWidth > 599'>
 	<li><a class="btn_action_shadow" (click)="changeTab($event, 'list')" [ngClass]="{'active': generalService.searchView == 'list'}">lijst</a></li>
 	<li><a class="btn_action_shadow" (click)="changeTab($event, 'map')" [ngClass]="{'active': generalService.searchView == 'map'}">kaart</a></li>
 </ul>
-<div>
+<div *ngIf='windowWidth > 599'>
 	<p>{{ generalService.filteredShops.length }} resultaten</p>
+</div>
+
+<div class="list_mobile" *ngIf='windowWidth <= 599'>
+	<p>Selecteer een weergave:</p>
+	<ul>
+		<li><a (click)="changeTab($event, 'list')" [ngClass]="{'active': generalService.searchView == 'list'}">lijst</a></li>
+		<li><a (click)="changeTab($event, 'map')" [ngClass]="{'active': generalService.searchView == 'map'}">kaart</a></li>
+	</ul>
 </div>

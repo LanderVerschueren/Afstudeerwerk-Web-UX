@@ -2,18 +2,16 @@
 	<searchinput-component></searchinput-component>
 </section>
 <section class="search-middle">
-	<div class="container">
-		<filter-component></filter-component>
-	</div>
+	<filter-component *ngIf="showFilter"></filter-component>
 
 	<div class="container_mobile">
-		<a><p>Filter</p></a>
-		<a><p>Lijst/Map</p></a>
+		<a (click)="toggleOverlay( 'filter' )"><p>Filter</p></a>
+		<a (click)="toggleOverlay( 'view' )"><p>Lijst/Map</p></a>
 	</div>
 </section>
 <section class="search-bottom">
 	<div class="search-bottom-inner">
-		<tabs-component></tabs-component>
+		<tabs-component *ngIf="showTabs"></tabs-component>
 		<div>
 			<list-component *ngIf="generalService.searchView == 'list'"></list-component>
 			<map-component *ngIf="generalService.searchView == 'map'"></map-component>

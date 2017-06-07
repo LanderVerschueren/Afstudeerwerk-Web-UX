@@ -1,1 +1,36 @@
 @import "../../assets/base.scss";
+
+ul {
+	@extend .wfull;
+	@extend .flex;
+}
+
+@include for-phone-only {
+	ul {
+		background-color: $sec_color;
+		flex-direction: column;
+	}
+
+	div {
+		box-sizing: border-box;
+		padding: 5px;
+		background-color: $sec_color;
+
+		width: 100%;
+
+		p {
+			font-weight: 300;
+			margin-bottom: 10px;
+		}
+
+		ul {
+			padding-left: 20px;
+
+			li {
+				color: $sec_text_color;
+				text-transform: capitalize;
+				margin-bottom: 5px;
+			}
+		}
+	}
+} 
