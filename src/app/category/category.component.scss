@@ -29,6 +29,7 @@ div {
 			h4 {
 				@extend .font_light;
 				@extend .pl20;
+				@extend .text_capitalize;
 			}
 		}
 	}

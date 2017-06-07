@@ -37,7 +37,6 @@ app-root {
 header-component {
 	@extend .flex;
 	@extend .flex_center;
-	@extend .h100;
 
 	@include for-phone-only {
 		height: 50px;

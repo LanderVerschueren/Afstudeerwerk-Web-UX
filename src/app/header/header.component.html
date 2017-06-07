@@ -21,7 +21,7 @@
 			</a>
 		</div>
 
-		<div (click)="navShowing = !navShowing" [ngClass]="{'open': navShowing }" id="hamburger">
+		<div (click)="toggleDisplayNav($event)" [ngClass]="{'open': navShowing }" id="hamburger">
 			<span></span>
 			<span></span>
 			<span></span>
@@ -29,15 +29,15 @@
 		</div>
 	</div>
 
-	<div class="nav_mobile" (click)="navShowing = false" [hidden]="!navShowing">
+	<div class="nav_mobile" [hidden]="!navShowing">
 		<ul *ngIf="!generalService.loggedIn">
 			<li>
-				<a class="no_style" [routerLink]="['login']">
+				<a class="no_style" (click)="toggleDisplayNav($event)" [routerLink]="['login']">
 					<p>Inloggen</p>
 				</a>
 			</li>
 			<li>
-				<a class="no_style" [routerLink]="['signup']">
+				<a class="no_style" (click)="toggleDisplayNav($event)" [routerLink]="['signup']">
 					<p>Registreren</p>
 				</a>
 			</li>
@@ -45,12 +45,12 @@
 
 		<ul *ngIf="generalService.loggedIn && generalService.loggedInUser">
 			<li>
-				<a class="no_style" [routerLink]="['user']">
+				<a class="no_style" (click)="toggleDisplayNav($event)" [routerLink]="['user']">
 					<p>Hallo, {{ generalService.loggedInUser['firstName'] }}</p>
 				</a>
 			</li>
 			<li>
-				<a class="no_style" [routerLink]="['login']">
+				<a class="no_style" (click)="toggleDisplayNav($event)" [routerLink]="['login']">
 					<p>Uitloggen</p>
 				</a>
 			</li>
