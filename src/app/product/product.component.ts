@@ -28,8 +28,9 @@ export class ProductComponent implements OnInit {
 
   add() {
     if( this.model['amount'] ) {
+      console.log(this.product);
       this.adding = true;
-      let shop_id         = this.product['fk_shop_id'];
+      let shop_id         = this.product['shop_id'];
       let product_id      = this.product['product_id'];
       let product_name    = this.product['product_name'];
       let amount          = this.model['amount'];

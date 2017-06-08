@@ -1,5 +1,5 @@
 <div class="register_wrapper">
-    <form class="form_login_register" [formGroup]="registerForm" (ngSubmit)=register(registerForm.value) *ngIf="!success">
+    <form class="form_login_register" [formGroup]="registerForm" (ngSubmit)="register(registerForm.value, registerForm.valid)" *ngIf="!success">
         <legend><h1>Registreer</h1></legend>
         <div class="form-group">
             <label for="firstName">Voornaam <span *ngIf="registerForm.controls['firstName'].hasError('required') && registerForm.controls['firstName'].touched" class="alert-danger">- Voornaam is verplicht.</span></label>
@@ -33,7 +33,7 @@
 
         <div class="form-group">
             <!--<button [disabled]="loading" [ngClass]="{'loading': loading}" class="btn_action">Registreer</button>-->
-            <button type="submit" [disabled]="!registerForm.valid" [ngClass]="{'loading': loading}" class="btn_action">Registreer</button>
+            <button type="submit" [ngClass]="{'loading': loading}" class="btn_action">Registreer</button>
         </div>
     </form>
 

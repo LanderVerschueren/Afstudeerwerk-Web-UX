@@ -31,6 +31,8 @@ import { ApicallService               } from './services/apicall.service';
 import { PayService                   } from './services/pay.service';
 import { GeneralService               } from './services/general.service';
 
+// import '../assets/scripts/pikaday.js';
+
 
 @NgModule({
   declarations: [

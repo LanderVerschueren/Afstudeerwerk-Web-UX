@@ -56,13 +56,20 @@ export class GeneralService {
     }
 
     getUser( cb:any ) {
-    	this.apicallService.get( this.apilink + 'user?token=' + this.token, (r:any) => {
-			if ( r.user ) {
-				this.loggedInUser = r.user;
-				this.loggedIn = true;
-				cb( r );
-			}
-		}, (error) => { cb( error ) });
+    	if ( this.token ) {
+
+	    	this.apicallService.get( this.apilink + 'user?token=' + this.token, (r:any) => {
+				if ( r.user ) {
+					this.loggedInUser = r.user;
+					this.loggedIn = true;
+					cb( r );
+				}
+			}, (error) => { cb( error ) });
+
+	    }
+	    else {
+	    	cb( 'fail' );
+	    }
     }
 
     getOrders( cb:any ) {

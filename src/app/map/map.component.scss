@@ -1,6 +1,10 @@
 @import "../../assets/base.scss";
 
 #map {
-	@extend .mt20;
+	margin: 20px 0;
 	@extend .h600;
+
+	@include for-phone-only {
+		height: 400px;
+	}
 }

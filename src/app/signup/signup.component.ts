@@ -32,21 +32,31 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
   }
 
-  register(value: any) {
-    this.loading = true;
-    this.generalService.register( value, (r:any) => {
-      if ( r.message == true ) {
-        this.loading = false;
-        this.success = true;
+  register(value: any, valid: boolean) {
+    if( valid ) {
+      this.loading = true;
+      this.generalService.register( value, (r:any) => {
+        if ( r.message == true ) {
+          this.loading = false;
+          this.success = true;
+        }
+        else if( r.error.customMessages.email === 'duplicate' ) {
+          this.error = "Dit e-mailadres werd al eens gebruikt";
+          this.loading = false;
+        }
+        else {
+          this.error = "Er ging iets verkeerd, probeer opnieuw!";
+          this.loading = false;
+        }
+      });
+    }
+
+    else {
+      let controls = this.registerForm.controls;
+
+      for( let control in controls ) {
+        controls[control].markAsTouched();
       }
-      else if( r.error.customMessages.email === 'duplicate' ) {
-        this.error = "Dit e-mailadres werd al eens gebruikt";
-        this.loading = false;
-      }
-      else {
-        this.error = "Er ging iets verkeerd, probeer opnieuw!";
-        this.loading = false;
-      }
-    });
+    }
   }
 }

@@ -32,23 +32,33 @@ export class LoginComponent implements OnInit {
         this.generalService.logout();
     }
  
-    login(value: any) {
-        this.loading = true;
-        this.generalService.login(value.email, value.password, (r) => {
-        	if( r.token ) {
-        		this.generalService.getUser( (res) => {
-        			if( res.user ) {
-        				this.location.back();
-        			}
-        			else {
-        				this.error = res;
-        			}
-        		});
-        	}
-        	else {
-        		this.error = 'De combinatie van het e-mailadres en het wachtwoord is niet bij ons bekend.';
-        	}
-        });
+    login(value: any, valid: boolean) {
+        if( valid ) {
+            this.loading = true;
+            this.generalService.login(value.email, value.password, (r) => {
+            	if( r.token ) {
+            		this.generalService.getUser( (res) => {
+            			if( res.user ) {
+            				this.location.back();
+            			}
+            			else {
+            				this.error = res;
+            			}
+            		});
+            	}
+            	else {
+            		this.error = 'De combinatie van het e-mailadres en het wachtwoord is niet bij ons bekend.';
+            	}
+            });
+        }
+
+        else {
+            let controls = this.loginForm.controls;
+
+            for( let control in controls ) {
+                controls[control].markAsTouched();
+            }
+        }
     }
 
 }

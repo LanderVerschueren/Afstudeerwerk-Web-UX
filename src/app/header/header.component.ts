@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
  		if( !this.navShowing ) {
  			this.navShowing = true;
  			document.body.className += 'no_scroll';
- 		} else if ( this.navShowing && ( e.target.classList.contains( 'open' ) ) ) {
+ 		} else if ( this.navShowing ) {
  			this.navShowing = false;
  			document.body.className = document.body.className.replace("no_scroll","");
  		}
