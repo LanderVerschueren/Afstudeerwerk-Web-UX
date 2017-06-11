@@ -33,7 +33,7 @@
 			</div>
 			<div class="summary">
 				<form>
-					<button type="button" [routerLink]="['/pay',{id:id}]" class="btn_action">Plaats bestelling: {{ generalService.cart[ id ].total_price | currency:'EUR':true:'1.2-2' }}</button>
+					<button type="button" (click)="toggleDisplayCart($event)" [routerLink]="['/pay',{id:id}]" class="btn_action">Plaats bestelling: {{ generalService.cart[ id ].total_price | currency:'EUR':true:'1.2-2' }}</button>
 				</form>
 			</div>
 		</div>

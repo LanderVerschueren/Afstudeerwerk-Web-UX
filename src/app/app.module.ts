@@ -30,6 +30,7 @@ import { UserComponent                } from './user/user.component';
 import { ApicallService               } from './services/apicall.service';
 import { PayService                   } from './services/pay.service';
 import { GeneralService               } from './services/general.service';
+import { CardComponent } from './card/card.component';
 
 // import '../assets/scripts/pikaday.js';
 
@@ -57,7 +58,8 @@ import { GeneralService               } from './services/general.service';
     LoginComponent,
     SignupComponent,
     PayComponent,
-    UserComponent
+    UserComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,

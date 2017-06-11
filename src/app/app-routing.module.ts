@@ -9,6 +9,7 @@ import { LoginComponent	} from './login/login.component';
 import { SignupComponent	} from './signup/signup.component';
 import { PayComponent } from './pay/pay.component';
 import { UserComponent } from './user/user.component';
+import { CardComponent } from './card/card.component';
 
 const routes: Routes = [
   	{	path: '', 			            component: HomeComponent			        },
@@ -19,6 +20,7 @@ const routes: Routes = [
   	{	path: 'signup', 	          component: SignupComponent			      },
     { path: 'pay',                component: PayComponent               },
     { path: 'user',               component: UserComponent              },
+    {  path: 'process',           component: CardComponent              },
   	{	path: '404', 		            component: PagenotfoundComponent	    },
 	  {	path: '**', 		            redirectTo: '/404'					          }
 ];

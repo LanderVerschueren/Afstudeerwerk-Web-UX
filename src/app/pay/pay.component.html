@@ -1,6 +1,6 @@
 <div class="container">
-	<section class="order_form">
-		<form class="form" [formGroup]="payForm" (ngSubmit)="saveOrder(payForm.value, payForm.valid)">
+	<section class="pay_form">
+		<form id="payForm" class="form" [formGroup]="payForm" (ngSubmit)="saveOrder(payForm.value, payForm.valid)">
 			<div class="form-section">
 				<h3>Gegevens: </h3>
 				<div class="form-group">
@@ -8,7 +8,7 @@
 		            <input name="name" type="text" placeholder="Naam" class="input_form" [formControl]="payForm.controls['name']" [ngClass]="{'has-error':!payForm.controls['name'].valid && payForm.controls['name'].touched}"><div *ngIf="payForm.controls['name'].hasError('required') && payForm.controls['name'].touched" class="alert-danger">Naam is verplicht.</div>
 		        </div>
 		        <div class="form-group">
-		            <label for="email">Email</label>
+		            <label for="email">E-mailadres</label>
 		            <input name="email" type="text" placeholder="Email" class="input_form" [formControl]="payForm.controls['email']" [ngClass]="{'has-error':!payForm.controls['email'].valid && payForm.controls['email'].touched}">
 		            <div *ngIf="payForm.controls['email'].hasError('required') && payForm.controls['email'].touched" class="alert-danger">E-mailadres is verplicht.</div>
 		            <div *ngIf="!payForm.controls['email'].hasError('required') && payForm.controls['email'].hasError('emailNotValid') && payForm.controls['email'].touched" class="alert-danger">E-mailadres is niet correct. <small>bv. example@test.com</small></div>
@@ -44,14 +44,124 @@
 			<div class="form-section">
 				<h3>Betalingswijze: </h3>
 				<div class="form-group">
-					<label class="radio_label_input" for="payment_method_cash" [ngClass]="{'has-error':!payForm.controls['payment_method'].valid && payForm.controls['payment_method'].touched}">
+					<label class="radio_label_input" for="payment_method_cash" (change)="inputPayment($event)" [ngClass]="{'has-error':!payForm.controls['payment_method'].valid && payForm.controls['payment_method'].touched}">
 						<input id="payment_method_cash" name="payment_method" type="radio" value="cash" [formControl]="payForm.controls['payment_method']">
 						Contant
 					</label>
-					<div *ngIf="payForm.controls['payment_method'].hasError('required') && payForm.controls['payment_method'].touched" class="alert-danger">Periode van ophaling is verplicht.</div>
+					<label class="radio_label_input" for="payment_method_visa" (change)="inputPayment($event)" [ngClass]="{'has-error':!payForm.controls['payment_method'].valid && payForm.controls['payment_method'].touched}">
+						<input id="payment_method_visa" name="payment_method" type="radio" value="visa" [formControl]="payForm.controls['payment_method']">
+						Visa
+					</label>
+					<label class="radio_label_input" for="payment_method_mastercard" (change)="inputPayment($event)" [ngClass]="{'has-error':!payForm.controls['payment_method'].valid && payForm.controls['payment_method'].touched}">
+						<input id="payment_method_mastercard" name="payment_method" type="radio" value="mastercard" [formControl]="payForm.controls['payment_method']">
+						Mastercard
+					</label>
+					<label class="radio_label_input" for="payment_method_maestro" (change)="inputPayment($event)" [ngClass]="{'has-error':!payForm.controls['payment_method'].valid && payForm.controls['payment_method'].touched}">
+						<input id="payment_method_maestro" name="payment_method" type="radio" value="maestro" [formControl]="payForm.controls['payment_method']">
+						Maestro
+					</label>
+					<div *ngIf="payForm.controls['payment_method'].hasError('required') && payForm.controls['payment_method'].touched" class="alert-danger">Betalingswijze is verplicht.</div>
 				</div>
 			</div>
+
+
+
+			<!-- <div class="form-section" *ngIf="paymentCard">
+				<section *ngIf=" paymentCard == 'maestro' ">
+
+				    <div class="form-group form-group-details">
+				    	<div class="details_section name">
+							<label for="card_name">Naam kaarthouder</label>
+					    	<input name="card_name" class="input_form" type="text" placeholder="Naam" data-paylane="cc-name-on-card" [formControl]="payForm.controls['card_name']" [ngClass]="{'has-error':!payForm.controls['card_name'].valid && payForm.controls['card_name'].touched}"><div *ngIf="payForm.controls['card_name'].hasError('required') && payForm.controls['card_name'].touched" class="alert-danger">Naam kaarthouder is verplicht.</div>
+					    </div>
+					    <div class="details_section number">
+							<label for="card_number">Kaartnummer</label>
+					    	<input name="card_number" class="input_form" type="text" placeholder="Kaartnummer" data-paylane="cc-number" [formControl]="payForm.controls['card_number']" [ngClass]="{'has-error':!payForm.controls['card_number'].valid && payForm.controls['card_number'].touched}"><div *ngIf="payForm.controls['card_number'].hasError('required') && payForm.controls['card_number'].touched" class="alert-danger">Kaartnummer is verplicht.</div>
+				   		</div>
+				    </div>
+
+				    <div class="form-group form-group-select">
+				    	<label>Vervaldatum</label>
+				    	<div class="select_section">
+					    	<select class="input_form_half" data-paylane="cc-expiry-month" [formControl]="payForm.controls['card_expiredate_month']" [ngClass]="{'has-error':!payForm.controls['card_expiredate_month'].valid && payForm.controls['card_expiredate_month'].touched}">
+					            <option value="01">januari</option>
+					            <option value="02">februari</option>
+					            <option value="03">maart</option>
+					            <option value="04">april</option>
+					            <option value="05">mei</option>
+					            <option value="06">juni</option>
+					            <option value="07">juli</option>
+					            <option value="08">augustus</option>
+					            <option value="09">september</option>
+					            <option value="10">oktober</option>
+					            <option value="11">november</option>
+					            <option value="12">december</option>
+					        </select>
+
+					        <select class="input_form_half" data-paylane="cc-expiry-year" [formControl]="payForm.controls['card_expiredate_year']" [ngClass]="{'has-error':!payForm.controls['card_expiredate_year'].valid && payForm.controls['card_expiredate_year'].touched}">
+					            <option value="2017">2017</option>
+					            <option value="2018">2018</option>
+					            <option value="2019">2019</option>
+					            <option value="2020">2020</option>
+					            <option value="2021">2021</option>
+					            <option value="2022">2022</option>
+					        </select>
+				        </div>
+				        <div *ngIf="(payForm.controls['card_expiredate_month'].hasError('required') && payForm.controls['card_expiredate_month'].touched) || (payForm.controls['card_expiredate_year'].hasError('required') && payForm.controls['card_expiredate_year'].touched)" class="alert-danger">Vervaldatum van de kaart is verplicht.</div>
+				    </div>	
+				</section>
+
+				<section *ngIf=" paymentCard != 'maestro' ">
+
+				    <div class="form-group form-group-details">
+				    	<div class="details_section name">
+							<label for="card_name">Naam kaarthouder</label>
+					    	<input name="card_name" class="input_form" type="text" placeholder="Naam" [formControl]="payForm.controls['card_name']" [ngClass]="{'has-error':!payForm.controls['card_name'].valid && payForm.controls['card_name'].touched}"><div *ngIf="payForm.controls['card_name'].hasError('required') && payForm.controls['card_name'].touched" class="alert-danger">Naam kaarthouder is verplicht.</div>
+					    </div>
+					    <div class="details_section number">
+							<label for="card_number">Kaartnummer</label>
+					    	<input name="card_number" class="input_form" type="text" placeholder="Kaartnummer" [formControl]="payForm.controls['card_number']" [ngClass]="{'has-error':!payForm.controls['card_number'].valid && payForm.controls['card_number'].touched}"><div *ngIf="payForm.controls['card_number'].hasError('required') && payForm.controls['card_number'].touched" class="alert-danger">Kaartnummer is verplicht.</div>
+				   		</div>
+				   		<div class="details_section cvv">
+							<label for="card_cvv">CVV</label>
+					    	<input name="card_cvv" class="input_form" type="number" placeholder="CVV" [formControl]="payForm.controls['card_cvv']" [ngClass]="{'has-error':!payForm.controls['card_cvv'].valid && payForm.controls['card_cvv'].touched}"><div *ngIf="payForm.controls['card_cvv'].hasError('required') && payForm.controls['card_cvv'].touched" class="alert-danger">Veiligheidscode is verplicht.</div>
+				    	</div>
+				    </div>
+
+				    <div class="form-group form-group-select">
+				    	<label>Vervaldatum</label>
+				    	<div class="select_section">
+					    	<select class="input_form_half" [formControl]="payForm.controls['card_expiredate_month']" [ngClass]="{'has-error':!payForm.controls['card_expiredate_month'].valid && payForm.controls['card_expiredate_month'].touched}">
+					            <option value="01">01</option>
+					            <option value="02">02</option>
+					            <option value="03">03</option>
+					            <option value="04">04</option>
+					            <option value="05">05</option>
+					            <option value="06">06</option>
+					            <option value="07">07</option>
+					            <option value="08">08</option>
+					            <option value="09">09</option>
+					            <option value="10">10</option>
+					            <option value="11">11</option>
+					            <option value="12">12</option>
+					        </select>
+
+					        <select class="input_form_half" [formControl]="payForm.controls['card_expiredate_year']" [ngClass]="{'has-error':!payForm.controls['card_expiredate_year'].valid && payForm.controls['card_expiredate_year'].touched}">
+					            <option value="2017">2017</option>
+					            <option value="2018">2018</option>
+					            <option value="2019">2019</option>
+					            <option value="2020">2020</option>
+					            <option value="2021">2021</option>
+					            <option value="2022">2022</option>
+					        </select>
+				        </div>
+				        <div *ngIf="(payForm.controls['card_expiredate_month'].hasError('required') && payForm.controls['card_expiredate_month'].touched) || (payForm.controls['card_expiredate_year'].hasError('required') && payForm.controls['card_expiredate_year'].touched)" class="alert-danger">Vervaldatum van de kaart is verplicht.</div>
+				    </div>	
+				</section>
+			</div> -->
 			
+
+
 			<button type="submit" class="btn_action">Betalen</button>
 
 		</form>

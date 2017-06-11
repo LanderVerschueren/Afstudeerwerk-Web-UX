@@ -22,7 +22,7 @@
         "styles.scss"
       ],
       "scripts": [
-        "../node_modules/pikaday/pikaday.js"
+        "assets/scripts/paylane.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

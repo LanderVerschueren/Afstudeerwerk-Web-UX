@@ -1,0 +1,174 @@
+<!-- <form id="payForm" action="">
+	<div class="form-section" *ngIf="type">
+		<section *ngIf=" type == 'visa' ">
+
+		    <div class="form-group form-group-details">
+		    	<div class="details_section name">
+					<label for="card_name">Naam kaarthouder</label>
+			    	<input name="card_name" class="input_form" type="text" placeholder="Naam" data-paylane="cc-name-on-card">
+			    </div>
+			    <div class="details_section number">
+					<label for="card_number">Kaartnummer</label>
+			    	<input name="card_number" class="input_form" type="text" placeholder="Kaartnummer" data-paylane="cc-number">
+		   		</div>
+		   		<div class="details_section cvv">
+					<label for="card_cvv">CVV</label>
+			    	<input name="card_cvv" class="input_form" type="number" placeholder="CVV" data-paylane="cc-cvv">
+		    	</div>
+		    </div>
+
+		    <div class="form-group form-group-select">
+		    	<label>Vervaldatum</label>
+		    	<div class="select_section">
+			    	<select class="input_form_half" data-paylane="cc-expiry-month">
+			            <option value="01">januari</option>
+			            <option value="02">februari</option>
+			            <option value="03">maart</option>
+			            <option value="04">april</option>
+			            <option value="05">mei</option>
+			            <option value="06">juni</option>
+			            <option value="07">juli</option>
+			            <option value="08">augustus</option>
+			            <option value="09">september</option>
+			            <option value="10">oktober</option>
+			            <option value="11">november</option>
+			            <option value="12">december</option>
+			        </select>
+
+			        <select class="input_form_half" data-paylane="cc-expiry-year">
+			            <option value="2017">2017</option>
+			            <option value="2018">2018</option>
+			            <option value="2019">2019</option>
+			            <option value="2020">2020</option>
+			            <option value="2021">2021</option>
+			            <option value="2022">2022</option>
+			        </select>
+		        </div>
+		    </div>
+		</section>
+
+		<section *ngIf=" type == 'mastercard' ">
+
+		    <div class="form-group form-group-details">
+		    	<div class="details_section name">
+					<label for="card_name">Naam kaarthouder</label>
+			    	<input name="card_name" class="input_form" type="text" placeholder="Naam" data-paylane="cc-name-on-card">
+			    </div>
+			    <div class="details_section number">
+					<label for="card_number">Kaartnummer</label>
+			    	<input name="card_number" class="input_form" type="text" placeholder="Kaartnummer" data-paylane="cc-number">
+		   		</div>
+		   		<div class="details_section cvv">
+					<label for="card_cvv">CVV</label>
+			    	<input name="card_cvv" class="input_form" type="number" placeholder="CVV" data-paylane="cc-cvv">
+		    	</div>
+		    </div>
+
+		    <div class="form-group form-group-select">
+		    	<label>Vervaldatum</label>
+		    	<div class="select_section">
+			    	<select class="input_form_half" data-paylane="cc-expiry-month">
+			            <option value="01">januari</option>
+			            <option value="02">februari</option>
+			            <option value="03">maart</option>
+			            <option value="04">april</option>
+			            <option value="05">mei</option>
+			            <option value="06">juni</option>
+			            <option value="07">juli</option>
+			            <option value="08">augustus</option>
+			            <option value="09">september</option>
+			            <option value="10">oktober</option>
+			            <option value="11">november</option>
+			            <option value="12">december</option>
+			        </select>
+
+			        <select class="input_form_half" data-paylane="cc-expiry-year">
+			            <option value="2017">2017</option>
+			            <option value="2018">2018</option>
+			            <option value="2019">2019</option>
+			            <option value="2020">2020</option>
+			            <option value="2021">2021</option>
+			            <option value="2022">2022</option>
+			        </select>
+		        </div>
+		    </div>	
+		</section>
+
+		<section *ngIf=" type == 'maestro' ">
+
+		    <div class="form-group form-group-details">
+		    	<div class="details_section name">
+					<label for="card_name">Naam kaarthouder</label>
+			    	<input name="card_name" class="input_form" type="text" placeholder="Naam" data-paylane="cc-name-on-card">
+			    </div>
+			    <div class="details_section number">
+					<label for="card_number">Kaartnummer</label>
+			    	<input name="card_number" class="input_form" type="text" placeholder="Kaartnummer" data-paylane="cc-number">
+		   		</div>
+		    </div>
+
+		    <div class="form-group form-group-select">
+		    	<label>Vervaldatum</label>
+		    	<div class="select_section">
+			    	<select class="input_form_half" data-paylane="cc-expiry-month">
+			            <option value="01">januari</option>
+			            <option value="02">februari</option>
+			            <option value="03">maart</option>
+			            <option value="04">april</option>
+			            <option value="05">mei</option>
+			            <option value="06">juni</option>
+			            <option value="07">juli</option>
+			            <option value="08">augustus</option>
+			            <option value="09">september</option>
+			            <option value="10">oktober</option>
+			            <option value="11">november</option>
+			            <option value="12">december</option>
+			        </select>
+
+			        <select class="input_form_half" data-paylane="cc-expiry-year">
+			            <option value="2017">2017</option>
+			            <option value="2018">2018</option>
+			            <option value="2019">2019</option>
+			            <option value="2020">2020</option>
+			            <option value="2021">2021</option>
+			            <option value="2022">2022</option>
+			        </select>
+		        </div>
+		    </div>	
+		</section>
+	</div>
+</form> -->
+
+<form id="checkout-form" [formGroup]="checkoutForm" (submit)="checkoutOrder( checkoutForm.value )" action="" type="">
+
+    <!-- card related input elements: -->
+    <input type="text" [formControl]="checkoutForm.controls['card_number']" data-paylane="cc-number">
+    <input type="text" [formControl]="checkoutForm.controls['card_cvv']" data-paylane="cc-cvv">
+    <input type="text" [formControl]="checkoutForm.controls['card_name']" data-paylane="cc-name-on-card">
+    <!-- or they can be select nodes -->
+        <select [formControl]="checkoutForm.controls['card_expire_month']" data-paylane="cc-expiry-month">
+            <option value="01">January</option>
+            <option value="02">February</option>
+            <option value="03">March</option>
+            <option value="04">April</option>
+            <option value="05">May</option>
+            <option value="06">June</option>
+            <option value="07">July</option>
+            <option value="08">August</option>
+            <option value="09">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+
+        <select [formControl]="checkoutForm.controls['card_expire_year']" data-paylane="cc-expiry-year">
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            <option value="2019">2020</option>
+        </select>
+        
+    <input type="submit" value="submit">
+</form>

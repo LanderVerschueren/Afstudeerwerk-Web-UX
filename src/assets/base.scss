@@ -451,6 +451,7 @@ small {
 
 	@include for-phone-only {
 		height: 40px;
+		width: 100%;
 	}
 }
 
@@ -476,7 +477,7 @@ small {
 
 /*  INPUTS  */
 .input {
-	@extend .w650;
+	@extend .wfull;
 	@extend .h60;
 	@extend .br_normal;
 	@extend .shadow_light;
@@ -499,6 +500,12 @@ small {
 	@extend .h40;
 }
 
+.input_form_half {
+	@extend .input;
+	@extend .p510;
+	@extend .h40;
+	width: 50%;
+}
 
 
 /* FORM */

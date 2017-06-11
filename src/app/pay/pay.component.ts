@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 
@@ -19,14 +19,13 @@ export class PayComponent implements OnInit {
 	user:any;
 	id:string = '';
 	payForm: FormGroup;
+	paymentCard:string;
 	submitted:boolean = false;
 
 	total_price:number;
 	total_products:number;
 
-	picker:any;
-
-	constructor(private route: ActivatedRoute, private payService : PayService, private generalService : GeneralService, private apicallService : ApicallService,
+	constructor(private router: Router, private route: ActivatedRoute, private payService : PayService, private generalService : GeneralService, private apicallService : ApicallService,
     private fb: FormBuilder) {
 		this.payForm = fb.group({
 			'name': [null, Validators.required],
@@ -93,25 +92,30 @@ export class PayComponent implements OnInit {
 		return null;
     }
 
+    inputPayment( event ) {
+    	this.paymentCard = event.target.value;
+    }
+
 	saveOrder(value:any, valid:boolean) {
 		this.submitted = true;
 
 		if( valid && this.submitted ) {
-			let user_id = this.id;
-			let shop_id = this.shop.id;
-			let name = value.name;
-			let email = value.email;
-			let phonenumber = value.phonenumber;
-			let payment_method = value.payment_method;
-			let products = JSON.stringify(this.generalService.cart[this.id].products);
-			let date_pickup = value.collection_day;
-			let period_pickup = value.collection_period;
+			let details:any = {};
 
-			this.apicallService.post( this.generalService.apilink + "storeOrder", {'user_id': user_id, 'shop_id': shop_id, 'email': email, 'phonenumber': phonenumber, 'name': name, 'payment_method': payment_method, 'date_pickup': date_pickup, 'period_pickup': period_pickup, 'products': products}, (r) => {
-				console.log( r );
-			}, (error) => {
-				console.log( error );
-			});
+			details.user_id = this.id;
+			details.shop_id = this.shop.id;
+			details.name = value.name;
+			details.email = value.email;
+			details.phonenumber = value.phonenumber;
+			details.payment_method = value.payment_method;
+			details.products = this.generalService.cart[this.id].products;
+			details.date_pickup = value.collection_day;
+			details.period_pickup = value.collection_period;
+			details.total_price = this.total_price;
+
+			localStorage.setItem( 'info', JSON.stringify( details ) );
+
+			this.router.navigate(['process']);
 		}
 		else {
 			this.submitted = false;
