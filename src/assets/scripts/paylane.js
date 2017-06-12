@@ -483,7 +483,7 @@
 		 */
 		getInputFields: function()
 		{
-			var formInputFields = this.form.querySelectorAll('input, select'),
+			var formInputFields = this.form.querySelectorAll('input, selectort'),
 				allFields = {},
 				foundFields = {},
 				input;

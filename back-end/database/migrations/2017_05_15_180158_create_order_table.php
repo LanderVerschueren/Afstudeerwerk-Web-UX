@@ -32,6 +32,7 @@ class CreateOrderTable extends Migration
             $table->string('payment_method');
             $table->date('date_pickup');
             $table->string('period_pickup');
+            $table->string('ip');
             $table->softDeletes();
             $table->timestamps();
         });

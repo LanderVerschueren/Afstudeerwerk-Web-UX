@@ -1,71 +1,71 @@
 @import '../../assets/base.scss';
 
-form {
-			@extend .shadow_none;
-		}
-		
-		.form-section {
+.container {
+	@extend .mtb50;
+
+
+	.success {
+		@extend .flex;
+		@extend .flex_column;
+		@extend .flex_middle;
+
+		img {
 			@extend .mb20;
-			
+			@extend .br_circle;
+			@extend .shadow_light;
+			@extend .w200;
+			@extend .h200;
+		}
+
+		.success_inner {
+			@extend .flex;
+			@extend .flex_column;
+			@extend .flex_middle;
+			@extend .sec_bg_color;
+			@extend .p_normal;
+			@extend .shadow_light;
+			@extend .br_normal;
+
 			h3 {
 				@extend .mb20;
 			}
-
-			.form-group {
-				.radio_label_input {
-					display: flex;
-					align-items: center;
-					width: 100%;
-
-					input {
-						margin: 0;
-						margin-right: 10px
-					}
-				}
-			}
-				
-			.form-group-details {
-				flex-flow: row wrap;
-
-				.details_section {
-					padding: 0;
-
-					&.name {
-						flex: 1;
-						min-width: 100%;
-					}
-
-					&.number {
-						flex: 4;
-					}
-
-					&.cvv {
-						flex: 1;
-						margin-left: 20px;
-					}
-				}
-			}
-
-			.form-group-select {
-
-				.select_section {
-					display: flex;
-					flex-flow: row wrap;
-					justify-content: space-between;
-					padding: 0;
-
-					select {
-						@extend .white_bg_color;
-
-						flex: 1;
-					}
-
-					select:first-child {
-						margin-right: 10px;
-					}
-					select:last-child {
-						margin-left: 10px;
-					}
-				}
-			}
 		}
+	}
+
+
+	form {
+		@extend .shadow_none;
+	}
+
+	.form-section {
+		@extend .mb20;
+		@extend .flex;
+		min-width: 100%;
+		flex-flow: row wrap;
+
+
+		h3 {
+			@extend .mb20;
+			min-width: 100%;
+		}
+
+		.name {
+			min-width: 100%;
+			flex: 1;
+		}
+
+		.number {
+			flex: 5;
+			margin-right: 10px;
+		}
+
+		.cvv {
+			flex: 1;
+			margin-left: 10px;
+		}
+
+		.expire {
+			flex: 1;
+		}
+	}
+}

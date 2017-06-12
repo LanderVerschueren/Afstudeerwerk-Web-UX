@@ -1,3 +1,15 @@
+<div class="container">
+	<div class="success" *ngIf="info && payment_success == true">
+		<img src="assets/img/success.svg" alt="">
+		<div class="success_inner">
+			<h3>Betaling geslaagd!</h3>
+
+			<div class="success_inner_summary">
+				<p>Er is een mail verzonden naar het e-mailadres {{ info.email }}. Neem deze e-mail mee wanneer je je bestelling gaat ophalen. Zonder deze mail kan je je bestelling niet afhalen!</p>
+			</div>
+			<a class="btn_action" [routerLink]="['']">Home</a>
+		</div>
+	</div>
 <!-- <form id="payForm" action="">
 	<div class="form-section" *ngIf="type">
 		<section *ngIf=" type == 'visa' ">
@@ -139,36 +151,35 @@
 	</div>
 </form> -->
 
-<form id="checkout-form" [formGroup]="checkoutForm" (submit)="checkoutOrder( checkoutForm.value )" action="" type="">
+	<form *ngIf="info" id="checkout-form" class="form" [formGroup]="checkoutForm" (ngSubmit)="checkoutOrder( checkoutForm.value, checkoutForm )" action="" type="">
+	    <div class="form-section">
+	    	<h3>Kaartdetails</h3>
+		    <div class="form-group name">
+		    	<label for="card_name">Naam op kaart</label>
+		    	<input class="input_form" value="Lander Verschueren" placeholder="Naam op kaart" type="text" [formControl]="checkoutForm.controls['card_name']" name="card_name" data-stripe="name">
+		    </div>
+	    	<div class="form-group number">
+			    <label for="card_number">Kaartnummer</label>
+			    <input class="input_form" value="67030512197055004" placeholder="Kaartnummer" type="text" [formControl]="checkoutForm.controls['card_number']" name="card_number" data-stripe="number">
+		    </div>
+		    <div class="form-group cvv" *ngIf="info.payment_method != 'maestro'">
+		    	<label for="card_cvc">CVC</label>
+		    	<input class="input_form" placeholder="CVc" type="text" [formControl]="checkoutForm.controls['card_cvc']" name="card_cvc" data-stripe="cvv">
+		    </div>
+	    </div>
+			
+		<div class="form-section">
+	    	<div class="form-group expire expire_month">
+	    		<label>Vervaldatum, maand</label>
+		        <input class="input_form" placeholder="06" value="12" [formControl]="checkoutForm.controls['card_expire_month']" data-paylane="cc-expiry-month">
+	        </div>
 
-    <!-- card related input elements: -->
-    <input type="text" [formControl]="checkoutForm.controls['card_number']" data-paylane="cc-number">
-    <input type="text" [formControl]="checkoutForm.controls['card_cvv']" data-paylane="cc-cvv">
-    <input type="text" [formControl]="checkoutForm.controls['card_name']" data-paylane="cc-name-on-card">
-    <!-- or they can be select nodes -->
-        <select [formControl]="checkoutForm.controls['card_expire_month']" data-paylane="cc-expiry-month">
-            <option value="01">January</option>
-            <option value="02">February</option>
-            <option value="03">March</option>
-            <option value="04">April</option>
-            <option value="05">May</option>
-            <option value="06">June</option>
-            <option value="07">July</option>
-            <option value="08">August</option>
-            <option value="09">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-        </select>
-
-        <select [formControl]="checkoutForm.controls['card_expire_year']" data-paylane="cc-expiry-year">
-            <option value="2015">2015</option>
-            <option value="2016">2016</option>
-            <option value="2017">2017</option>
-            <option value="2018">2018</option>
-            <option value="2019">2019</option>
-            <option value="2019">2020</option>
-        </select>
-        
-    <input type="submit" value="submit">
-</form>
+			<div class="form-group expire expire_year">
+				<label>Vervaldatum, jaar</label>
+		        <input class="input_form" placeholder="2017" value="18" [formControl]="checkoutForm.controls['card_expire_year']" data-paylane="cc-expiry-year">
+	        </div>
+	    </div>
+	        
+	    <button type="submit" class="btn_action">Betalen</button>
+	</form>
+</div>

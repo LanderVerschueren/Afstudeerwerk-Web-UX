@@ -105,6 +105,7 @@ class ApiController extends Controller
             'email' => 'required',
             'phonenumber' => 'required',
             'products' => 'required',
+            'ip' => 'required',
         ]);
 
         if( $validator->fails() ) {
@@ -113,14 +114,15 @@ class ApiController extends Controller
         else {
             $order = new Order;
 
-            $order->user_id      = $input['user_id'];
-            $order->shop_id      = $input['shop_id'];
+            $order->user_id         = $input['user_id'];
+            $order->shop_id         = $input['shop_id'];
             $order->name            = $input['name'];
             $order->email           = $input['email'];
             $order->phonenumber     = $input['phonenumber'];
             $order->payment_method  = $input['payment_method'];
             $order->date_pickup     = $input['date_pickup'];
             $order->period_pickup   = $input['period_pickup'];
+            $order->ip              = $input['ip'];
 
             $success = $order->save();
 

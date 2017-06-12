@@ -50,7 +50,7 @@ home-component {
 	@extend .flex_column;
 }
 
-search-component, user-component, pay-component {
+search-component, user-component, pay-component, card-component {
 	@extend .flex;
 	@extend .flex_column;
 	@extend .flex_middle;
