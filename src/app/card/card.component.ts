@@ -51,22 +51,7 @@ export class CardComponent implements OnInit
 			this.ip = r.ip;
 
 			if( this.info.payment_method == 'cash' ) {
-				let customer_id = this.info.customer_id;
-				let shop_id = this.info.shop_id;
-				let email = this.info.email;
-				let name = this.info.name;
-				let phonenumber = this.info.phonenumber;
-				let payment_method = this.info.payment_method;
-				let date_pickup = this.info.date_pickup;
-				let period_pickup = this.info.period_pickup;
-				let products = JSON.stringify( this.info.products );
-				let ip = this.ip;
-
-				this.apicallService.post( this.generalService.apilink + "storeOrder", {'customer_id': customer_id, 'shop_id': shop_id, 'email': email, 'phonenumber': phonenumber, 'name': name, 'payment_method': payment_method, 'date_pickup': date_pickup, 'period_pickup': period_pickup, 'products': products, 'ip': this.ip}, (r) => {
-					this.payment_success = true;
-				}, (error) => {
-					console.log( error );
-				});
+				this.saveOrder();
 			}
 			else {
 				this.payment_success = false;
@@ -124,25 +109,16 @@ export class CardComponent implements OnInit
 	checkoutOrder() {
 
 		this.stripe.createToken(this.card).then( (result) => {
-			console.log(result);
+			let params = result.token;
+			if( result.token ) {
+				this.apicallService.post( this.generalService.apilink + "charge", { token: params, amount: this.info.total_price, shop_id: this.info.shop_id, customer_id: this.info.customer_id }, (r) => {
+					if( r.message == true ) {
+						this.saveOrder();
+					}
+				}, (error) => { console.log( error ) });
+			}
 		});
 		
-		/*let customer_id = this.info.customer_id;
-		let shop_id = this.info.shop_id;
-		let email = this.info.email;
-		let name = this.info.name;
-		let phonenumber = this.info.phonenumber;
-		let payment_method = this.info.payment_method;
-		let date_pickup = this.info.date_pickup;
-		let period_pickup = this.info.period_pickup;
-		let products = JSON.stringify( this.info.products );
-		let ip = this.ip;
-
-		this.apicallService.post( this.generalService.apilink + "storeOrder", {'customer_id': customer_id, 'shop_id': shop_id, 'email': email, 'phonenumber': phonenumber, 'name': name, 'payment_method': payment_method, 'date_pickup': date_pickup, 'period_pickup': period_pickup, 'products': products, 'ip': this.ip}, (r) => {
-			this.payment_success = true;
-		}, (error) => {
-			console.log( error );
-		});*/
 		/*let sale:any = {
         	'amount': this.info.total_price,
         	'currency': 'EUR',
@@ -160,8 +136,22 @@ export class CardComponent implements OnInit
         };*/
 	}
 
-	stripeResponseHandler( response ) {
-		console.log( response );
-	}
+	saveOrder() {
+		let customer_id = this.info.customer_id;
+		let shop_id = this.info.shop_id;
+		let email = this.info.email;
+		let name = this.info.name;
+		let phonenumber = this.info.phonenumber;
+		let payment_method = this.info.payment_method;
+		let date_pickup = this.info.date_pickup;
+		let period_pickup = this.info.period_pickup;
+		let products = JSON.stringify( this.info.products );
+		let ip = this.ip;
 
+		this.apicallService.post( this.generalService.apilink + "storeOrder", {'customer_id': customer_id, 'shop_id': shop_id, 'email': email, 'phonenumber': phonenumber, 'name': name, 'payment_method': payment_method, 'date_pickup': date_pickup, 'period_pickup': period_pickup, 'products': products, 'ip': this.ip}, (r) => {
+			this.payment_success = true;
+		}, (error) => {
+			console.log( error );
+		});
+	}
 }

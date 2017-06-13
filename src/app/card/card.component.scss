@@ -2,9 +2,6 @@
 
 .container {
 	@extend .mtb50;
-	@extend .sec_bg_color;
-	@extend .p_normal;
-
 
 	.success {
 		@extend .flex;
@@ -37,6 +34,9 @@
 
 	form {
 		@extend .shadow_none;
+		@extend .br_normal;
+		@extend .sec_bg_color;
+		@extend .p_normal;
 	}
 
 	.form-section {

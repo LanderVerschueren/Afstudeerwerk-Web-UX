@@ -13,6 +13,8 @@ use DB;
 use Validator;
 use Illuminate\Database\QueryException;
 
+use Stripe\{Stripe, Charge};
+
 class ApiController extends Controller
 {
     /**
@@ -169,5 +171,29 @@ class ApiController extends Controller
         }
 
         return $orders;
+    }
+
+    public function chargePayment( Request $request ) {
+        $input = $request->all();
+
+        \Stripe\Stripe::setApiKey("sk_test_f5iXABPXreKLh4iZdYtLV73C");
+
+        $token = $input['token']['id'];
+        $amount = intval($input['amount'] * 100);
+        $description = "Bestelling bij shop met id: " . $input['shop_id'] . ", door customer met id: " . $input['customer_id'];
+
+        $charge = \Stripe\Charge::create(array(
+            "amount" => $amount,
+            "currency" => "EUR",
+            "description" => $description,
+            "source" => $token
+        ));
+
+        if( $charge['paid'] == true ) {
+            return response()->json(['message' => true]);
+        }
+        else {
+            return response()->json(['message' => false]);
+        }
     }
 }

@@ -183,7 +183,7 @@
 	    <button type="submit" class="btn_action">Betalen</button>
 	</form> -->
 
-	<form (ngSubmit)="checkoutOrder()" id="payment-form">
+	<form [hidden]="payment_success && payment_success == true" (ngSubmit)="checkoutOrder()" id="payment-form">
 		<div class="form-row">
 			<label for="card-element">
 			Credit or debit card
