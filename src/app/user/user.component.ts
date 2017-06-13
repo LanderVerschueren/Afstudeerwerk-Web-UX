@@ -13,6 +13,7 @@ export class UserComponent implements OnInit {
 	tab:string = 'gegevens';
 	user:any;
 	orders:any;
+	name:string;
 
   constructor( private generalService : GeneralService, private router : Router ) { }
 
@@ -21,12 +22,17 @@ export class UserComponent implements OnInit {
 		if( res.user ) {
 			this.user = res.user;
 
+			if( this.user.role == 'shop' ) {
+				this.name = this.user.name;
+			}
+			else {
+				this.name = this.user.firstName + " " + this.user.lastName;
+			}
+
 			this.generalService.getOrders( (res) => {
 				this.orders = res;
 
 				this.orders.sort(this.generalService.compare('created_at'));
-
-				console.log( res );
 			});
 		}
 		else {

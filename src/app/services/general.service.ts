@@ -26,9 +26,9 @@ export class GeneralService {
 	public searchView:string = 'list';
 	public filterParam:string = 'all';
 
-	//public apilink:string = "http://10.242.24.160:8888/eindwerk/Afstudeerwerk-Web-UX/back-end/public/api/";
-	//public apilink:string = "http://localhost:8888/eindwerk/Afstudeerwerk-Web-UX/back-end/public/api/";
-	public apilink:string = "https://landerverschueren.webhosting.be/back-end/public/api/";
+	// public apilink:string = "http://10.242.24.160:8888/eindwerk/Afstudeerwerk-Web-UX/back-end/public/api/";
+	public apilink:string = "http://localhost:8888/eindwerk/Afstudeerwerk-Web-UX/back-end/public/api/";
+	// public apilink:string = "https://landerverschueren.webhosting.be/back-end/public/api/";
 	private googleApiKey:string = "AIzaSyCH7nKkRCoG6ONdK2iBhS_xI1LZSJPkJQs";
 
   	constructor( private apicallService : ApicallService, private http: Http, private zone: NgZone ) {
@@ -75,7 +75,8 @@ export class GeneralService {
     }
 
     getOrders( cb:any ) {
-    	this.apicallService.get( this.apilink + 'orders/' + this.loggedInUser['id'], (r:any) => {
+    	this.apicallService.get( this.apilink + 'orders/' + this.loggedInUser['id'] + "/" + this.loggedInUser['role'], (r:any) => {
+    		console.log( r );
     		cb( r );
     	}, ( error ) => {
     		cb( error );

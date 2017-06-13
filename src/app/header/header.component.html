@@ -14,7 +14,8 @@
 
 		<div class="buttons" *ngIf="generalService.loggedIn">
 			<a class="no_style" [routerLink]="['user']">
-				<p>Hallo, {{ generalService.loggedInUser['firstName'] }}</p>
+				<p *ngIf="generalService.loggedInUser['role'] == 'shop'">Hallo, {{ generalService.loggedInUser['name'] }}</p>
+				<p *ngIf="generalService.loggedInUser['role'] == 'customer' || generalService.loggedInUser['role'] == 'admin'">Hallo, {{ generalService.loggedInUser['firstName'] }}</p>
 			</a>
 			<a class="btn_navigation" [routerLink]="['login']">
 				<p>Uitloggen</p>

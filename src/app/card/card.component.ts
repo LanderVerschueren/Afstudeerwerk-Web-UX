@@ -48,7 +48,7 @@ export class CardComponent implements OnInit
 			this.ip = r.ip;
 
 			if( this.info.payment_method == 'cash' ) {
-				let user_id = this.info.user_id;
+				let customer_id = this.info.customer_id;
 				let shop_id = this.info.shop_id;
 				let email = this.info.email;
 				let name = this.info.name;
@@ -59,7 +59,7 @@ export class CardComponent implements OnInit
 				let products = JSON.stringify( this.info.products );
 				let ip = this.ip;
 
-				this.apicallService.post( this.generalService.apilink + "storeOrder", {'user_id': user_id, 'shop_id': shop_id, 'email': email, 'phonenumber': phonenumber, 'name': name, 'payment_method': payment_method, 'date_pickup': date_pickup, 'period_pickup': period_pickup, 'products': products, 'ip': this.ip}, (r) => {
+				this.apicallService.post( this.generalService.apilink + "storeOrder", {'customer_id': customer_id, 'shop_id': shop_id, 'email': email, 'phonenumber': phonenumber, 'name': name, 'payment_method': payment_method, 'date_pickup': date_pickup, 'period_pickup': period_pickup, 'products': products, 'ip': this.ip}, (r) => {
 					this.payment_success = true;
 				}, (error) => {
 					console.log( error );

@@ -49,7 +49,33 @@ class AuthenticateController extends Controller
 
 	    }
 
+        //var_dump( $user['attributes'] );
+        if($user['attributes']['role'] === 'customer' ) {
+            $response = $user->customers['attributes'];
+            $response['role'] = $user['attributes']['role'];
+            return response()->json([ 'user' => $response ]);
+
+        } 
+        elseif($user['attributes']['role'] === 'shop' ) {
+            $response = $user->shops['attributes'];
+            $response['role'] = $user['attributes']['role'];
+            return response()->json([ 'user' => $response ]);
+
+        } 
+        elseif( $user['attributes']['role'] === 'admin' ) {
+            $response = $user->customers['attributes'];
+            $response['role'] = $user['attributes']['role'];
+            return response()->json([ 'user' => $response ]);
+        } 
+        else {
+            //$user->customers['attributes']['role'] = $user['attributes']['role'];
+            $response = $user->customers['attributes'];
+            $response['role'] = $user['attributes']['role'];
+            return response()->json([ 'user' => $response ]);
+
+        }
+
 	    // the token is valid and we have found the user via the sub claim
-	    return response()->json(compact('user'));
+	    // return response()->json(compact('user'));
 	}
 }

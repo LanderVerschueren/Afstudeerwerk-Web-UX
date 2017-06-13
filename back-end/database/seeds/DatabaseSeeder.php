@@ -12,22 +12,40 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'firstName' => 'Lander',
-            'lastName' => 'Verschueren',
             'email' => 'verschueren@live.nl',
-            'phonenumber' => '0494378589',
             'password' => bcrypt('Lander1994'),
+            'role' => 'admin',
+        ]);
+        DB::table('customers')->insert([
+            'user_id' => 1,
+            'phonenumber' => '0494378589',
+            'email' => 'verschueren@live.nl',
+            'lastName' => 'verschueren',
+            'firstName' => 'lander',
         ]);
         
+
         DB::table('users')->insert([
+            'email' => 'test@test.com',
+            'password' => bcrypt('test'),
+            'role' => 'customer',
+        ]);
+        DB::table('customers')->insert([
+            'user_id' => 2,
+            'phonenumber' => '0000000000',
+            'email' => 'test@test.com',
             'firstName' => 'test',
             'lastName' => 'test',
-            'email' => 'test@test.com',
-            'phonenumber' => '0000000000',
-            'password' => bcrypt('test'),
         ]);
 
+
+        DB::table('users')->insert([
+            'email' => 'johanmoortgat@skynet.be',
+            'password' => bcrypt('beenhouwerij_moortgat'),
+            'role' => 'shop',
+        ]);
         DB::table('shops')->insert([
+            'user_id' => 3,
             'name' => 'Beenhouwerij Moortgat',
             'type' => 'Beenhouwerij',
             'email' => 'johanmoortgat@skynet.be',
@@ -39,7 +57,14 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('beenhouwerij_moortgat'),
         ]);
 
+
+        DB::table('users')->insert([
+            'email' => 'vanrenterghem@test.com',
+            'password' => bcrypt('beenhouwerij_van_renterghem'),
+            'role' => 'shop',
+        ]);
         DB::table('shops')->insert([
+            'user_id' => 4,
             'name' => 'Beenhouwerij Van Renterghem',
             'type' => 'Beenhouwerij',
             'email' => 'vanrenterghem@test.com',
@@ -51,7 +76,14 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('beenhouwerij_van_renterghem'),
         ]);
 
+
+        DB::table('users')->insert([
+            'email' => 'meert@test.com',
+            'password' => bcrypt('bakkerij_meert'),
+            'role' => 'shop',
+        ]);
         DB::table('shops')->insert([
+            'user_id' => 5,
             'name' => 'Bakkerij Meert',
             'type' => 'Bakkerij',
             'email' => 'meert@test.com',
@@ -63,7 +95,14 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('bakkerij_meert'),
         ]);
 
+
+        DB::table('users')->insert([
+            'email' => 'luverco@test.com',
+            'password' => bcrypt('luverco'),
+            'role' => 'shop',
+        ]);
         DB::table('shops')->insert([
+            'user_id' => 6,
             'name' => 'Luverco',
             'type' => 'Bakkerij',
             'email' => 'luverco@test.com',
@@ -75,7 +114,14 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('luverco'),
         ]);
 
+
+        DB::table('users')->insert([
+            'email' => 'renmans@test.com',
+            'password' => bcrypt('renmans'),
+            'role' => 'shop',
+        ]);
         DB::table('shops')->insert([
+            'user_id' => 7,
             'name' => 'Renmans',
             'type' => 'Beenhouwerij',
             'email' => 'renmans@test.com',
@@ -87,7 +133,14 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('renmans'),
         ]);
 
+
+        DB::table('users')->insert([
+            'email' => 'kilm@test.com',
+            'password' => bcrypt('beenhouwerij_kil'),
+            'role' => 'shop',
+        ]);
         DB::table('shops')->insert([
+            'user_id' => 8,
             'name' => 'Beenhouwerij Kil',
             'type' => 'Beenhouwerij',
             'email' => 'kilm@test.com',
@@ -100,248 +153,248 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '1',
+            'shop_id' => 1,
             'product_name' => 'Strasbourg',
             'price' => 15.30,
             'category' => 'charcuterie'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '1',
+            'shop_id' => 1,
             'product_name' => 'Jonge Kaas',
             'price' => 12.50,
             'category' => 'kaas'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '1',
+            'shop_id' => 1,
             'product_name' => 'Kippewit',
             'price' => 12.30,
             'category' => 'charcuterie'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '1',
+            'shop_id' => 1,
             'product_name' => 'Salami',
             'price' => 13.50,
             'category' => 'charcuterie'
         ]);
         DB::table('products')->insert([
-            'shop_id' => '1',
+            'shop_id' => 1,
             'product_name' => 'Oude Kaas',
             'price' => 14.30,
             'category' => 'kaas'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '1',
+            'shop_id' => 1,
             'product_name' => 'Schimmelkaas',
             'price' => 17.50,
             'category' => 'kaas'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '2',
+            'shop_id' => 2,
             'product_name' => 'Strasbourg',
             'price' => 15.30,
             'category' => 'charcuterie'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '2',
+            'shop_id' => 2,
             'product_name' => 'Jonge Kaas',
             'price' => 12.50,
             'category' => 'kaas'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '2',
+            'shop_id' => 2,
             'product_name' => 'Kippewit',
             'price' => 12.30,
             'category' => 'charcuterie'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '2',
+            'shop_id' => 2,
             'product_name' => 'Salami',
             'price' => 13.50,
             'category' => 'charcuterie'
         ]);
         DB::table('products')->insert([
-            'shop_id' => '2',
+            'shop_id' => 2,
             'product_name' => 'Oude Kaas',
             'price' => 14.30,
             'category' => 'kaas'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '2',
+            'shop_id' => 2,
             'product_name' => 'Schimmelkaas',
             'price' => 17.50,
             'category' => 'kaas'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '3',
+            'shop_id' => 3,
             'product_name' => 'Grote Witte Carré',
             'price' => 2.15,
             'category' => 'brood'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '3',
+            'shop_id' => 3,
             'product_name' => 'Kleine Witte Carré',
             'price' => 1.45,
             'category' => 'brood'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '3',
+            'shop_id' => 3,
             'product_name' => 'Rozijnenbrood Groot',
             'price' => 3.95,
             'category' => 'pistolet'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '3',
+            'shop_id' => 3,
             'product_name' => 'Pistolet Wit',
             'price' => 0.5,
             'category' => 'pistolet'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '3',
+            'shop_id' => 3,
             'product_name' => 'Pistolet Bruin',
             'price' => 0.5,
             'category' => 'pistolet'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '3',
+            'shop_id' => 3,
             'product_name' => 'Sandwich',
             'price' => 0.5,
             'category' => 'pistolet'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '4',
+            'shop_id' => 4,
             'product_name' => 'Grote Witte Carré',
             'price' => 2.15,
             'category' => 'brood'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '4',
+            'shop_id' => 4,
             'product_name' => 'Kleine Witte Carré',
             'price' => 1.45,
             'category' => 'brood'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '4',
+            'shop_id' => 4,
             'product_name' => 'Rozijnenbrood Groot',
             'price' => 3.95,
             'category' => 'pistolet'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '4',
+            'shop_id' => 4,
             'product_name' => 'Pistolet Wit',
             'price' => 0.5,
             'category' => 'pistolet'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '4',
+            'shop_id' => 4,
             'product_name' => 'Pistolet Bruin',
             'price' => 0.5,
             'category' => 'pistolet'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '4',
+            'shop_id' => 4,
             'product_name' => 'Sandwich',
             'price' => 0.5,
             'category' => 'pistolet'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '5',
+            'shop_id' => 5,
             'product_name' => 'Strasbourg',
             'price' => 15.30,
             'category' => 'charcuterie'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '5',
+            'shop_id' => 5,
             'product_name' => 'Jonge Kaas',
             'price' => 12.50,
             'category' => 'kaas'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '5',
+            'shop_id' => 5,
             'product_name' => 'Kippewit',
             'price' => 12.30,
             'category' => 'charcuterie'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '5',
+            'shop_id' => 5,
             'product_name' => 'Salami',
             'price' => 13.50,
             'category' => 'charcuterie'
         ]);
         DB::table('products')->insert([
-            'shop_id' => '5',
+            'shop_id' => 5,
             'product_name' => 'Oude Kaas',
             'price' => 14.30,
             'category' => 'kaas'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '5',
+            'shop_id' => 5,
             'product_name' => 'Schimmelkaas',
             'price' => 17.50,
             'category' => 'kaas'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '6',
+            'shop_id' => 6,
             'product_name' => 'Strasbourg',
             'price' => 15.30,
             'category' => 'charcuterie'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '6',
+            'shop_id' => 6,
             'product_name' => 'Jonge Kaas',
             'price' => 12.50,
             'category' => 'kaas'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '6',
+            'shop_id' => 6,
             'product_name' => 'Kippewit',
             'price' => 12.30,
             'category' => 'charcuterie'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '6',
+            'shop_id' => 6,
             'product_name' => 'Salami',
             'price' => 13.50,
             'category' => 'charcuterie'
         ]);
         DB::table('products')->insert([
-            'shop_id' => '6',
+            'shop_id' => 6,
             'product_name' => 'Oude Kaas',
             'price' => 14.30,
             'category' => 'kaas'
         ]);
 
         DB::table('products')->insert([
-            'shop_id' => '6',
+            'shop_id' => 6,
             'product_name' => 'Schimmelkaas',
             'price' => 17.50,
             'category' => 'kaas'

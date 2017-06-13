@@ -3,17 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Shop extends Authenticatable
+class Customer extends Model
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'name', 'phonenumber', 'email', 'street', 'number', 'postalCode', 'city', 'type',
+        'user_id', 'firstName', 'lastName', 'email', 'phonenumber',
     ];
 
     /**
@@ -25,8 +19,8 @@ class Shop extends Authenticatable
         'password',
     ];
 
-    public function products() {
-        return $this->hasMany('App\Product');
+    public function users() {
+    	return $this->belongsTo('App\User');
     }
 
     public function orders() {

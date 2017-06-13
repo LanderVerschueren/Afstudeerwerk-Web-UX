@@ -102,7 +102,7 @@ export class PayComponent implements OnInit {
 		if( valid && this.submitted ) {
 			let details:any = {};
 
-			details.user_id = this.id;
+			details.customer_id = this.id;
 			details.shop_id = this.shop.id;
 			details.name = value.name;
 			details.email = value.email;

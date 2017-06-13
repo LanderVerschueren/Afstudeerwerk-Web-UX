@@ -46,6 +46,7 @@ class ApiController extends Controller
     }
 
     public function getProducts($id) {
+        var_dump($id);
         $products = DB::table( 'products' )->where( 'shop_id', "=", $id )->get();
 
         if( $products ) {
@@ -75,15 +76,15 @@ class ApiController extends Controller
             return response()->json(['error' => $validator->failed()]);
         }
         else {
-            $user = new User;
+            $customer = new User;
 
-            $user->firstName    = $input['firstName'];
-            $user->lastName     = $input['lastName'];
-            $user->phonenumber  = $input['phonenumber'];
-            $user->email        = $input['email'];
-            $user->password     = Hash::make($input['password']);
+            $customer->firstName    = $input['firstName'];
+            $customer->lastName     = $input['lastName'];
+            $customer->phonenumber  = $input['phonenumber'];
+            $customer->email        = $input['email'];
+            $customer->password     = Hash::make($input['password']);
 
-            $success = $user->save();
+            $success = $customer->save();
 
             if( $success ) {
                 return response()->json(['message' => true]);
@@ -98,7 +99,7 @@ class ApiController extends Controller
         $input = $request->all();
 
         $validator = Validator::make( $input, [
-            'user_id' => 'required',
+            'customer_id' => 'required',
             'shop_id' => 'required',
             'payment_method' => 'required',
             'name' => 'required',
@@ -114,7 +115,7 @@ class ApiController extends Controller
         else {
             $order = new Order;
 
-            $order->user_id         = $input['user_id'];
+            $order->customer_id     = $input['customer_id'];
             $order->shop_id         = $input['shop_id'];
             $order->name            = $input['name'];
             $order->email           = $input['email'];
@@ -151,8 +152,16 @@ class ApiController extends Controller
         }
     }
 
-    public function getOrders( $id ) {
-        $orders = Order::where('user_id', '=', $id)->with('order_details')->get();
+    public function getOrders( $id, $role ) {
+        if( $role === 'customer' || $role == 'admin' ) {
+            $orders = Order::where('customer_id', '=', $id)->with('order_details')->get();
+        } 
+        elseif ( $role === 'shop' ) {
+            $orders = Order::where('shop_id', '=', $id)->with('order_details')->get();
+        }
+        else {
+            $orders = Order::where('customer_id', '=', $id)->with('order_details')->get();
+        }
 
         foreach( $orders as $order ) {
             $order->shop;

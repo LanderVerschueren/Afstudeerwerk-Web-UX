@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
             this.generalService.login(value.email, value.password, (r) => {
             	if( r.token ) {
             		this.generalService.getUser( (res) => {
+                        console.log( res );
             			if( res.user ) {
             				this.location.back();
             			}

@@ -1,10 +1,10 @@
-)<?php
+<?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrderDetailsTable extends Migration
+class CreateCostumerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,18 @@ class CreateOrderDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_details', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
 
-            $table->integer('order_id')->unsigned();
-            $table->foreign('order_id')
+            $table->foreign('user_id')
                 ->references('id')
-                ->on('orders')->onDelete('cascade')->onUpdate('cascade');
-                
-            $table->string('item_name');
-            $table->double('amount');
-            $table->double('price');
+                ->on('users')->onDelete('cascade')->onUpdate('cascade');
+
+            $table->string('firstName');
+            $table->string('lastName');
+            $table->string('email')->unique();
+            $table->string('phonenumber');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -36,6 +37,6 @@ class CreateOrderDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('order_details');
+        Schema::drop('customers');
     }
 }

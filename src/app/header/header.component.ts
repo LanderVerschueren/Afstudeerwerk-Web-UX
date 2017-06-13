@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 import { GeneralService } from '../services/general.service';
 
@@ -10,11 +10,11 @@ import { GeneralService } from '../services/general.service';
 export class HeaderComponent implements OnInit {
 
 	navShowing:boolean = false;
+	name:string;
 
 	constructor( private generalService: GeneralService ) { }
 
-	ngOnInit() {
-	}
+	ngOnInit() {}
 
 	toggleDisplayNav(e) {
  		if( !this.navShowing ) {
