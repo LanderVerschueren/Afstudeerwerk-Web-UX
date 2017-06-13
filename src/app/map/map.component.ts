@@ -82,8 +82,7 @@ export class MapComponent implements OnInit {
 	}
 
 	updateMarkers() {
-
-		if(!this.map) { console.log( 'empty' ); return; }
+		if(!this.map) { return; }
 
 		this.markers.forEach(marker => marker.setMap(null));
 
@@ -105,11 +104,6 @@ export class MapComponent implements OnInit {
 				position: new google.maps.LatLng(loc.lat, loc.lng),
 				map: this.map
 			}));
-
-			// icon: this.shopIcon
-
-			console.log( "addMarkers" );
-
 		});
 
 		this.fitMarkersInMap();
@@ -117,12 +111,9 @@ export class MapComponent implements OnInit {
 	}
 
 	fitMarkersInMap() {
-		console.log( "fitMarkers" );
-
 		let bounds = new google.maps.LatLngBounds();
 
 		this.markers.forEach(marker => bounds.extend(marker.getPosition()));
-		console.log( this.map );
 		this.map.fitBounds(bounds);
 
 	}

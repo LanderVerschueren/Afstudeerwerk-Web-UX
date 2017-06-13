@@ -151,35 +151,51 @@
 	</div>
 </form> -->
 
-	<form *ngIf="info" id="checkout-form" class="form" [formGroup]="checkoutForm" (ngSubmit)="checkoutOrder( checkoutForm.value, checkoutForm )" action="" type="">
+	<!-- <form *ngIf="info && payment_success == false" id="checkout-form" class="form" [formGroup]="checkoutForm" (ngSubmit)="checkoutOrder( checkoutForm.value, checkoutForm )" action="" type="">
 	    <div class="form-section">
 	    	<h3>Kaartdetails</h3>
 		    <div class="form-group name">
 		    	<label for="card_name">Naam op kaart</label>
-		    	<input class="input_form" value="Lander Verschueren" placeholder="Naam op kaart" type="text" [formControl]="checkoutForm.controls['card_name']" name="card_name" data-stripe="name">
+		    	<input class="input_form" value="Lander Verschueren" placeholder="Naam op kaart" type="text" [formControl]="checkoutForm.controls['card_name']" data-stripe="name">
 		    </div>
 	    	<div class="form-group number">
 			    <label for="card_number">Kaartnummer</label>
-			    <input class="input_form" value="67030512197055004" placeholder="Kaartnummer" type="text" [formControl]="checkoutForm.controls['card_number']" name="card_number" data-stripe="number">
+			    <input class="input_form" value="67030512197055004" placeholder="Kaartnummer" type="text" [formControl]="checkoutForm.controls['card_number']" data-stripe="number">
 		    </div>
 		    <div class="form-group cvv" *ngIf="info.payment_method != 'maestro'">
 		    	<label for="card_cvc">CVC</label>
-		    	<input class="input_form" placeholder="CVc" type="text" [formControl]="checkoutForm.controls['card_cvc']" name="card_cvc" data-stripe="cvv">
+		    	<input class="input_form" placeholder="CVC" type="text" [formControl]="checkoutForm.controls['card_cvc']" data-stripe="cvc">
 		    </div>
 	    </div>
 			
 		<div class="form-section">
 	    	<div class="form-group expire expire_month">
 	    		<label>Vervaldatum, maand</label>
-		        <input class="input_form" placeholder="06" value="12" [formControl]="checkoutForm.controls['card_expire_month']" data-paylane="cc-expiry-month">
+		        <input class="input_form" placeholder="06" value="12" data-stripe="exp_month" [formControl]="checkoutForm.controls['card_expire_month']">
 	        </div>
 
 			<div class="form-group expire expire_year">
 				<label>Vervaldatum, jaar</label>
-		        <input class="input_form" placeholder="2017" value="18" [formControl]="checkoutForm.controls['card_expire_year']" data-paylane="cc-expiry-year">
+		        <input class="input_form" placeholder="17" value="18" data-stripe="exp_year" [formControl]="checkoutForm.controls['card_expire_year']">
 	        </div>
 	    </div>
 	        
 	    <button type="submit" class="btn_action">Betalen</button>
+	</form> -->
+
+	<form (ngSubmit)="checkoutOrder()" id="payment-form">
+		<div class="form-row">
+			<label for="card-element">
+			Credit or debit card
+			</label>
+			<div id="card-element">
+			// a Stripe Element will be inserted here.
+			</div>
+
+			
+			<div id="card-errors" role="alert"></div>
+		</div>
+
+		<button class="btn_action" type="submit">Submit Payment</button>
 	</form>
 </div>

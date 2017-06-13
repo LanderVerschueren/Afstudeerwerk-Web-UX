@@ -163,4 +163,8 @@ nav {
 			}
 		}
 	}
+
+	@include for-desktop-small {
+		width: 90%;
+	}
 }

@@ -21,7 +21,7 @@ export class SearchComponent implements OnInit {
 	ngAfterViewInit() {
 		this.windowWidth = window.innerWidth;
 
-		if( this.windowWidth <= 599 ) {
+		if( this.windowWidth <= 649 ) {
 			this.showTabs = false;
 			this.showFilter = false;
 		}
@@ -32,14 +32,14 @@ export class SearchComponent implements OnInit {
 		resize(event) {
 		this.windowWidth = window.innerWidth;
 
-		if( this.windowWidth <= 599 ) {
+		if( this.windowWidth <= 649 ) {
 			this.showTabs = false;
 			this.showFilter = false;
 		}
 
-		if( this.windowWidth > 599 ) {
-			this.showTabs = false;
-			this.showFilter = false;
+		if( this.windowWidth > 649 ) {
+			this.showTabs = true;
+			this.showFilter = true;
 		}
 	}
 

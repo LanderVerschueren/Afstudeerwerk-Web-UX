@@ -17,4 +17,8 @@
 		max-width: 96%;
 		width: 100%;
 	}
+
+	@include for-desktop-small {
+		width: 90%;
+	}
 }

@@ -19,8 +19,9 @@ export class ListComponent implements OnInit {
   	this.route.params.subscribe(params => {
 	    	if (params['location']) {
 	    		this.location = params['location'];
+
+          this.generalService.loadShops( this.location );
 	    	}
 		});
-  	this.generalService.loadShops( this.location );
   }
 }

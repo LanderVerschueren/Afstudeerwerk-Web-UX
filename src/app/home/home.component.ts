@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+
+import { ApicallService } from '../services/apicall.service';
+
+declare var google:any;
 
 @Component({
   selector: 'home-component',
@@ -7,9 +11,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+	pos:any = {};
 
-  ngOnInit() {
+  constructor(private apicallService: ApicallService) { }
+
+  ngOnInit() {}
+
+  ngAfterViewInit() {
+  	/*let geocoder = new google.maps.Geocoder;
+  	console.log( 'init' );
+  	if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition( (position) => {
+        this.pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+
+        geocoder.geocode({'location': this.pos}, (result, status) => {
+        	if (status === 'OK') {
+            	if (result[1]) {
+            	}
+            }
+        });
+      });
+    }*/
   }
-
 }

@@ -65,6 +65,11 @@ user-component {
 	@extend .ptb50;
 }
 
+searchinput-component {
+	width: 100%;
+	max-width: 650px;
+}
+
 footer-component {
 	@extend .flex;
 	@extend .flex_center;

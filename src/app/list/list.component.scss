@@ -19,4 +19,12 @@
 			height: 100px;
 		}
 	}
+
+	@include for-desktop-small {
+		flex-direction: column;
+
+		shop-component {
+			width: 100%;
+		}
+	}
 }

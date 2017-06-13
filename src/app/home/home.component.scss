@@ -26,6 +26,11 @@
 		}
 	}
 
+	.search {
+		width: 100%;
+		max-width: 650px;
+	}
+
 	@include for-phone-only {
 		max-width: 96%;
 		width: 100%;
@@ -35,10 +40,6 @@
 		margin-bottom: -50px;
 
 		padding: 20px 0;
-
-		.search {
-			width: 100%;
-		}
 	}
 }
 

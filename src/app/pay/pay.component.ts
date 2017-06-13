@@ -38,8 +38,8 @@ export class PayComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.route.params.subscribe(params => {
-			this.id = params['id'];
+		this.route.queryParams.subscribe(params => {
+			this.id = params['shop'];
 
 			/*let newDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
 			let curr_date = newDate.getDate();
@@ -59,7 +59,12 @@ export class PayComponent implements OnInit {
 					this.user = r.user;
 
 					if( this.user ) {
-						this.payForm.controls['name'].setValue( this.user['firstName'] + " " + this.user['lastName'] );
+						if( this.user['role'] == 'shop' ) {
+							this.payForm.controls['name'].setValue( this.user['name'] );
+						}
+						else {
+							this.payForm.controls['name'].setValue( this.user['firstName'] + " " + this.user['lastName'] );	
+						}
 						this.payForm.controls['email'].setValue( this.user['email'] );
 						this.payForm.controls['phonenumber'].setValue( this.user['phonenumber'] );
 					}

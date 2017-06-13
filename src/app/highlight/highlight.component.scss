@@ -86,4 +86,16 @@
 			}
 		}
 	}
+
+	@include for-desktop-small {
+		width: 90%;
+
+		.highlight_container_content {
+			.highlight_container_content_left {
+				img {
+					margin-right: 30px;
+				}
+			}
+		}
+	}
 }

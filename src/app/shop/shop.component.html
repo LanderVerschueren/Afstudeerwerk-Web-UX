@@ -1,4 +1,4 @@
-<div class="details" [routerLink]="['/detail',{id:shop.id}]" [style.background]="backgroundimageUrl">
+<div class="details" [routerLink]="['/detail']" [queryParams]="{shop: shop.id}" [style.background]="backgroundimageUrl">
 	<div class="detail_image">
 		<img src="{{ backgroundimage }}" alt="">
 	</div>
@@ -23,7 +23,7 @@
 
 		<div class="hover_button">
 			<div class="hover_button_inner">
-				<a [routerLink]="['/detail',{id:shop.id}]" class="btn_shop"><img src="assets/img/shopping-cart-white.svg" alt=""></a>
+				<a [routerLink]="['/detail']" [queryParams]="{shop: shop.id}" class="btn_shop"><img src="assets/img/shopping-cart-white.svg" alt=""></a>
 			</div>
 		</div>
 	</div>

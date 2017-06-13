@@ -102,6 +102,8 @@
 		@extend .flex;
 		@extend .flex_spacebetween;
 		@extend .flex_middle;
+
+		flex-flow: row wrap;
 	}
 
 	@include for-phone-only {
@@ -122,5 +124,11 @@
 			height: 100%;
 			width: 100%;
 		}
+	}
+
+	@include for-desktop-small {
+		.search-bottom-inner {
+			width: 90%;
+		} 
 	}
 }

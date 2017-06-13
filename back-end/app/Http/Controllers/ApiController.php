@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Customer;
+use App\Shop;
 use App\Order;
-use App \OrderDetails;
+use App\OrderDetails;
 use DB;
 use Validator;
 use Illuminate\Database\QueryException;
@@ -35,7 +37,7 @@ class ApiController extends Controller
     }
 
     public function getShop( $id ) {
-        $shop = DB::table( 'shops' )->where( 'id', '=', $id )->first();
+        $shop = Shop::where( 'id', '=', $id )->with( 'products' )->first();
 
         if( $shop ) {
             return response()->json( $shop );
@@ -46,7 +48,6 @@ class ApiController extends Controller
     }
 
     public function getProducts($id) {
-        var_dump($id);
         $products = DB::table( 'products' )->where( 'shop_id', "=", $id )->get();
 
         if( $products ) {

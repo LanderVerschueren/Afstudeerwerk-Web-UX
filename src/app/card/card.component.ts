@@ -29,6 +29,9 @@ export class CardComponent implements OnInit
 	checkoutForm:FormGroup;
 
 	stripe:any = Stripe('pk_test_UezsCDqH1kbHDkJeblZIup7Z');
+	elements:any;
+	card:any;
+	form:any;
 	//@Output() cardDetails:object;
 
 	constructor(private route: ActivatedRoute, private apicallService: ApicallService, private generalService: GeneralService, private fb: FormBuilder) {
@@ -63,7 +66,6 @@ export class CardComponent implements OnInit
 					this.payment_success = true;
 				}, (error) => {
 					console.log( error );
-
 				});
 			}
 			else {
@@ -72,17 +74,75 @@ export class CardComponent implements OnInit
 		}, (error) => { console.log(error) });
 	}
 
-	checkoutOrder( value:any ) {
-		console.log( value );
-		this.stripe.createToken({
-			'name': value.card_name,
-			'number': value.card_number,
-			'exp_month': value.card_expire_month,
-			'exp_year': value.card_expire_year
-		}).then( (result) => {
-			console.log( result );
-		});
+	ngAfterViewInit() {
+		if( !this.payment_success ) {
+			this.elements = this.stripe.elements();
 
+			this.card = this.elements.create('card');
+
+			this.card.mount( '#card-element' );
+
+			this.card.addEventListener('change', (event) => {
+				let displayError = document.getElementById('card-errors');
+				if (event.error) {
+					displayError.textContent = event.error.message;
+				} else {
+					displayError.textContent = '';
+				}
+			});
+
+			/*this.form = document.getElementById('payment-form');
+			this.form.addEventListener('submit', (event) => {
+				event.preventDefault();
+
+				this.stripe.createToken(this.card).then( (result) => {
+					if (result.error) {
+						// Inform the user if there was an error
+						let errorElement = document.getElementById('card-errors');
+						errorElement.textContent = result.error.message;
+					} else {
+						// Send the token to your server
+						this.stripeTokenHandler(result.token);
+					}
+				});
+			});*/
+		}
+	}
+
+	/*stripeTokenHandler(token) {
+		// Insert the token ID into the form so it gets submitted to the server
+		let hiddenInput = document.createElement('input');
+		hiddenInput.setAttribute('type', 'hidden');
+		hiddenInput.setAttribute('name', 'stripeToken');
+		hiddenInput.setAttribute('value', token.id);
+		this.form.appendChild(hiddenInput);
+
+		// Submit the form
+		this.form.submit();
+	}*/
+
+	checkoutOrder() {
+
+		this.stripe.createToken(this.card).then( (result) => {
+			console.log(result);
+		});
+		
+		/*let customer_id = this.info.customer_id;
+		let shop_id = this.info.shop_id;
+		let email = this.info.email;
+		let name = this.info.name;
+		let phonenumber = this.info.phonenumber;
+		let payment_method = this.info.payment_method;
+		let date_pickup = this.info.date_pickup;
+		let period_pickup = this.info.period_pickup;
+		let products = JSON.stringify( this.info.products );
+		let ip = this.ip;
+
+		this.apicallService.post( this.generalService.apilink + "storeOrder", {'customer_id': customer_id, 'shop_id': shop_id, 'email': email, 'phonenumber': phonenumber, 'name': name, 'payment_method': payment_method, 'date_pickup': date_pickup, 'period_pickup': period_pickup, 'products': products, 'ip': this.ip}, (r) => {
+			this.payment_success = true;
+		}, (error) => {
+			console.log( error );
+		});*/
 		/*let sale:any = {
         	'amount': this.info.total_price,
         	'currency': 'EUR',
@@ -98,6 +158,10 @@ export class CardComponent implements OnInit
         let card:any = {
         	'token': this.token
         };*/
+	}
+
+	stripeResponseHandler( response ) {
+		console.log( response );
 	}
 
 }

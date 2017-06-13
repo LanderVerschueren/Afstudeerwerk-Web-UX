@@ -45,10 +45,13 @@ $location_images: "assets/img/";
 
 /* MEDIA QUERIES */
 @mixin for-phone-only {
-  @media (max-width: 599px) { @content; }
+  @media (max-width: 649px) { @content; }
 }
-@mixin for-tablet-portrait-up {
+@mixin for-tablet {
   @media (max-width: 899px) { @content; }
+}
+@mixin for-desktop-small {
+  @media (max-width: 1239px) { @content; }
 }
 
 
@@ -346,8 +349,11 @@ small {
 	@extend .wmax;
 
 	@include for-phone-only {
-		max-width: 96%;
-		width: 100%;
+		width: 96%;
+	}
+
+	@include for-desktop-small {
+		width: 90%;
 	}
 }
 

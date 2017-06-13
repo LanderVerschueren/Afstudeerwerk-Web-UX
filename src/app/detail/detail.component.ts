@@ -22,9 +22,9 @@ export class DetailComponent implements OnInit {
   	constructor( private route: ActivatedRoute, private router: Router, private generalService : GeneralService, private zone: NgZone ) { }
 
   	ngOnInit() {
-  		this.route.params.subscribe(params => {
-	    	if (params['id']) {
-	    		this.id = params['id'];
+  		this.route.queryParams.subscribe(params => {
+	    	if (params['shop']) {
+	    		this.id = params['shop'];
 
 	    		if( !this.generalService.shops.length ) {
 	    			this.generalService.getShop( this.id, (r) => {
@@ -69,6 +69,11 @@ export class DetailComponent implements OnInit {
 
  	toggleDisplayCategory() {
  		( this.categorySelecting ) ? this.categorySelecting = false : this.categorySelecting = true;
+ 	}
+
+ 	placeOrder() {
+ 		document.body.className = document.body.className.replace("no_scroll","");
+ 		this.router.navigate(['/pay'], { queryParams: { shop: this.id } });
  	}
 
  	selectCategory( category ) {

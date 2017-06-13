@@ -216,7 +216,7 @@ export class GeneralService {
 		this.apicallService.get( this.apilink + "products/" + id, (r:any) => {
 			r.sort( this.compare( 'product_name' ) );
 			cb(r);
-		} );
+		}, (error) => { console.log( error ) });
 	}
 
 	addToCart( shop_id, order ) {

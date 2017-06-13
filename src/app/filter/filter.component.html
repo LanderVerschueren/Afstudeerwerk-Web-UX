@@ -9,7 +9,7 @@
 </div> -->
 
 
-<ul *ngIf='windowWidth > 599'>
+<ul *ngIf='windowWidth > 649'>
 	<li class="tab">
 		<a (click)="changeFilter($event, 'all')" [ngClass]="{'active': filterCategory == 'all'}"><h4>Alle</h4></a>
 	</li>
@@ -21,7 +21,7 @@
 	</li>
 </ul>
 
-<div *ngIf='windowWidth <= 599'>
+<div *ngIf='windowWidth <= 649'>
 	<p>Selecteer een type van winkel:</p>
 	<ul>
 		<li>

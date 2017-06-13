@@ -6,9 +6,14 @@
 
 	form {
 		@extend .flex;
+		@extend .wfull;
 
 		input {
 			@extend .p1520;
+		}
+
+		button {
+			flex: 0 0 60px;
 		}
 	}
 

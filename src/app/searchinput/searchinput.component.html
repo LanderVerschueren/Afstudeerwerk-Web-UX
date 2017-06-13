@@ -1,5 +1,5 @@
 <div class="searchbar">
-	<form (ngSubmit)="searchSubmit()">
+	<form (ngSubmit)="searchSubmit($event)">
 		<input class="input" id="search_autocomplete" type="text" value="{{generalService.userLocation}}" placeholder="bv. Generaal Lemanstraat, Antwerpen">
 		<button type="submit" class="btn_search">
 			<img src="../../assets/img/magnifying-glass.svg">
