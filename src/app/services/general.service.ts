@@ -27,8 +27,8 @@ export class GeneralService {
 	public filterParam:string = 'all';
 
 	// public apilink:string = "http://10.242.24.160:8888/eindwerk/Afstudeerwerk-Web-UX/back-end/public/api/";
-	public apilink:string = "http://localhost:8888/eindwerk/Afstudeerwerk-Web-UX/back-end/public/api/";
-	// public apilink:string = "https://landerverschueren.webhosting.be/back-end/public/api/";
+	// public apilink:string = "http://localhost:8888/eindwerk/Afstudeerwerk-Web-UX/back-end/public/api/";
+	public apilink:string = "https://landerverschueren.webhosting.be/back-end/public/api/";
 	private googleApiKey:string = "AIzaSyCH7nKkRCoG6ONdK2iBhS_xI1LZSJPkJQs";
 
   	constructor( private apicallService : ApicallService, private http: Http, private zone: NgZone ) {
