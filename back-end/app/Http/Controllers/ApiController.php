@@ -173,13 +173,13 @@ class ApiController extends Controller
 
     public function getOrders( $id, $role ) {
         if( $role === 'customer' || $role == 'admin' ) {
-            $orders = Order::where('customer_id', '=', $id)->with('order_details')->get();
+            $orders = Order::where('customer_id', '=', $id)->with('order_details', 'payments')->get();
         } 
         elseif ( $role === 'shop' ) {
-            $orders = Order::where('shop_id', '=', $id)->with('order_details')->get();
+            $orders = Order::where('shop_id', '=', $id)->with('order_details', 'payments')->get();
         }
         else {
-            $orders = Order::where('customer_id', '=', $id)->with('order_details')->get();
+            $orders = Order::where('customer_id', '=', $id)->with('order_details', 'payments')->get();
         }
 
         foreach( $orders as $order ) {

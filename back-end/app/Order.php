@@ -33,4 +33,8 @@ class Order extends Model
     public function order_details() {
         return $this->hasMany('App\OrderDetails');
     }
+
+    public function payments() {
+        return $this->hasMany('App\Payment');
+    }
 }

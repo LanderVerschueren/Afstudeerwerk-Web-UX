@@ -1,14 +1,12 @@
 import { Component, OnInit, Input, Output, AfterViewInit } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 
 import { ApicallService } from '../services/apicall.service';
 import { GeneralService } from '../services/general.service';
 
 // import '../../assets/scripts/paylane.js';
-
-declare var PayLaneClient:any;
 
 declare var Stripe:any;
 
@@ -28,13 +26,13 @@ export class CardComponent implements OnInit
 
 	checkoutForm:FormGroup;
 
-	stripe:any = Stripe('pk_test_UezsCDqH1kbHDkJeblZIup7Z');
+	stripe:any;
 	elements:any;
 	card:any;
 	form:any;
 	//@Output() cardDetails:object;
 
-	constructor(private route: ActivatedRoute, private apicallService: ApicallService, private generalService: GeneralService, private fb: FormBuilder) {
+	constructor(private router: Router, private route: ActivatedRoute, private apicallService: ApicallService, private generalService: GeneralService, private fb: FormBuilder) {
 		this.checkoutForm = fb.group({
 			'card_name': [null, Validators.required],
 			'card_number': [null, Validators.required],
@@ -47,20 +45,29 @@ export class CardComponent implements OnInit
 	ngOnInit() {
 		this.info = JSON.parse( localStorage.getItem( 'info' ) );
 
-		this.apicallService.get( "https://api.ipify.org?format=json", (r) => { 
-			this.ip = r.ip;
+		if( this.info ) {
+			localStorage.removeItem('info');
 
-			if( this.info.payment_method == 'cash' ) {
-				this.saveOrder();
-			}
-			else {
-				this.payment_success = false;
-			}
-		}, (error) => { console.log(error) });
+			this.apicallService.get( "https://api.ipify.org?format=json", (r) => { 
+				this.ip = r.ip;
+
+				if( this.info.payment_method == 'cash' ) {
+					this.saveOrder();
+				}
+				else {
+					this.payment_success = false;
+				}
+			}, (error) => { console.log(error) });
+		}
+		else {
+			this.router.navigate(['']);
+		}
 	}
 
 	ngAfterViewInit() {
-		if( !this.payment_success ) {
+		if( !this.payment_success && this.info ) {
+			this.stripe = Stripe('pk_test_UezsCDqH1kbHDkJeblZIup7Z');
+			
 			this.elements = this.stripe.elements();
 
 			this.card = this.elements.create('card');

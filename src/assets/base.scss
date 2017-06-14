@@ -51,7 +51,7 @@ $location_images: "assets/img/";
   @media (max-width: 999px) { @content; }
 }
 @mixin for-desktop-small {
-  @media (max-width: 1239px) { @content; }
+  @media (max-width: 1239px) and (min-width: 650px) { @content; }
 }
 
 
@@ -489,7 +489,8 @@ small {
 .btn_remove {
 	@extend .btn_search;
 	background-color: transparent;
-	@extend .error_border;
+	@extend .no_border;
+	box-shadow: none;
 
 	width: 40px;
 	height: 40px;
@@ -559,14 +560,6 @@ small {
 		@extend .mb20;
 	}
 
-	.alert-danger {
-		@extend .alert_text_color;
-	}
-
-	.has-error {
-		@extend .error_border;
-	}
-
 	.form-group {
 		@extend .flex;
 		@extend .flex_column;
@@ -615,6 +608,14 @@ small {
 			}
 		}
 	}
+}
+
+.alert-danger {
+	@extend .alert_text_color;
+}
+
+.has-error {
+	@extend .error_border;
 }
 
 .form_login_register {

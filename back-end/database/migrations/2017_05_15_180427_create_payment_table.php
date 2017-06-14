@@ -22,7 +22,7 @@ class CreatePaymentTable extends Migration
             
             $table->foreign('customer_id')
                 ->references('id')
-                ->on('users')->onDelete('cascade')->onUpdate('cascade');
+                ->on('customers')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('shop_id')
                 ->references('id')
                 ->on('shops')->onDelete('cascade')->onUpdate('cascade');

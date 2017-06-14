@@ -16,6 +16,8 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
 
+	min-width: 324px;
+
 	@include for-phone-only {
 		background-image: url( 'assets/img/bg_mobile_top-min.jpg' );
 	}
@@ -63,6 +65,10 @@ detail-component, search-component {
 
 user-component {
 	@extend .ptb50;
+
+	@include for-phone-only {
+		padding: 10px 0;
+	}
 }
 
 searchinput-component {

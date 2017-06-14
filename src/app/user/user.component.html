@@ -14,13 +14,18 @@
 			<div class="user_info"><span class="tag_phone"></span><p>{{ user.phonenumber }}</p></div>
 		</div>
 		<div class="content_inner" *ngIf="(tab == 'bestellingen')">
-			<div class="orders" *ngIf="orders && ( generalService.loggedInUser['role'] == 'customer' || generalService.loggedInUser['role'] == 'admin' )">
+			<div class="orders" *ngIf="orders.length && ( generalService.loggedInUser['role'] == 'customer' || generalService.loggedInUser['role'] == 'admin' )">
 				<div class="order_detail" *ngFor="let order of orders">
 					<div class="order_detail_general">
 						<h3>{{ order.shop.name }}</h3>
 						<p>Datum van bestelling: {{ order.created_at | date: 'd MMMM y' }}</p>
+						<p *ngIf="order.period_pickup == 'am'">Ophalen in de <strong>voormiddag</strong></p>
+						<p *ngIf="order.period_pickup == 'pm'">Ophalen in de <strong>namiddag</strong></p>
+						<p>Je hebt {{ order.order_details.length }} producten besteld, met een totale prijs van {{ order.payments[0].price_total | currency:'EUR':true:'1.2-2' }}</p>
+
 					</div>
 					<div class="order_detail_info">
+						<h4>Producten:</h4>
 						<div class="order_properties" *ngFor="let details of order.order_details">
 							<p class="order_properties_name">{{ details.item_name }}</p>
 							<p class="order_properties_amount">{{ details.amount }}</p>
@@ -29,7 +34,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="orders" *ngIf="orders && generalService.loggedInUser['role'] == 'shop'">
+			<div class="orders" *ngIf="orders.length && generalService.loggedInUser['role'] == 'shop'">
 				<div class="order_detail" *ngFor="let order of orders">
 					<div class="order_detail_general">
 						<h3>{{ order.name }}</h3>
@@ -46,7 +51,7 @@
 					</div>
 				</div>
 			</div>
-			<div *ngIf="!orders">Je hebt nog geen bestellingen geplaatst.</div>
+			<div *ngIf="!orders.length">Je hebt nog geen bestellingen geplaatst.</div>
 		</div>
 	</div>
 </div>

@@ -9,6 +9,21 @@
 		@extend .prim_bg_color;
 		@extend .h50;
 		@extend .shadow_light;
+
+		@include for-phone-only {
+			flex-direction: column;
+			height: auto;
+
+			.tab {
+				height: 40px;
+				border: none;
+				border-bottom: 1px solid white;
+
+				&:last-child {
+					border-bottom: none;
+				}
+			}
+		}
 	}
 
 	.content {
@@ -40,9 +55,23 @@
 					@extend .shadow_light;
 					@extend .p_normal;
 
+					.order_detail_general {
+						p {
+							@extend .mb10;
+
+							strong {
+								@extend .font_semi_bold;
+							}
+						}
+					}
+
 					.order_detail_info {
 						@extend .p_small;
 						@extend .font_light;
+
+						h4 {
+							@extend .mb5;
+						}
 
 						.order_properties {
 							@extend .mb5;

@@ -25,9 +25,6 @@ export class SearchinputComponent implements OnInit {
   constructor( private generalService: GeneralService, private apicallService: ApicallService, private router: Router, private zone: NgZone ) { }
 
   ngOnInit() {
-    console.log( this.tryingGeocoding );
-    console.log( this.successGeocoding );
-
   	this.input = document.getElementById('search_autocomplete');
   	let options = {
   		types: ['geocode'],
@@ -50,9 +47,7 @@ export class SearchinputComponent implements OnInit {
 
   ngAfterViewInit() {
     let geocoder = new google.maps.Geocoder;
-    console.log( this.generalService.userLocation );
     if (navigator.geolocation && ((<HTMLInputElement>this.input).value == "")) {
-      console.log( 'test' );
       this.tryingGeocoding = true;
       navigator.geolocation.getCurrentPosition( (position) => {
         let pos = {

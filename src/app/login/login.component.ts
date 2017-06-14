@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -23,13 +23,23 @@ export class LoginComponent implements OnInit {
         private fb: FormBuilder
     ) {
         this.loginForm = fb.group ({
-            'email': [null, Validators.required],
+            'email': [null, Validators.compose([Validators.required, this.isValidMailFormat])],
             'password': [null, Validators.required]
         })
     }
  
     ngOnInit() {
         this.generalService.logout();
+    }
+
+    isValidMailFormat(control: FormControl){
+        let EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+
+        if (!EMAIL_REGEXP.test(control.value)) {
+            return { "emailNotValid": true };
+        }
+
+        return null;
     }
  
     login(value: any, valid: boolean) {

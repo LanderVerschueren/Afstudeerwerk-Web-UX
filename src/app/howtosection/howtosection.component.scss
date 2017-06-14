@@ -40,16 +40,18 @@
 
 
 	@include  for-phone-only {
-		height: 220px;
+		height: 250px;
 
 		img {
 			height: 80px;
 		}
 
-		div:first-child {
+		div.image {
+			flex: 1 0 100px;
 			padding-bottom: 10px;
 		}
-		div:last-child {
+		div.text {
+			flex: 1 0 150px;
 			padding-top: 10px;
 		}
 	}

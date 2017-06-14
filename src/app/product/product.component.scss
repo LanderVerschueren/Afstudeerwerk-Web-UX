@@ -30,7 +30,13 @@
 
 		form {
 			@extend .flex;
+			@extend .flex_column;
+		}
+
+		.form_inner {
+			@extend .flex;
 			@extend .h40;
+			@extend .mb5;
 		}
 
 		span {

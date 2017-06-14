@@ -33,6 +33,8 @@ export class UserComponent implements OnInit {
 				this.orders = res;
 
 				this.orders.sort(this.generalService.compare('created_at'));
+
+				console.log( this.orders[0].payments[0].price_total );
 			});
 		}
 		else {

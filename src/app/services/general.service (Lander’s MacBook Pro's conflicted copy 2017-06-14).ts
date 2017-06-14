@@ -76,6 +76,7 @@ export class GeneralService {
 
     getOrders( cb:any ) {
     	this.apicallService.get( this.apilink + 'orders/' + this.loggedInUser['id'] + "/" + this.loggedInUser['role'], (r:any) => {
+    		console.log( r );
     		cb( r );
     	}, ( error ) => {
     		cb( error );
@@ -219,13 +220,12 @@ export class GeneralService {
 	}
 
 	addToCart( shop_id, order ) {
+		console.log( this.cart );
 		if ( Object.keys(order).length > 0 ) {
 
 			if( this.cart[ shop_id ] ) {
 				let old_amount = this.cart[shop_id].products.length;
-
-				order.id = (this.cart[shop_id]['products'].length + 1);
-
+				
 				this.cart[ shop_id ]['products'].push( order );
 
 				if ( old_amount < this.cart[shop_id].products.length ) {
@@ -243,8 +243,6 @@ export class GeneralService {
 					'total_products': 0,
 					'products': []
 				};
-
-				order.id = 1;
 				this.cart[ shop_id ]['products'].push( order );
 
 				if ( this.cart[ shop_id ].products.length ) {
@@ -258,24 +256,12 @@ export class GeneralService {
 				}
 			}
 		}
+
+		console.log( this.cart );
 	}
 
 	removeFromCart( shop_id ) {
 		delete this.cart[shop_id];
-		localStorage.setItem( 'cart', JSON.stringify(this.cart) );
-	}
-
-	removeItemCart( shop_id, product_id, price ) {
-		let index = this.cart[shop_id]['products'].findIndex( (r) => r.id == product_id );
-		this.cart[ shop_id ]['products'].splice( index, 1 );
-
-		this.cart[ shop_id ].total_price -= price;
-		this.cart[ shop_id ].total_products--;
-
-		if( this.cart[ shop_id ].total_products == 0 ) {
-			delete this.cart[ shop_id ];
-		}
-
 		localStorage.setItem( 'cart', JSON.stringify(this.cart) );
 	}
 

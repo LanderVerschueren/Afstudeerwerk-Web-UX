@@ -14,6 +14,7 @@ export class DetailComponent implements OnInit {
 	id:number;
 	products:any;
 	shop:any;
+	cartProducts:any;
 	cartShowing:boolean = false;
 	categories:any = [];
 	categorySelected:string;
@@ -80,5 +81,9 @@ export class DetailComponent implements OnInit {
  		this.categorySelected = category;
 
  		this.categorySelecting = false;
+ 	}
+
+ 	removeItem( product_id, price ) {
+ 		this.generalService.removeItemCart( this.id, product_id, price );
  	}
 }
