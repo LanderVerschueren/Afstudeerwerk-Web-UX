@@ -48,7 +48,7 @@ $location_images: "assets/img/";
   @media (max-width: 649px) { @content; }
 }
 @mixin for-tablet {
-  @media (max-width: 899px) { @content; }
+  @media (max-width: 999px) { @content; }
 }
 @mixin for-desktop-small {
   @media (max-width: 1239px) { @content; }
@@ -128,6 +128,7 @@ $sec_font: 'Work Sans', sans-serif;
 .action_bg_color 		{	background-color: $action_color;									}
 .trans_bg_color 		{	background-color: rgba(0, 0, 0, 0);									}
 .blacktrans_bg_color	{	background-color: rgba(0, 0, 0, 0.7);								}
+.whitetrans_bg_color	{	background-color: rgba(255, 255, 255, 0.7);							}
 .semitrans_bg_color 	{	background-color: rgba(250, 251, 255, 0.33);						}
 .white_bg_color 		{	background-color: white;											}
 .bg_pattern				{	background: $sec_color url("/assets/img/ag-square.png") left top;	}	
@@ -185,7 +186,6 @@ p {
 	}													
 }
 .main_title {	
-	padding-top: 50px;
 	font-size: 124px; 
 	@extend .prim_font; 
 	@extend .prim_text_color;	
@@ -193,6 +193,11 @@ p {
 
 	@include for-phone-only {
 		font-size: 40px;
+		padding-top: 50px;
+	}
+
+	@include for-desktop-small {
+		font-size: 100px;
 	}
 }
 .fsize_30 			{	font-size: 30px;													}
@@ -289,22 +294,22 @@ small {
 
 
 /*  CLASSES / WIDTH */
-.wfull 	{	width: 100%;		}
-.whalf 	{	width: 50%;			}
-.wmax 	{	max-width: 1600px;	}
-.w_pct_desktop {	width: 80%;			}
-.w_pct_mobile {	width: 96%;			}
-.w800	{	width: 800px;		}	
-.w650	{	width: 650px;		}
-.w500	{	width: 500px;		}
-.w300	{	width: 300px;		}
-.w240	{	width: 240px;		}
-.w200	{	width: 200px;		}
-.w150	{	width: 150px;		}
-.w80	{	width: 80px;		}
-.w60 	{	width: 60px;		}
-.w40	{	width: 40px;		}
-.w30	{	width: 30px;		}
+.wfull 				{	width: 100%;		}
+.whalf 				{	width: 50%;			}
+.wmax 				{	max-width: 1600px;	}
+.w_pct_desktop 		{	width: 80%;			}
+.w_pct_mobile 		{	width: 96%;			}
+.w800				{	width: 800px;		}	
+.w650				{	width: 650px;		}
+.w500				{	width: 500px;		}
+.w300				{	width: 300px;		}
+.w240				{	width: 240px;		}
+.w200				{	width: 200px;		}
+.w150				{	width: 150px;		}
+.w80				{	width: 80px;		}
+.w60 				{	width: 60px;		}
+.w40				{	width: 40px;		}
+.w30				{	width: 30px;		}
 
 /*  CLASSES / ROTATE */
 .rotate10 {		transform: rotate(10deg);	}
@@ -478,6 +483,30 @@ small {
 
 	@include for-phone-only {
 		display: none;
+	}
+}
+
+.btn_remove {
+	@extend .btn_search;
+	background-color: transparent;
+	@extend .error_border;
+
+	width: 40px;
+	height: 40px;
+
+	img {
+		width: 20px;
+		height: 20px;
+	}
+
+	@include for-phone-only {
+		width: 24px;
+		height: 24px;
+
+		img {
+			width: 12px;
+			height: 12px;
+		}
 	}
 }
 

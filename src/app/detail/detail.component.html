@@ -9,6 +9,7 @@
 							<td class="td_product">Product</td>
 							<td class="td_amount">#</td>
 							<td class="td_price">Prijs</td>
+							<td></td>
 						</tr>
 					</thead>
 					<tbody>
@@ -16,6 +17,7 @@
 							<td class="td_product"><p>{{ product.product_name }}</p></td>
 							<td class="td_amount"><p>{{ shop.type.toLowerCase() == 'bakkerij' ? product.amount : product.amount + ' g' }}</p></td>
 							<td class="td_price"><p>{{ product.total_price | currency:'EUR':true:'1.2-2' }}</p></td>
+							<td class="td_remove"><a class="btn_remove"><img src="assets/img/garbage.svg" alt=""></a></td>
 						</tr>
 					</tbody>
 				</table>

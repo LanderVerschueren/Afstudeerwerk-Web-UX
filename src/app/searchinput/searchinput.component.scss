@@ -3,6 +3,8 @@
 .searchbar {
 	@extend .flex;
 	@extend .mb10;
+	@extend .flex_column;
+	@extend .flex_middle;
 
 	form {
 		@extend .flex;
@@ -10,11 +12,26 @@
 
 		input {
 			@extend .p1520;
+			text-align: left;
+			color: #000;
+			background-color: white;
 		}
 
 		button {
 			flex: 0 0 60px;
 		}
+	}
+
+	p {	
+		@extend .blacktrans_bg_color;
+		@extend .prim_text_color;
+		@extend .text_center;
+		@extend .p_normal;
+		@extend .br_normal;
+		@extend .shadow_light;
+		width: 96%;
+
+		border-top-radius: 0px;
 	}
 
 	@include for-phone-only {

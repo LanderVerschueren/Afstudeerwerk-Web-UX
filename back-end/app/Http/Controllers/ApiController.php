@@ -9,6 +9,7 @@ use App\Customer;
 use App\Shop;
 use App\Order;
 use App\OrderDetails;
+use App\Payment;
 use DB;
 use Validator;
 use Illuminate\Database\QueryException;
@@ -110,6 +111,7 @@ class ApiController extends Controller
             'phonenumber' => 'required',
             'products' => 'required',
             'ip' => 'required',
+            'total_price' => 'required'
         ]);
 
         if( $validator->fails() ) {
@@ -147,7 +149,21 @@ class ApiController extends Controller
                     }
                 }
 
-                return response()->json(['message' => true]);
+                $payment = new Payment;
+
+                $payment->customer_id   = $input['customer_id'];
+                $payment->shop_id       = $input['shop_id'];
+                $payment->order_id      = $order_id;
+                $payment->price_total   = $input['total_price'];
+
+                $success_payment = $payment->save();
+
+                if( $success_details && $success_payment ) {
+                    return response()->json(['message' => true]);
+                }
+                else {
+                    return response()->json(['message' => false]);
+                }
             }
             else {
                 return response()->json(['message' => false]);

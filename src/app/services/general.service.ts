@@ -272,6 +272,11 @@ export class GeneralService {
 		}*/
 	}
 
+	removeFromCart( shop_id ) {
+		delete this.cart[shop_id];
+		localStorage.setItem( 'cart', JSON.stringify(this.cart) );
+	}
+
 	setSearchView( view ) {
 		this.searchView = view;
 	}

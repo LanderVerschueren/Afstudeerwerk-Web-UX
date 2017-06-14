@@ -36,17 +36,21 @@
 						}
 						
 						.td_amount {
-							@extend .flex;
 							@extend .flex_center;
 						}
 
 						.td_price {
-							@extend .flex;
+							@extend .flex_center;
+						}
+
+						.td_remove {
 							@extend .flex_right;
 						}
 
 						td {
+							@extend.flex;
 							@extend .flex_1;
+							@extend .flex_middle;
 						}
 					}
 
@@ -318,4 +322,16 @@
 		display: block;
 	}
 
+}
+
+@include for-tablet {
+	.detail-bottom {
+		.container {
+			flex-direction: column;
+
+			category-component {
+				margin-bottom: 20px;
+			}
+		}
+	}
 }

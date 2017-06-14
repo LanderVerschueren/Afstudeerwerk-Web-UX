@@ -5,4 +5,8 @@
 			<img src="../../assets/img/magnifying-glass.svg">
 		</button>
 	</form>
+
+	<p *ngIf="tryingGeocoding && !successGeocoding">Even geduld, we zijn je locatie aan het bepalen. Als je geen geduld hebt kan je ook gewoon je adres in de bovenstaande balk typen en een optie uit de lijst selecteren.</p>
+	<p *ngIf="!tryingGeocoding && successGeocoding">We hebben je locatie bepaalt en voor je ingevuld!<br>Je moet nu enkel nog op de zoekknop drukken om te beginnen met bestellen.</p>
+	<p *ngIf="!tryingGeocoding && !successGeocoding">Typ je adres in de bovenstaande balk en selecteer een optie uit de lijst.</p>
 </div>

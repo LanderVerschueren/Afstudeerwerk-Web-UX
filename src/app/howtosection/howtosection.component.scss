@@ -5,6 +5,8 @@
 
 	@extend .flex;
 	@extend .flex_column;
+	@extend .flex_middle;
+	@extend .flex_center;
 
 	img {
 		@extend .h100;
@@ -20,19 +22,22 @@
 	}
 
 	div {
-		@extend .flex_1;
 		@extend .flex;
 		@extend .flex_column;
+		@extend .p_normal;
 
-		&:first-child {
-			@extend .flex_right;
+		&.image {
+			flex: 0 0 230px;
+			@extend .flex_center;
 			@extend .pb50;
 		}
-		&:last-child {
+		&.text {
+			flex: 1 0 150px;
 			@extend .flex_left;
-			@extend .pt50;
+			@extend .pb50;
 		}
 	}
+
 
 	@include  for-phone-only {
 		height: 220px;

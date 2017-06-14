@@ -146,10 +146,15 @@ export class CardComponent implements OnInit
 		let date_pickup = this.info.date_pickup;
 		let period_pickup = this.info.period_pickup;
 		let products = JSON.stringify( this.info.products );
+		let total_price = this.info.total_price;
 		let ip = this.ip;
 
-		this.apicallService.post( this.generalService.apilink + "storeOrder", {'customer_id': customer_id, 'shop_id': shop_id, 'email': email, 'phonenumber': phonenumber, 'name': name, 'payment_method': payment_method, 'date_pickup': date_pickup, 'period_pickup': period_pickup, 'products': products, 'ip': this.ip}, (r) => {
-			this.payment_success = true;
+		this.apicallService.post( this.generalService.apilink + "storeOrder", {'customer_id': customer_id, 'shop_id': shop_id, 'email': email, 'phonenumber': phonenumber, 'name': name, 'payment_method': payment_method, 'date_pickup': date_pickup, 'period_pickup': period_pickup, 'products': products, 'ip': this.ip, 'total_price': total_price}, (r) => {
+			console.log( r );
+			if( r.message == true ) {
+				this.payment_success = true;
+				this.generalService.removeFromCart( this.info['shop_id'] );
+			}
 		}, (error) => {
 			console.log( error );
 		});
