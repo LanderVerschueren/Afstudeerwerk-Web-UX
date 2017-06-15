@@ -6,11 +6,12 @@
 	<div class="product_price">
 		<form novalidate [formGroup]="productForm" (ngSubmit)="add( productForm.value )">
 			<div class="form_inner">
-				<input class="input" (keyup)="inputChange($event)" placeholder="100" type="number" name="amount" [formControl]="productForm.controls['amount']" [ngClass]="{'has-error':productForm.controls['amount'].hasError('amountToLow') && productForm.controls['amount'].touched}">
-				<span>g</span>
+				<input class="input" (keyup)="inputChange($event)" placeholder="0" type="number" name="amount" [formControl]="productForm.controls['amount']" [ngClass]="{'has-error':productForm.controls['amount'].hasError('amountToLow') && productForm.controls['amount'].touched}">
+				<span *ngIf="type == 'beenhouwerij'">g</span>
+				<span *ngIf="type == 'bakkerij'">#</span>
 				<button type="submit" [disabled]="adding" class="btn_action">{{  total_price | currency:'EUR':true:'1.2-2'}}</button>
 			</div>
-			<div *ngIf="productForm.controls['amount'].hasError('amountToLow') && productForm.controls['amount'].touched" class="alert-danger">De hoeveelheid is te klein, je moet minstens 50 gram bestellen.</div>
+			<div *ngIf="productForm.controls['amount'].hasError('amountToLow') && productForm.controls['amount'].touched" class="alert-danger">De hoeveelheid is te klein.</div>
 		</form>
 	</div>
 </div>

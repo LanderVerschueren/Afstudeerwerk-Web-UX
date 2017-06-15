@@ -13,7 +13,7 @@
 		</div>
 
 		<div class="buttons" *ngIf="generalService.loggedIn">
-			<a class="no_style" [routerLink]="['user']">
+			<a class="no_style loggedin" [routerLink]="['user']">
 				<p *ngIf="generalService.loggedInUser['role'] == 'shop'">Hallo, {{ generalService.loggedInUser['name'] }}</p>
 				<p *ngIf="generalService.loggedInUser['role'] == 'customer' || generalService.loggedInUser['role'] == 'admin'">Hallo, {{ generalService.loggedInUser['firstName'] }}</p>
 			</a>

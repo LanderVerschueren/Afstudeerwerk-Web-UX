@@ -3,7 +3,7 @@
 .product {
 	@extend .flex;
 	@extend .wfull;
-	@extend .h120;
+	min-height: 120px;
 	@extend .white_bg_color;
 	@extend .shadow_light;
 
@@ -16,6 +16,7 @@
 		@extend .flex_column;
 		@extend .flex_spacebetween;
 		@extend .hfull;
+		min-height: 80px;
 
 		p {
 			@extend .fsize_30;

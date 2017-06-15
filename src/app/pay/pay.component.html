@@ -5,7 +5,7 @@
 				<h3>Gegevens: </h3>
 				<div class="form-group">
 		            <label for="name">Naam</label>
-		            <input name="name" type="text" placeholder="Naam" class="input_form" [formControl]="payForm.controls['name']" [ngClass]="{'has-error':!payForm.controls['name'].valid && payForm.controls['name'].touched}"><div *ngIf="payForm.controls['name'].hasError('required') && payForm.controls['name'].touched" class="alert-danger">Naam is verplicht.</div>
+		            <input name="name" type="text" placeholder="Naam" class="input_form name" [formControl]="payForm.controls['name']" [ngClass]="{'has-error':!payForm.controls['name'].valid && payForm.controls['name'].touched}"><div *ngIf="payForm.controls['name'].hasError('required') && payForm.controls['name'].touched" class="alert-danger">Naam is verplicht.</div>
 		        </div>
 		        <div class="form-group">
 		            <label for="email">E-mailadres</label>

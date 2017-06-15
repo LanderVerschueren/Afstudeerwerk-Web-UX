@@ -16,7 +16,7 @@ import { PayService } from '../services/pay.service';
 })
 export class PayComponent implements OnInit {
 	shop:any;
-	user:any;
+	customer:any;
 	id:string = '';
 	payForm: FormGroup;
 	paymentCard:string;
@@ -41,32 +41,25 @@ export class PayComponent implements OnInit {
 		this.route.queryParams.subscribe(params => {
 			this.id = params['shop'];
 
-			/*let newDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000);
-			let curr_date = newDate.getDate();
-		    let curr_month = newDate.getMonth() + 1; //Months are zero based
-		    let curr_year = newDate.getFullYear();
-		    let date = curr_year + "-" + curr_month + "-"+ curr_date;
-
-		    this.payForm.controls['collection_day'].setValue( date );*/
-
 			this.generalService.getShop( this.id, (r) => {
 				this.shop = r;
 				this.total_price = this.generalService.cart[ this.id ].total_price;
 				this.total_products = this.generalService.cart[ this.id ].total_products;
 			});
 			this.generalService.getUser( (r) => {
+				console.log( r );
 				if( r != 'fail' ) {
-					this.user = r.user;
+					this.customer = r;
 
-					if( this.user ) {
-						if( this.user['role'] == 'shop' ) {
-							this.payForm.controls['name'].setValue( this.user['name'] );
+					if( this.customer ) {
+						if( this.customer['role'] == 'shop' ) {
+							this.payForm.controls['name'].setValue( this.customer['name'] );
 						}
 						else {
-							this.payForm.controls['name'].setValue( this.user['firstName'] + " " + this.user['lastName'] );	
+							this.payForm.controls['name'].setValue( this.customer['firstName'] + " " + this.customer['lastName'] );	
 						}
-						this.payForm.controls['email'].setValue( this.user['email'] );
-						this.payForm.controls['phonenumber'].setValue( this.user['phonenumber'] );
+						this.payForm.controls['email'].setValue( this.customer['email'] );
+						this.payForm.controls['phonenumber'].setValue( this.customer['phonenumber'] );
 					}
 				}
 			});
@@ -104,10 +97,17 @@ export class PayComponent implements OnInit {
 	saveOrder(value:any, valid:boolean) {
 		this.submitted = true;
 
+		console.log( this.customer );
+
 		if( valid && this.submitted ) {
 			let details:any = {};
 
-			details.customer_id = this.id;
+			if( this.customer.user_id ) {
+				details.customer_id = this.customer.user_id;
+			}
+			else {
+				details.customer_id = 0;
+			}
 			details.shop_id = this.shop.id;
 			details.name = value.name;
 			details.email = value.email;

@@ -33,6 +33,7 @@
 		.content_inner {
 			h3 {
 				@extend .mb20;
+				@extend .text_capitalize;
 			}
 
 			.user_info {
@@ -56,6 +57,10 @@
 					@extend .p_normal;
 
 					.order_detail_general {
+						h3 {
+							@extend .text_capitalize;
+						}
+
 						p {
 							@extend .mb10;
 

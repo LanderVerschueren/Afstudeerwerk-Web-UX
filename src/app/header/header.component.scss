@@ -13,6 +13,11 @@ nav {
 		@extend .flex_middle;
 		@extend .no_style;
 		@extend .flex_spacebetween;
+
+		.buttons .loggedin p {
+			@extend .text_capitalize;
+			@extend .text_right;
+		}
 	}
 
 	.nav_top.buttons {

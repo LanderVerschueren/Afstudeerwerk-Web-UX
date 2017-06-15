@@ -106,7 +106,7 @@
 		<div class="category_container" *ngFor="let category of categories" [hidden]="categorySelected != category">
 			<div class="products" >
 				<h2>{{ category }}</h2>
-				<product-component *ngFor="let product of products" [hidden]="product.category != category" [product]="product"></product-component>
+				<product-component *ngFor="let product of products" [hidden]="product.category != category" [type]="shop.type" [product]="product"></product-component>
 			</div>
 		</div>
 	</div>

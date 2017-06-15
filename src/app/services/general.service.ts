@@ -27,8 +27,8 @@ export class GeneralService {
 	public filterParam:string = 'all';
 
 	// public apilink:string = "http://10.242.24.160:8888/eindwerk/Afstudeerwerk-Web-UX/back-end/public/api/";
-	// public apilink:string = "http://localhost:8888/eindwerk/Afstudeerwerk-Web-UX/back-end/public/api/";
-	public apilink:string = "https://landerverschueren.webhosting.be/back-end/public/api/";
+	public apilink:string = "http://localhost:8888/eindwerk/Afstudeerwerk-Web-UX/back-end/public/api/";
+	// public apilink:string = "https://landerverschueren.webhosting.be/back-end/public/api/";
 	private googleApiKey:string = "AIzaSyCH7nKkRCoG6ONdK2iBhS_xI1LZSJPkJQs";
 
   	constructor( private apicallService : ApicallService, private http: Http, private zone: NgZone ) {
@@ -58,24 +58,31 @@ export class GeneralService {
     }
 
     getUser( cb:any ) {
-    	if ( this.token ) {
+    	if ( !this.loggedIn ) { 
+    		if( this.token ) {
+		    	this.apicallService.get( this.apilink + 'user?token=' + this.token, (r:any) => {
+					if ( r.user ) {
+						this.loggedInUser = r.user;
+						this.loggedIn = true;
+						cb( this.loggedInUser );
+					}
+				}, (error) => { cb( error ) });
 
-	    	this.apicallService.get( this.apilink + 'user?token=' + this.token, (r:any) => {
-				if ( r.user ) {
-					this.loggedInUser = r.user;
-					this.loggedIn = true;
-					cb( r );
-				}
-			}, (error) => { cb( error ) });
-
-	    }
-	    else {
-	    	cb( 'fail' );
-	    }
+		    }
+		    else {
+		    	cb( 'fail' );
+		    }
+		}
+		else {
+			cb( this.loggedInUser );
+		}
     }
 
     getOrders( cb:any ) {
     	this.apicallService.get( this.apilink + 'orders/' + this.loggedInUser['id'] + "/" + this.loggedInUser['role'], (r:any) => {
+    		if( r ) {
+				r.sort(this.compare('created_at'));
+    		}
     		cb( r );
     	}, ( error ) => {
     		cb( error );
@@ -167,39 +174,13 @@ export class GeneralService {
 				cb( response );
 			}
 		);
-
-
 	}
-
-	/*processDistances( response, status) {
-
-		let fshops = [];
-
-		for (var i = 0; i < this.shops.length; i++) {
-			fshops[ i ] = this.shops[ i ];
-			fshops[ i ].distance = response.rows[0].elements[ i ].distance.value;
-		}
-
-		this.filteredShops = fshops;
-
-		//this.filteredShopsCallback(fshops);
-
-		this.sort();
-	}*/
 
 	getGeocoding( adres:any, cb:any ) {
 		this.apicallService.get( "https://maps.googleapis.com/maps/api/geocode/json?address=" + adres + "&key=" + this.googleApiKey, (r:any) => {
 			cb( r.results[0].geometry.location );
 		});
 	}
-
-	/*sort() {
-		this.filteredShops.sort((a,b) => {
-			return a.distance - b.distance;
-		});
-
-		this.subjectShops.next( this.filteredShops );
-	}*/
 
 	compare(param) {
 		return function(a,b) {
@@ -213,7 +194,7 @@ export class GeneralService {
 
 	getProducts( id, cb:any ) {
 		this.apicallService.get( this.apilink + "products/" + id, (r:any) => {
-			r.sort( this.compare( 'product_name' ) );
+			if( r ) { r.sort( this.compare( 'product_name' ) ) };
 			cb(r);
 		}, (error) => { console.log( error ) });
 	}

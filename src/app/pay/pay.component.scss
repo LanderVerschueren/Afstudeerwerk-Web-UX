@@ -35,6 +35,10 @@
 			}
 
 			.form-group {
+				.name {
+					@extend .text_capitalize;
+				}
+				
 				.radio_label_input {
 					display: flex;
 					align-items: center;

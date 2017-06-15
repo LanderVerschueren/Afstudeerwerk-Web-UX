@@ -9,12 +9,15 @@ import { GeneralService } from '../services/general.service';
 })
 export class ProductComponent implements OnInit {
 
-	@Input() product;
+	@Input() product:any;
+  @Input() type:string;
 	amount:number;
 	total_price: number;
   model: any = {};
   adding:boolean = false;
   productForm: FormGroup;
+
+  category:any;
 
   constructor( private generalService : GeneralService, private fb: FormBuilder) {
     this.productForm = fb.group ({
@@ -24,18 +27,26 @@ export class ProductComponent implements OnInit {
 
  	ngOnInit() {
  		this.total_price = 0;
+    this.type = this.type.toLowerCase();
   }
 
   checkAmount(control: FormControl) {
-    if( control.value && control.value < 50 ) {
+    if( control.value && control.value < 1 ) {
       return { "amountToLow": true };
     }
-
+    
     return null;
   }
 
 	inputChange( event: any) {
-		let amount = event.target.value / 1000;
+    let amount;
+
+    if( this.type == 'beenhouwerij' ) {
+  		amount = event.target.value / 1000;
+    }
+    else {
+      amount = event.target.value;
+    }
 		this.total_price = Math.round( (amount * this.product['price']) * 100 ) / 100;
 	}
 

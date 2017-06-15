@@ -8,6 +8,7 @@
 		@extend .br_normal;
 		@extend .p_normal;
 		@extend .sec_bg_color;
+		min-width: 600px;
 
 		h2 {
 			@extend .mb20;
@@ -84,6 +85,7 @@
 	@include for-phone-only {
 		.cart_inner {
 			width: 100%;
+			min-width: initial;
 		}
 
 		form, button {
