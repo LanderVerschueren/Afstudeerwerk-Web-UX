@@ -6,6 +6,9 @@
 		<div class="tab">
 			<a (click)="changeTab('bestellingen')" [ngClass]="{'active': tab == 'bestellingen'}"><h4>Bestellingen</h4></a>
 		</div>
+		<div class="tab" *ngIf="generalService.loggedInUser['role'] == 'shop'">
+			<a (click)="changeTab('producten')" [ngClass]="{'active': tab == 'producten'}"><h4>Producten</h4></a>
+		</div>
 	</div>
 	<div class="content">
 		<div class="content_inner user" *ngIf="(tab == 'gegevens') && user">
@@ -60,6 +63,12 @@
 						</div>
 					</div>
 				</div>
+			</div>
+			<div class="content_inner user" *ngIf="(tab == 'producten')">
+				<h3>Producten</h3>
+				<form method="get" action="../../assets/template-producten.xlsx">
+				   <button class="btn_action" type="submit">Download!</button>
+				</form>
 			</div>
 			<div *ngIf="!orders">Je hebt nog geen bestellingen geplaatst.</div>
 		</div>

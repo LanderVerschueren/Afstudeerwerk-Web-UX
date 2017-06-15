@@ -161,8 +161,9 @@ class ApiController extends Controller
 
                 if( $success_details && $success_payment ) {
                     $shop = Shop::find( $input['shop_id'] )->first();
+                    $products = $input['products'];
 
-                    Mail::send('emails.sendToCustomer', ['details' => $input, 'shop' => $shop], function ($message)
+                    Mail::send('emails.sendToCustomer', ['details' => $input, 'shop' => $shop, 'products' => $products], function ($message)
                     {
 
                         $message->from('verschueren@live.nl', 'Lander Verschueren');

@@ -15,8 +15,6 @@
 			<strong>namiddag</strong>.
 		<?php endif; ?></p>
 	<h3>De bestelling:</h3>
-	<?php foreach ($details as $key => $value) : ?>
-		
-	<?php endforeach; ?>
+	<?php print_r( $details['products']) ?>
 </body>
 </html>
