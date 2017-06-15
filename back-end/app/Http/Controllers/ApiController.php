@@ -12,6 +12,7 @@ use App\OrderDetails;
 use App\Payment;
 use DB;
 use Validator;
+use Mail;
 use Illuminate\Database\QueryException;
 
 use Stripe\{Stripe, Charge};
@@ -159,6 +160,30 @@ class ApiController extends Controller
                 $success_payment = $payment->save();
 
                 if( $success_details && $success_payment ) {
+                    $shop = Shop::find( $input['shop_id'] )->first();
+
+                    Mail::send('emails.sendToCustomer', ['details' => $input, 'shop' => $shop], function ($message)
+                    {
+
+                        $message->from('verschueren@live.nl', 'Lander Verschueren');
+
+                        $message->to('lander.verschueren@student.kdg.be');
+
+                        $message->subject("Komiskes - Je bestelling!");
+
+                    });
+
+                    Mail::send('emails.sendToShop', ['details' => $input, 'shop' => $shop], function ($message)
+                    {
+
+                        $message->from('verschueren@live.nl', 'Lander Verschueren');
+
+                        $message->to('lander.verschueren@student.kdg.be');
+
+                        $message->subject("Komiskes - Nieuwe bestelling!");
+
+                    });
+
                     return response()->json(['message' => true]);
                 }
                 else {

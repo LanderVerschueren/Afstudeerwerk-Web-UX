@@ -47,7 +47,6 @@ export class PayComponent implements OnInit {
 				this.total_products = this.generalService.cart[ this.id ].total_products;
 			});
 			this.generalService.getUser( (r) => {
-				console.log( r );
 				if( r != 'fail' ) {
 					this.customer = r;
 
