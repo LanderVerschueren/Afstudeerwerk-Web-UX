@@ -15,12 +15,16 @@ body {
 	background-position: center top;
 	background-repeat: no-repeat;
 	background-size: cover;
-
+	background-attachment: fixed;
 	min-width: 324px;
 
 	@include for-phone-only {
 		background-image: url( 'assets/img/bg_mobile_top-min.jpg' );
 	}
+}
+
+p {
+	padding: 3px 0;
 }
 
 app-root {

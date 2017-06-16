@@ -16,6 +16,11 @@ export class HeaderComponent implements OnInit {
 
 	ngOnInit() {}
 
+	ngAfterViewInit() {
+		console.log( this.generalService.loggedInUser );
+		console.log( this.generalService.loggedIn );
+	}
+
 	toggleDisplayNav(e) {
  		if( !this.navShowing ) {
  			this.navShowing = true;

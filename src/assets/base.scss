@@ -91,6 +91,7 @@ $sec_font: 'Work Sans', sans-serif;
 .input_border				{	border: 1px solid #757575;				}
 .action_border 				{	border: 2px solid $action_color;		} 
 .error_border 				{	border: 2px solid $alert_text_color!important;	} 
+.success_border 			{	border: 2px solid #B6DEB0!important;	} 
 .bottom_border_black		{	border-bottom: 1px solid $black_opac66;	}
 .bottom_border_lightblack	{	border-bottom: 1px solid $black_opac15;	}
 .br_none 					{	border-radius: initial;					}
@@ -123,6 +124,7 @@ $sec_font: 'Work Sans', sans-serif;
 .third_text_color 		{	color: $third_text_color;											}
 .action_text_color 		{	color: $action_text_color;											}
 .alert_text_color 		{	color: $alert_text_color;											}
+.success_text_color 	{	color: #B6DEB0;														}
 .prim_bg_color 			{	background-color: $prim_color;										}
 .sec_bg_color 			{	background-color: $sec_color;										}
 .action_bg_color 		{	background-color: $action_color;									}

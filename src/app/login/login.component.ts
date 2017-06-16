@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { GeneralService } from '../services/general.service';
@@ -15,13 +15,20 @@ export class LoginComponent implements OnInit {
     loading = false;
     error = '';
     loginForm: FormGroup;
+    previousUrl:any;
  
     constructor(
         private router: Router,
         private generalService: GeneralService,
         private location : Location,
-        private fb: FormBuilder
+        private fb: FormBuilder,
+        private zone: NgZone
     ) {
+        router.events
+          .filter(event => event instanceof NavigationEnd)
+          .subscribe(e => {
+            this.previousUrl = e.url;
+          });
         this.loginForm = fb.group ({
             'email': [null, Validators.compose([Validators.required, this.isValidMailFormat])],
             'password': [null, Validators.required]
@@ -30,6 +37,11 @@ export class LoginComponent implements OnInit {
  
     ngOnInit() {
         this.generalService.logout();
+        this.zone.run(()=>{
+            this.generalService.logout();
+        });
+
+        console.log( this.generalService.loggedInUser );
     }
 
     isValidMailFormat(control: FormControl){
@@ -49,7 +61,12 @@ export class LoginComponent implements OnInit {
             	if( r.token ) {
             		this.generalService.getUser( (res) => {
             			if( res ) {
-            				this.location.back();
+                            if( this.previousUrl != '/login' ) {
+            				    this.location.back();
+                            }
+                            else {
+                                this.router.navigate(['']);
+                            }
             			}
             			else {
             				this.error = res;

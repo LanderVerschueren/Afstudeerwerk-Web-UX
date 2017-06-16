@@ -8,16 +8,24 @@
 	@extend .ptb20;
 
 	.success {
-		@extend .p_normal;
-		@extend .sec_bg_color;
-		@extend .shadow_light;
-
 		@extend .flex;
 		@extend .flex_column;
+		@extend .flex_center;
 		@extend .flex_middle;
 
-		a:nth-child(2) {
-			@extend .mb10;
+		.success_inner {
+			@extend .br_normal;
+			@extend .p_normal;
+			@extend .sec_bg_color;
+			@extend .shadow_light;
+
+			@extend .flex;
+			@extend .flex_column;
+			@extend .flex_middle;
+
+			a:nth-child(1) {
+				@extend .mb10;
+			}
 		}
 
 		img {

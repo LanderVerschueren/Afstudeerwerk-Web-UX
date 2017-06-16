@@ -41,6 +41,24 @@
 		@extend .br_normal;
 		@extend .sec_bg_color;
 		@extend .p_normal;
+
+		#card-element {
+			@extend .p_normal;
+		}
+
+		@include for-phone-only {
+			height: 150px;	
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+
+			.form-row {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+			}
+		}
 	}
 
 	.form-section {
@@ -73,5 +91,9 @@
 		.expire {
 			flex: 1;
 		}
+	}
+
+	@include for-phone-only {
+		margin: 5px 0;
 	}
 }

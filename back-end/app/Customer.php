@@ -16,7 +16,6 @@ class Customer extends Model
      * @var array
      */
     protected $hidden = [
-        'password',
     ];
 
     public function users() {

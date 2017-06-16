@@ -10,9 +10,11 @@ use App\Shop;
 use App\Order;
 use App\OrderDetails;
 use App\Payment;
+use App\Product;
 use DB;
 use Validator;
 use Mail;
+use Excel;
 use Illuminate\Database\QueryException;
 
 use Stripe\{Stripe, Charge};
@@ -81,17 +83,30 @@ class ApiController extends Controller
             return response()->json(['error' => $validator->failed()]);
         }
         else {
-            $customer = new User;
+            $user = new User;
 
-            $customer->firstName    = $input['firstName'];
-            $customer->lastName     = $input['lastName'];
-            $customer->phonenumber  = $input['phonenumber'];
-            $customer->email        = $input['email'];
-            $customer->password     = Hash::make($input['password']);
+            $user->password = Hash::make($input['password']);
+            $user->email = $input['email'];
+            $user->role = 'customer';
 
-            $success = $customer->save();
+            $user_success = $user->save();
 
-            if( $success ) {
+            if( $user_success ) {
+                $customer = new Customer;
+
+                $customer->user_id      = $user->id;
+                $customer->firstName    = $input['firstName'];
+                $customer->lastName     = $input['lastName'];
+                $customer->phonenumber  = $input['phonenumber'];
+                $customer->email        = $input['email'];
+
+                $customer_success = $customer->save();
+            }
+            else {
+                return response()->json(['message' => false]);
+            }
+
+            if( $user_success && $customer_success ) {
                 return response()->json(['message' => true]);
             }
             else {
@@ -237,5 +252,29 @@ class ApiController extends Controller
         else {
             return response()->json(['message' => false]);
         }
+    }
+
+    public function storeProducts( Request $request ) {
+        $input = $request->all();
+
+        Product::where('shop_id', '=', $input['id'])->delete();
+
+        $path = $input['file']->getRealPath();
+        $data = Excel::load($path, function($reader) {})->get();
+
+        $decode_data = json_decode( $data );
+
+        foreach ($decode_data as $data) {
+            $product = new Product;
+
+            $product->shop_id = $input['id'];
+            $product->product_name = $data->productnaam;
+            $product->price = $data->eenheidsprijs;
+            $product->category = $data->categorie;
+
+            $product->save();
+        }
+
+        return response()->json(['message' => true]);
     }
 }

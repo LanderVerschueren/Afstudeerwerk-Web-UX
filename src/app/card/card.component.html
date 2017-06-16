@@ -186,7 +186,7 @@
 	<form [hidden]="!info || info.payment_method == 'cash' || payment_success == true" (ngSubmit)="checkoutOrder()" id="payment-form">
 		<div class="form-row">
 			<label for="card-element">
-			Credit or debit card
+			<h3>Kaartgegevens:</h3>
 			</label>
 			<div id="card-element">
 			// a Stripe Element will be inserted here.

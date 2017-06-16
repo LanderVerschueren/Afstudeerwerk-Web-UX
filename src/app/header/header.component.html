@@ -47,7 +47,8 @@
 		<ul *ngIf="generalService.loggedIn && generalService.loggedInUser">
 			<li>
 				<a class="no_style" (click)="toggleDisplayNav($event)" [routerLink]="['user']">
-					<p>Hallo, {{ generalService.loggedInUser['firstName'] }}</p>
+					<p *ngIf="generalService.loggedInUser['role'] == 'shop'">Hallo, {{ generalService.loggedInUser['name'] }}</p>
+					<p *ngIf="generalService.loggedInUser['role'] == 'customer' || generalService.loggedInUser['role'] == 'admin'">Hallo, {{ generalService.loggedInUser['firstName'] }}</p>
 				</a>
 			</li>
 			<li>

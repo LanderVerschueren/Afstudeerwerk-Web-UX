@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="generalService.loggedIn">
 	<div class="tabs">
 		<div class="tab">
 			<a (click)="changeTab('gegevens')" [ngClass]="{'active': tab == 'gegevens'}"><h4>Gegevens</h4></a>
@@ -64,13 +64,32 @@
 					</div>
 				</div>
 			</div>
-			<div class="content_inner user" *ngIf="(tab == 'producten')">
-				<h3>Producten</h3>
-				<form method="get" action="../../assets/template-producten.xlsx">
-				   <button class="btn_action" type="submit">Download!</button>
-				</form>
-			</div>
 			<div *ngIf="!orders">Je hebt nog geen bestellingen geplaatst.</div>
+		</div>
+		<div class="content_inner" *ngIf="(tab == 'producten')">
+			<div class="download">
+				<h3>Producten:</h3>
+				<p>Om producten toe te voegen aan je winkel download je onderstaand excel-bestand en vul je deze in zoals de eerste rij aangegeven wordt.</p>
+				<p>Als je het bestand download zal dit waarschijnlijk in de map 'Downloads' terecht komen.</p>
+				<p>In de eerste kolom komt de <strong>naam</strong> van het product</p>
+				<p>In de tweede kolom zet je de <strong>eenheidsprijs</strong>, bv. €15,30/kg of €2,10/stuk.</p>
+				<p>In de derde kolom definiëer je de <strong>categorie</strong> waartoe het product behoort, bv. charcuterie of pistolets.</p>
+				<p class="error_text_color">Opgelet! Dit verwijdert al je voorgaande producten!</p>
+				<a href="../../assets/template-producten.xlsx" download class="btn_action">Download bestand</a>
+			</div>
+			<div class="upload">
+				<p>Druk op onderstaande knop om je ingevulde bestand up te loaden.</p>
+				<p>Door dit te doen voeg je al de producten van je winkel toe!</p>
+				<form (change)="fileUpload($event)" enctype="multipart/form-data">
+					<label class="btn_action" for="file_upload" id="label_upload">Kies bestand</label>
+					<input type="file" id="file_upload" accept=".xlsx">
+				</form>
+				
+				<div *ngIf="productSuccess">
+					<p class="success_text_color">Gelukt! Alle je producten zijn toegevoegd aan je winkel!</p>
+					<a href="btn_action_shadow success_border success_text_color" [routerLink]="['/detail']" [queryParams]="{shop: user.id}">Bekijk je winkel</a>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

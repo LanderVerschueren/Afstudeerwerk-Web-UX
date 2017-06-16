@@ -66,11 +66,11 @@
 }
 
 .home_divider {
-	background: url( '/assets/img/bg_desktop_bottom-min.jpg' );
+	/* background: url( '/assets/img/bg_desktop_bottom-min.jpg' );
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;	
-
+ */
 	@extend .h300;
 
 	@include for-phone-only {

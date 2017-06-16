@@ -98,6 +98,19 @@
 					}
 				}
 			}
+
+			.download {
+				@extend .mb50;
+			}
+
+			.upload {
+				label:hover {
+					cursor: pointer;
+				}
+				input {
+					display: none;
+				}
+			}
 		}
 
 		.user {

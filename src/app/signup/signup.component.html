@@ -39,7 +39,9 @@
 
     <div class="success" *ngIf="success">
         <img src="assets/img/success.svg" alt="">
-        <a class="btn_action" [routerLink]="['login']">Inloggen</a>
-        <a class="btn_action" [routerLink]="['']">Home</a>
+        <div class="success_inner">
+            <a class="btn_action" [routerLink]="['/login']">Inloggen</a>
+            <a class="btn_action" [routerLink]="['']">Home</a>
+        </div>
     </div>
 </div>
