@@ -189,7 +189,7 @@ class ApiController extends Controller
 
                     });
 
-                    Mail::send('emails.sendToShop', ['details' => $input, 'shop' => $shop], function ($message)
+                    Mail::send('emails.sendToShop', ['details' => $input, 'shop' => $shop, 'products' => $products], function ($message)
                     {
 
                         $message->from('verschueren@live.nl', 'Lander Verschueren');

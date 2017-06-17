@@ -15,6 +15,19 @@
 			<strong>namiddag</strong>.
 		<?php endif; ?></p>
 	<h3>De bestelling:</h3>
-	<?php print_r( $details['products']) ?>
+	<?php foreach( json_decode( $products ) as $product ) : ?>
+		<div>
+			<h4>Info:</h4>				
+			<div>
+				<p>Product: {{ $product->product_name }}</p>
+			</div>
+			<div>
+				<p>Hoeveelheid: {{ $product->amount }} g</p>
+			</div>
+			<div>
+				<p>Prijs: € {{ $product->total_price }}</p>
+			</div>
+		</div>
+	<?php endforeach; ?>
 </body>
 </html>
