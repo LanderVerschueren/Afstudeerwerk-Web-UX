@@ -12,6 +12,8 @@
 				<button type="submit" [disabled]="adding || generalService.maxProducts || generalService.maxPrice" class="btn_action">{{  total_price | currency:'EUR':true:'1.2-2'}}</button>
 			</div>
 			<div *ngIf="productForm.controls['amount'].hasError('amountToLow') && productForm.controls['amount'].touched" class="alert-danger">De hoeveelheid is te klein.</div>
+			<div *ngIf="maxPrice && !maxPriceAdd" class="alert-danger">De prijs van het product overschrijdt €50!</div>
+			<div *ngIf="maxPriceAdd" class="alert-danger">De prijs van het product zal het totale bedrag van €50 overschrijven!</div>
 		</form>
 	</div>
 </div>

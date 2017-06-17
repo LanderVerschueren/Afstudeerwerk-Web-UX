@@ -157,10 +157,36 @@
 .detail-bottom {
 	@extend .wfull;
 	@extend .flex;
-	@extend .flex_center;
+	@extend .flex_middle;
+	@extend .flex_column;
 	@extend .sec_bg_color;
 	@extend .ptb50;
 	background: $sec_color url("/assets/img/ag-square.png") left top;
+	
+	.info {
+		@extend .flex;
+		@extend .flex_column;
+		@extend .p_normal;
+		@extend .white_bg_color;
+		@extend .br_normal;
+		@extend .shadow_light;
+		@extend .mb20;
+
+		@extend .w_pct_desktop;
+		@extend .wmax;
+
+		p {
+			padding: 3px 0;
+		}
+
+		@include for-phone-only {
+			width: 96%;
+		}
+
+		@include for-desktop-small {
+			width: 90%;
+		}
+	}
 
 	.container {
 		@extend .flex;

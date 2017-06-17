@@ -16,6 +16,8 @@ export class ProductComponent implements OnInit {
   model: any = {};
   adding:boolean = false;
   productForm: FormGroup;
+  maxPrice:boolean = false;
+  maxPriceAdd:boolean = false;
 
   category:any;
 
@@ -39,6 +41,13 @@ export class ProductComponent implements OnInit {
   }
 
 	inputChange( event: any) {
+    this.maxPrice = false;
+    this.maxPriceAdd = false;
+
+    if( this.generalService.cart.length && ( this.total_price + this.generalService.cart[ this.product['shop_id'] ].total_price ) > 50 ) {
+      this.maxPriceAdd = true;
+    }
+
     let amount;
 
     if( this.type == 'beenhouwerij' ) {
@@ -77,6 +86,7 @@ export class ProductComponent implements OnInit {
       }
       else {
         this.adding = false;
+        this.maxPrice = true;
         this.productForm.controls['amount'].setValue( "" );
         this.total_price = 0;
       }

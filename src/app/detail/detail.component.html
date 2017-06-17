@@ -101,6 +101,10 @@
 </section>
 
 <section class="detail-bottom" *ngIf="shop && products">
+	<div class="info">
+		<p>Geef Je gewesten gewicht of aantal stuks in, het bedrag verschijnt dan in de knop ernaast. Druk op de knop om het product aan je winkelkarretje toe te voegen!</p>
+		<p><span class="alert_text_color">Opgelet!</span> Het maximum bedrag per winkel bedraagt €50, het maximum aantal producten per winkel is 15 producten!</p>
+	</div>
 	<div class="container">
 		<category-component (catChange)="selectCategory($event)" [categories]="categories"></category-component>
 		<div class="category_container" *ngFor="let category of categories" [hidden]="categorySelected != category">
@@ -147,4 +151,12 @@
 			<p>{{ ( generalService.cart[id] && generalService.cart[id].total_price ? generalService.cart[id].total_price : 0 ) | currency:'EUR':true:'1.2-2' }}</p>
 		</div>
 	</div>
+</div>
+
+
+
+
+<div class="warning" *ngIf="generalService.maxProducts || generalService.maxPrice">
+	<p *ngIf="generalService.maxProdcuts">Je hebt het maximum aantal producten bereikt! Voor grotere bestellingen contacteer je de winkel via e-mail of telefoon.</p>
+	<p *ngIf="generalService.maxPrice">Je hebt het maximum aantal producten bereikt! Voor grotere bestellingen contacteer je de winkel via e-mail of telefoon.</p>
 </div>

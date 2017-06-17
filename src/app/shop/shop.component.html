@@ -1,3 +1,7 @@
+<div class="info">
+	<p>Test</p>
+</div>
+
 <div class="details" [routerLink]="['/detail']" [queryParams]="{shop: shop.id}" [style.background]="backgroundimageUrl">
 	<div class="detail_image">
 		<img src="{{ backgroundimage }}" alt="">
@@ -27,9 +31,4 @@
 			</div>
 		</div>
 	</div>
-</div>
-
-<div class="warning" *ngIf="maxProducts || maxPrice">
-	<p *ngIf="maxProdcuts">Je hebt het maximum aantal producten bereikt! Voor grotere bestellingen contacteer je de winkel via e-mail of telefoon.</p>
-	<p *ngIf="maxPrice">Je hebt het maximum aantal producten bereikt! Voor grotere bestellingen contacteer je de winkel via e-mail of telefoon.</p>
 </div>
