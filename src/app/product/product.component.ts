@@ -51,7 +51,7 @@ export class ProductComponent implements OnInit {
 	}
 
   add( value:any ) {
-    if( value.amount ) {
+    if( value.amount && !this.generalService.maxProducts && !this.generalService.maxPrice) {
       this.adding = true;
       let shop_id         = this.product['shop_id'];
       let product_id      = this.product['id'];
@@ -77,6 +77,8 @@ export class ProductComponent implements OnInit {
       }
       else {
         this.adding = false;
+        this.productForm.controls['amount'].setValue( "" );
+        this.total_price = 0;
       }
     }
   }

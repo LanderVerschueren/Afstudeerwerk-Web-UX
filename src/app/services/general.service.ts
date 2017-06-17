@@ -26,6 +26,9 @@ export class GeneralService {
 	public searchView:string = 'list';
 	public filterParam:string = 'all';
 
+	public maxProducts:boolean = false;
+	public maxPrice:boolean = false;
+
 	// public apilink:string = "http://10.242.24.160:8888/eindwerk/Afstudeerwerk-Web-UX/back-end/public/api/";
 	public apilink:string = "http://localhost:8888/eindwerk/Afstudeerwerk-Web-UX/back-end/public/api/";
 	// public apilink:string = "https://landerverschueren.webhosting.be/back-end/public/api/";
@@ -202,40 +205,58 @@ export class GeneralService {
 	addToCart( shop_id, order ) {
 		if ( Object.keys(order).length > 0 ) {
 
-			if( this.cart[ shop_id ] ) {
-				let old_amount = this.cart[shop_id].products.length;
+			if( !this.maxPrice && !this.maxProducts ) {
 
-				order.id = (this.cart[shop_id]['products'].length + 1);
+				if( this.cart[ shop_id ] ) {
+					let old_amount = this.cart[shop_id].products.length;
 
-				this.cart[ shop_id ]['products'].push( order );
+					order.id = (this.cart[shop_id]['products'].length + 1);
 
-				if ( old_amount < this.cart[shop_id].products.length ) {
-					this.cart[ shop_id ].total_price += order.total_price;
-					this.cart[ shop_id ].total_products++;
-					localStorage.setItem( 'cart', JSON.stringify(this.cart) );
-					return true;
-				}
-				else {
-					return false;
-				}
-			} else {
-				this.cart[ shop_id ] = {
-					'total_price': 0,
-					'total_products': 0,
-					'products': []
-				};
+					this.cart[ shop_id ]['products'].push( order );
 
-				order.id = 1;
-				this.cart[ shop_id ]['products'].push( order );
+					let price = order.total_price + this.cart[shop_id].total_price;
 
-				if ( this.cart[ shop_id ].products.length ) {
-					this.cart[ shop_id ].total_price += order.total_price;
-					this.cart[ shop_id ].total_products++;
-					localStorage.setItem( 'cart', JSON.stringify(this.cart) );
-					return true;
-				}
-				else {
-					return false;
+					if ( ( old_amount < this.cart[shop_id].products.length ) && ( price < 50 ) && ( this.cart[shop_id].total_products < 15 ) ) {
+						this.cart[ shop_id ].total_price += order.total_price;
+						this.cart[ shop_id ].total_products++;
+						localStorage.setItem( 'cart', JSON.stringify(this.cart) );
+						return true;
+					}
+					else if( price >= 50 ) {
+						this.maxPrice = true;
+						return false;
+					}
+					else if( this.cart[shop_id].total_products >= 15 ) {
+						this.maxProducts = true;
+						return false;
+					}
+					else {
+						return false;
+					}
+				} else {
+					if( order.total_price <= 50 ) {
+						this.cart[ shop_id ] = {
+							'total_price': 0,
+							'total_products': 0,
+							'products': []
+						};
+
+						order.id = 1;
+						this.cart[ shop_id ]['products'].push( order );
+
+						if ( this.cart[ shop_id ].products.length ) {
+							this.cart[ shop_id ].total_price += order.total_price;
+							this.cart[ shop_id ].total_products++;
+							localStorage.setItem( 'cart', JSON.stringify(this.cart) );
+							return true;
+						}
+						else {
+							return false;
+						}
+					}
+					else {
+						return false;
+					}
 				}
 			}
 		}
@@ -252,6 +273,14 @@ export class GeneralService {
 
 		this.cart[ shop_id ].total_price -= price;
 		this.cart[ shop_id ].total_products--;
+
+		if( this.cart[shop_id].total_products < 15 ) {
+			this.maxProducts = false;
+		}
+
+		if( this.cart[shop_id].total_price < 50 ) {
+			this.maxPrice = false;
+		}
 
 		if( this.cart[ shop_id ].total_products == 0 ) {
 			delete this.cart[ shop_id ];

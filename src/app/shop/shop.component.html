@@ -28,3 +28,8 @@
 		</div>
 	</div>
 </div>
+
+<div class="warning" *ngIf="maxProducts || maxPrice">
+	<p *ngIf="maxProdcuts">Je hebt het maximum aantal producten bereikt! Voor grotere bestellingen contacteer je de winkel via e-mail of telefoon.</p>
+	<p *ngIf="maxPrice">Je hebt het maximum aantal producten bereikt! Voor grotere bestellingen contacteer je de winkel via e-mail of telefoon.</p>
+</div>
