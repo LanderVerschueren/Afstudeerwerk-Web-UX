@@ -6,7 +6,6 @@ import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from
 
 import { GeneralService } from '../services/general.service';
 import { ApicallService } from '../services/apicall.service';
-import { PayService } from '../services/pay.service';
 
 @Component({
   selector: 'pay-component',
@@ -25,7 +24,7 @@ export class PayComponent implements OnInit {
 	total_price:number;
 	total_products:number;
 
-	constructor(private router: Router, private route: ActivatedRoute, private payService : PayService, private generalService : GeneralService, private apicallService : ApicallService,
+	constructor(private router: Router, private route: ActivatedRoute, private generalService : GeneralService, private apicallService : ApicallService,
     private fb: FormBuilder) {
 		this.payForm = fb.group({
 			'name': [null, Validators.required],
@@ -41,27 +40,32 @@ export class PayComponent implements OnInit {
 		this.route.queryParams.subscribe(params => {
 			this.id = params['shop'];
 
-			this.generalService.getShop( this.id, (r) => {
-				this.shop = r;
-				this.total_price = this.generalService.cart[ this.id ].total_price;
-				this.total_products = this.generalService.cart[ this.id ].total_products;
-			});
-			this.generalService.getUser( (r) => {
-				if( r != 'fail' ) {
-					this.customer = r;
+			if( this.generalService.cart[this.id] ) {
+				this.generalService.getShop( this.id, (r) => {
+					this.shop = r;
+					this.total_price = this.generalService.cart[ this.id ].total_price;
+					this.total_products = this.generalService.cart[ this.id ].total_products;
+				});
+				this.generalService.getUser( (r) => {
+					if( r != 'fail' ) {
+						this.customer = r;
 
-					if( this.customer ) {
-						if( this.customer['role'] == 'shop' ) {
-							this.payForm.controls['name'].setValue( this.customer['name'] );
+						if( this.customer ) {
+							if( this.customer['role'] == 'shop' ) {
+								this.payForm.controls['name'].setValue( this.customer['name'] );
+							}
+							else if( this.customer['role'] == 'customer' || this.customer['role'] == 'admin' ){
+								this.payForm.controls['name'].setValue( this.customer['firstName'] + " " + this.customer['lastName'] );	
+							}
+							this.payForm.controls['email'].setValue( this.customer['email'] );
+							this.payForm.controls['phonenumber'].setValue( this.customer['phonenumber'] );
 						}
-						else if( this.customer['role'] == 'customer' || this.customer['role'] == 'admin' ){
-							this.payForm.controls['name'].setValue( this.customer['firstName'] + " " + this.customer['lastName'] );	
-						}
-						this.payForm.controls['email'].setValue( this.customer['email'] );
-						this.payForm.controls['phonenumber'].setValue( this.customer['phonenumber'] );
 					}
-				}
-			});
+				});
+			}
+			else {
+				this.router.navigate(['']	);
+			}
 		});
 	}
 

@@ -33,7 +33,6 @@ import { ResetPasswordComponent       } from './reset-password/reset-password.co
 import { NgxPaginationModule          } from 'ngx-pagination';
 
 import { ApicallService               } from './services/apicall.service';
-import { PayService                   } from './services/pay.service';
 import { GeneralService               } from './services/general.service';
 
 // import '../assets/scripts/pikaday.js';
@@ -79,7 +78,6 @@ import { GeneralService               } from './services/general.service';
   providers: [
     ApicallService,
     GeneralService,
-    PayService,
     { provide: LOCALE_ID, useValue: "nl-BE" },
   ],
   bootstrap: [AppComponent]
