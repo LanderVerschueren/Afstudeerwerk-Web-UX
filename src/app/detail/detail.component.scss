@@ -34,6 +34,8 @@
 
 						.td_product {
 							@extend .flex_3;
+
+							@extend .text_capitalize;
 						}
 						
 						.td_amount {
@@ -90,6 +92,14 @@
 
 		form, button {
 			width: 100%;
+		}
+
+		.td_product {
+			flex: 2!important;
+		}
+
+		.td_product, .td_amount, .td_price, .td_remove {
+			padding: 5px 0 3px!important;
 		}
 	}
 }
@@ -181,6 +191,7 @@
 
 		@include for-phone-only {
 			width: 96%;
+			margin-bottom: 20px;
 		}
 
 		@include for-desktop-small {
@@ -213,7 +224,7 @@
 
 .select_category_container {
 	display: none;
-	position: absolute;
+	position: fixed;
 
 	height: 100%;
 	width: 100%;
@@ -226,17 +237,19 @@
 	@extend .sec_bg_color;
 
 	p {
-		@extend .font_light;
-		@extend .mb10;
+		font-weight: 300;
+		margin: 10px 0 10px 10px;
 	}
 
 	ul {
-		@extend .pl20;
 
-		li{
-			@extend .sec_text_color;
-			@extend .text_capitalize;	
-			@extend .mb5;
+		li {
+			padding-left: 20px;
+			color: $sec_text_color;
+			text-transform: capitalize;
+			margin-bottom: 5px;
+
+			height: 30px;
 		}
 	}
 }

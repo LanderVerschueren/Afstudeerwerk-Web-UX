@@ -43,5 +43,12 @@
 		form {
 			border-radius: 0;
 		}
+	
+		.success {
+			width: 100%;
+			.success_inner {
+				width: 96%;
+			}
+		}
 	}
 }

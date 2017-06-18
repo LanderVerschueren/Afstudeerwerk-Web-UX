@@ -22,7 +22,6 @@
         "styles.scss"
       ],
       "scripts": [
-        "assets/scripts/paylane.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

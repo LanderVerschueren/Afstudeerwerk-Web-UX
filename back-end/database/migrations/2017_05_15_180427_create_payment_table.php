@@ -16,16 +16,9 @@ class CreatePaymentTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
             
-            $table->integer('customer_id')->unsigned();
-            $table->integer('shop_id')->unsigned();
+            $table->integer('customer_id');
+            $table->integer('shop_id');
             $table->integer('order_id')->unsigned();
-            
-            $table->foreign('customer_id')
-                ->references('id')
-                ->on('customers')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('shop_id')
-                ->references('id')
-                ->on('shops')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('order_id')
                 ->references('id')
                 ->on('orders')->onDelete('cascade')->onUpdate('cascade');

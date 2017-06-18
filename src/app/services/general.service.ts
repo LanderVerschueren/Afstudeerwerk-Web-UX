@@ -30,7 +30,7 @@ export class GeneralService {
 	public maxPrice:boolean = false;
 	
 	public apilink:string = "http://localhost:8888/eindwerk/Afstudeerwerk-Web-UX/back-end/public/api/";
-	//public apilink:string = "https://landerverschueren.webhosting.be/back-end/public/api/";
+	// public apilink:string = "https://landerverschueren.webhosting.be/back-end/public/api/";
 	private googleApiKey:string = "AIzaSyCH7nKkRCoG6ONdK2iBhS_xI1LZSJPkJQs";
 
   	constructor( private apicallService : ApicallService, private http: Http, private zone: NgZone ) {
@@ -84,6 +84,7 @@ export class GeneralService {
     	this.apicallService.get( this.apilink + 'orders/' + this.loggedInUser['id'] + "/" + this.loggedInUser['role'], (r:any) => {
     		if( r ) {
 				r.sort(this.compare('created_at'));
+				cb( r );
     		}
     		cb( r );
     	}, ( error ) => {

@@ -30,7 +30,6 @@ div p {
 
 	.list_mobile {
 		box-sizing: border-box;
-		padding: 5px;
 		background-color: $sec_color;
 
 		width: 100%;
@@ -38,14 +37,18 @@ div p {
 
 		p {
 			font-weight: 300;
-			margin-bottom: 10px;
+			margin: 10px 0 10px 10px;
 		}
 
 		ul {
-			padding-left: 20px;
 
 			li {
+				padding-left: 20px;
+				color: $sec_text_color;
+				text-transform: capitalize;
 				margin-bottom: 5px;
+	
+				height: 30px;
 
 				a {
 					color: $sec_text_color;

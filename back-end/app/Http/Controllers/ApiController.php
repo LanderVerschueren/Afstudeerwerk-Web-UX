@@ -224,7 +224,9 @@ class ApiController extends Controller
         }
 
         foreach( $orders as $order ) {
-            $order->shop;
+            $id = $order['attributes']['shop_id'];
+            $shop = Shop::where( 'id', '=', $id )->first();
+            $order['shop'] = $shop['attributes'];
         }
 
         return $orders;

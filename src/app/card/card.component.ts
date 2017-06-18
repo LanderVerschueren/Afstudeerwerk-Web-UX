@@ -6,8 +6,6 @@ import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from
 import { ApicallService } from '../services/apicall.service';
 import { GeneralService } from '../services/general.service';
 
-// import '../../assets/scripts/paylane.js';
-
 declare var Stripe:any;
 
 @Component({
@@ -42,6 +40,8 @@ export class CardComponent implements OnInit
 	ngOnInit() {
 		this.info = JSON.parse( localStorage.getItem( 'info' ) );
 
+		console.log( this.info );
+
 		if( this.info ) {
 			localStorage.removeItem('info');
 
@@ -50,6 +50,7 @@ export class CardComponent implements OnInit
 
 				if( this.info.payment_method == 'cash' ) {
 					this.saveOrder();
+					this.payment_success = true;
 				}
 				else {
 					this.payment_success = false;

@@ -45,8 +45,6 @@ export class UserComponent implements OnInit {
   		if( res ) {
   			this.user = res;
 
-        console.log( this.user );
-
   			if( this.user.role == 'shop' ) {
   				this.name = this.user.name;
   			}

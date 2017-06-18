@@ -19,15 +19,8 @@ class CreateOrderTable extends Migration
             $table->string('email');
             $table->string('phonenumber');
 
-            $table->integer('customer_id')->unsigned();
-            $table->integer('shop_id')->unsigned();
-
-            $table->foreign('customer_id')
-                ->references('id')
-                ->on('customers')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('shop_id')
-                ->references('id')
-                ->on('shops')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('customer_id');
+            $table->integer('shop_id');
                 
             $table->string('payment_method');
             $table->date('date_pickup');

@@ -16,7 +16,7 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-attachment: fixed;
-	min-width: 324px;
+	min-width: 300px;
 
 	@include for-phone-only {
 		background-image: url( 'assets/img/bg_mobile_top-min.jpg' );
@@ -38,6 +38,10 @@ app-root {
 	display: block;
 	padding-bottom: 200px; /* Same as footer height */
 	box-sizing: border-box;
+
+	@include for-phone-only {
+		padding-bottom: 100px;
+	}
 }
 
 header-component {

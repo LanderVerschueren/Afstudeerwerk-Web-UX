@@ -22,13 +22,13 @@ class Order extends Model
      */
     protected $hidden = [];
 
-    public function shop(){
+    /*public function shop(){
         return $this->belongsTo('App\Shop');
     }
 
     public function user(){
         return $this->belongsTo('App\User');
-    }
+    }*/
 
     public function order_details() {
         return $this->hasMany('App\OrderDetails');
