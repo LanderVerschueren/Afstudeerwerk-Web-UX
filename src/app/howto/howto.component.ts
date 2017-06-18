@@ -15,7 +15,7 @@ export class HowtoComponent implements OnInit {
 		{
 			'image'	: 	'shopping-cart.svg',
 			'lead'	:	'Kies je winkel en bestel',
-			'trail'	:	'Favoriete bakker of beenhouwer? Bestel je brood of charcuterie bij een plaatselijke winkel.'
+			'trail'	:	'Favoriete bakker of beenhouwer? Bestel je komiskes bij een plaatselijke winkel.'
 		},
 		{
 			'image'	: 	'shopping-basket.svg',

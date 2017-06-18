@@ -16,10 +16,11 @@
 				<h3>{{ name }}</h3>
 				<div class="user_info"><span class="tag_email"></span><p>{{ user.email }}</p></div>
 				<div class="user_info"><span class="tag_phone"></span><p>{{ user.phonenumber }}</p></div>
-				<button class="btn_action" (click)="change()">Wijzig gegevens</button>
+				<button *ngIf="user.role != 'shop'" class="btn_action" (click)="change()">Wijzig gegevens</button>
+				<p *ngIf="user.role == 'shop'">Om je gegevens te wijzigen kan je ons contacteren op het e-mailadres: <a href="mailto:verschueren@live.nl">verschueren@live.nl</a></p>
 			</div>
 			<div *ngIf="userchange">
-				<form class="form_login_register" [formGroup]="registerForm" (ngSubmit)="changeUser(registerForm.value, registerForm.valid)" *ngIf="!success">
+				<form class="form_login_register" [formGroup]="registerForm" (ngSubmit)="changeUser(registerForm.value, registerForm.valid)" *ngIf="!success && (user['role'] == 'customer' || user['role'] == 'admin')">
 			        <legend><h3>Gegevens wijzigen:</h3></legend>
 			        <div class="form-group">
 			            <label for="firstName">Voornaam <span *ngIf="registerForm.controls['firstName'].hasError('required') && registerForm.controls['firstName'].touched" class="alert-danger">- Voornaam is verplicht.</span></label>
@@ -53,7 +54,7 @@
 		</div>
 		<div class="content_inner" *ngIf="(tab == 'bestellingen')">
 			<div class="orders" *ngIf="orders && ( generalService.loggedInUser['role'] == 'customer' || generalService.loggedInUser['role'] == 'admin' )">
-				<div class="order_detail" *ngFor="let order of orders">
+				<div class="order_detail" *ngFor="let order of orders | paginate: { itemsPerPage: 5, currentPage: p }">
 					<div class="order_detail_general">
 						<h3>{{ order.shop.name }}</h3>
 						<p>Datum van bestelling: {{ order.created_at | date: 'd MMMM y' }}</p>
@@ -78,7 +79,7 @@
 				</div>
 			</div>
 			<div class="orders" *ngIf="orders && generalService.loggedInUser['role'] == 'shop'">
-				<div class="order_detail" *ngFor="let order of orders">
+				<div class="order_detail" *ngFor="let order of orders | paginate: { itemsPerPage: 5, currentPage: p }">
 					<div class="order_detail_general">
 						<h3>{{ order.name }}</h3>
 						<p>Datum van ophaling: {{ order.created_at | date: 'd MMMM y' }}</p>
@@ -99,6 +100,7 @@
 					</div>
 				</div>
 			</div>
+			<pagination-controls *ngIf="orders" (pageChange)="p = $event"></pagination-controls>
 			<div *ngIf="!orders">Je hebt nog geen bestellingen geplaatst.</div>
 		</div>
 		<div class="content_inner" *ngIf="(tab == 'producten')">
@@ -115,6 +117,7 @@
 			<div class="upload">
 				<p>Druk op onderstaande knop om je ingevulde bestand up te loaden.</p>
 				<p>Door dit te doen voeg je al de producten van je winkel toe!</p>
+				<p>Als alles goed verlopen is krijg je de bevestiging dat alles goed verlopen is.</p>
 				<form (change)="fileUpload($event)" enctype="multipart/form-data">
 					<label class="btn_action" for="file_upload" id="label_upload">Kies bestand</label>
 					<input type="file" id="file_upload" accept=".xlsx">

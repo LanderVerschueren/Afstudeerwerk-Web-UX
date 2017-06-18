@@ -18,6 +18,7 @@ export class ProductComponent implements OnInit {
   productForm: FormGroup;
   maxPrice:boolean = false;
   maxPriceAdd:boolean = false;
+  added:boolean = false;
 
   category:any;
 
@@ -41,6 +42,7 @@ export class ProductComponent implements OnInit {
   }
 
 	inputChange( event: any) {
+    this.added = false;
     this.maxPrice = false;
     this.maxPriceAdd = false;
 
@@ -80,6 +82,7 @@ export class ProductComponent implements OnInit {
       let add = this.generalService.addToCart( shop_id, order );
 
       if( add ) {
+        this.added = true;
         this.adding = false;
         this.productForm.controls['amount'].setValue( "" );
         this.total_price = 0;

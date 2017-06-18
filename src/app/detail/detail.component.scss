@@ -297,6 +297,16 @@
 	}
 }
 
+.warning {
+	position: fixed;
+	top: 0;
+	height: 50px;
+	width: 100%;
+	z-index: 990;
+
+	background-color: $alert_color;
+}
+
 @include for-phone-only {
 	.detail-top {
 		height: 150px;

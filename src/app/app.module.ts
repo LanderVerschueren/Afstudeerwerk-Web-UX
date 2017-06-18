@@ -26,13 +26,15 @@ import { LoginComponent               } from './login/login.component';
 import { SignupComponent              } from './signup/signup.component';
 import { PayComponent                 } from './pay/pay.component';
 import { UserComponent                } from './user/user.component';
+import { CardComponent                } from './card/card.component';
+import { ResetComponent               } from './reset/reset.component';
+import { ResetPasswordComponent       } from './reset-password/reset-password.component';
+
+import { NgxPaginationModule          } from 'ngx-pagination';
 
 import { ApicallService               } from './services/apicall.service';
 import { PayService                   } from './services/pay.service';
 import { GeneralService               } from './services/general.service';
-import { CardComponent } from './card/card.component';
-import { ResetComponent } from './reset/reset.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 // import '../assets/scripts/pikaday.js';
 
@@ -71,7 +73,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     ReactiveFormsModule,
     HttpModule,
     JsonpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxPaginationModule
   ],
   providers: [
     ApicallService,

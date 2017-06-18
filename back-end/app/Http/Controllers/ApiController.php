@@ -314,4 +314,38 @@ class ApiController extends Controller
             return response()->json(['message' => false]);
         }
     }
+
+    public function changeUser( Request $request ) {
+        $input = $request->all();
+
+        if( $input['user']['role'] == 'shop' ) {
+            if( $input['user']['name'] != $input['info']['name'] ) {
+                Shop::where( 'id', '=', $input['user']['id'] )->update(['name' => $input['info']['name']]);
+            }
+            if( $input['user']['email'] != $input['info']['email'] ) {
+                Shop::where( 'id', '=', $input['user']['id'] )->update(['email' => $input['info']['email']]);
+                User::where( 'id', '=', $input['user']['user_id'] )->update(['email' => $input['info']['email']]);
+            }
+            if( $input['user']['phonenumber'] != $input['info']['phonenumber'] ) {
+                Shop::where( 'id', '=', $input['user']['id'] )->update(['phonenumber' => $input['info']['phonenumber']]);
+            }
+        }
+        else {
+            if( $input['user']['firstName'] != $input['info']['firstName'] ) {
+                Customer::where( 'id', '=', $input['user']['id'] )->update(['firstName' => $input['info']['firstName']]);
+            }
+            if( $input['user']['lastName'] != $input['info']['lastName'] ) {
+                Customer::where( 'id', '=', $input['user']['id'] )->update(['lastName' => $input['info']['lastName']]);
+            }
+            if( $input['user']['email'] != $input['info']['email'] ) {
+                Customer::where( 'id', '=', $input['user']['id'] )->update(['email' => $input['info']['email']]);
+                User::where( 'id', '=', $input['user']['user_id'] )->update(['email' => $input['info']['email']]);
+            }
+            if( $input['user']['phonenumber'] != $input['info']['phonenumber'] ) {
+                Customer::where( 'id', '=', $input['user']['id'] )->update(['phonenumber' => $input['info']['phonenumber']]);
+            }
+        }
+
+        return response()->json(['message' => true]);
+    }
 }

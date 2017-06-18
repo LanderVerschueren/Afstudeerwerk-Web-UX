@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { Location } from '@angular/common';
 
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
@@ -20,12 +22,15 @@ export class UserComponent implements OnInit {
 	productSuccess:boolean = false;
   userchange:boolean = false;
   registerForm: FormGroup;
+  p: number = 1;
 
   constructor( 
     private apicallService: ApicallService, 
     private generalService : GeneralService, 
     private router : Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private location: Location,
+    private zone: NgZone
     ){
       this.registerForm = fb.group({
         'firstName': [null, Validators.required],
@@ -40,6 +45,8 @@ export class UserComponent implements OnInit {
   		if( res ) {
   			this.user = res;
 
+        console.log( this.user );
+
   			if( this.user.role == 'shop' ) {
   				this.name = this.user.name;
   			}
@@ -53,6 +60,7 @@ export class UserComponent implements OnInit {
   			}
 
   			this.generalService.getOrders( (res) => {
+          res.sort( this.compare( 'created_at' ) );
   				this.orders = res;
   			});
   		}
@@ -60,6 +68,16 @@ export class UserComponent implements OnInit {
   			this.router.navigate(['login']);
   		}
   	});
+  }
+
+  compare(param) {
+    return function(a,b) {
+      if (a[param] > b[param])
+          return -1;
+        if (a[param] < b[param])
+          return 1;
+        return 0;
+    }
   }
 
   isValidMailFormat(control: FormControl){
@@ -89,7 +107,7 @@ export class UserComponent implements OnInit {
   			if( r.message ) {
   				this.productSuccess = true;
   			}
-  		}, (error) => {console.log( error )});
+  		}, (error) => { this.productSuccess = false; });
 	  }
   }
 
@@ -98,6 +116,12 @@ export class UserComponent implements OnInit {
   }
 
   changeUser( value:any, valid:any ) {
-    console.log( value );
+    if( valid ) {
+      this.apicallService.post( this.generalService.apilink + "userChange", {'info': value, 'user': this.user}, (r) => {
+          if( r.message == true ) {
+            window.location.reload();
+          }
+        }, (error) => { console.log( error ) });
+    }
   }
 }

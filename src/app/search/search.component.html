@@ -9,7 +9,17 @@
 		<a (click)="toggleOverlay( 'view' )"><p>Lijst/Kaart</p></a>
 	</div>
 </section>
+
+<section class="search-info">
+</section>
+
 <section class="search-bottom">
+
+	<div class="info">
+		<p>Kies hieronder de winkel waarbij je wilt bestellen.</p>
+		<p>Enkel op zoek naar bakkerijen? Klik hierboven op een van de tabs om te filteren.</p>
+		<p>Wil je de winkels op een kaart zien? druk hieronder op 'Kaart'.</p>
+	</div>
 	<div class="search-bottom-inner">
 		<tabs-component *ngIf="showTabs"></tabs-component>
 		<div>

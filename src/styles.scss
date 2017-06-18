@@ -96,5 +96,6 @@ footer-component {
 
 	@include for-phone-only {
 		padding: 20px 0;
+		height: 100px;
 	}
 }

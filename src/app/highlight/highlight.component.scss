@@ -8,19 +8,6 @@
 	@extend .flex;
 	@extend .flex_column;
 	@extend .flex_spacearound;
-
-	.highlight_container_title {
-		@extend .flex;
-		@extend .flex_center;
-
-		h2 {
-			@extend h1;
-			@extend .prim_font;
-			@extend .prim_text_color;
-			@extend .text_uppercase;
-			@extend .shadow_text;
-		}
-	}
 			
 	.highlight_container_content {
 		@extend .flex;
@@ -31,6 +18,7 @@
 
 			img {
 				@extend .w300;
+				min-width: 300px;
 				@extend .h300;
 				@extend .mr100;
 			}

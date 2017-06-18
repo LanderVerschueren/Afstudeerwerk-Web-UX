@@ -78,9 +78,24 @@
 .search-bottom {
 	@extend .wfull;
 	@extend .flex;
-	@extend .flex_center;
+	@extend .flex_column;
+	@extend .flex_middle;
 	@extend .sec_bg_color;
 	@extend .bg_pattern;
+
+	.info {
+		@extend .flex;
+		@extend .flex_column;
+		@extend .flex_center;
+		@extend .p_normal;
+		@extend .mt20;
+		@extend .br_normal;
+		@extend .shadow_light;
+		@extend .white_bg_color;
+
+		@extend .w_pct_desktop;
+		@extend .wmax;
+	}
 
 	.search-bottom-inner {
 		@extend .flex;
@@ -114,6 +129,11 @@
 			background-color: transparent;
 		}
 
+		.info {
+			width: 96%;
+			margin-top: 5px;
+		}
+
 		tabs-component {
 			position: fixed;
 			top: 0;
@@ -127,7 +147,7 @@
 	}
 
 	@include for-desktop-small {
-		.search-bottom-inner {
+		.search-bottom-inner, .info {
 			width: 90%;
 		} 
 	}

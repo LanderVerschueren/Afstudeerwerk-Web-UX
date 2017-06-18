@@ -80,6 +80,7 @@
 
 .home_bottom {
 	@extend .home_middle;
+	height: 450px;
 	@extend .sec_bg_color;
 
 	highlight-component {

@@ -50,6 +50,15 @@
 				@extend .flex;
 				@extend .flex_column;
 
+				pagination-controls {
+					pagination-template {
+						ul {
+							display: flex;
+							justify-content: center;
+						}
+					}
+				}
+
 				.order_detail {
 					@extend .sec_bg_color;
 					@extend .mb10;
