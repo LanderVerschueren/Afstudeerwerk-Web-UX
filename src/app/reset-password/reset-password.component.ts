@@ -41,7 +41,6 @@ export class ResetPasswordComponent implements OnInit {
     }
 
     reset( value:any, valid:any ) {
-
     	this.apicallService.post( this.generalService.apilink + "resetChange", { 'token': this.token, 'password': value.password }, (r) => { this.success = true; }, (error) => { this.error = true; });
     }
 }

@@ -310,6 +310,8 @@ class ApiController extends Controller
 
             $user = User::where('email', '=', $reset->email)->update(['password' => $password]);
             
+            DB::table('password_resets')->where('token', '=', $input['token'])->delete();
+
             return response()->json(['message' => true]);
         }
         else {
