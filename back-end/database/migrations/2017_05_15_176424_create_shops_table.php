@@ -30,6 +30,7 @@ class CreateShopsTable extends Migration
             $table->integer('postalCode');
             $table->string('city');
             $table->string('password');
+            $table->string('image');
             $table->softDeletes();
             $table->timestamps();
         });

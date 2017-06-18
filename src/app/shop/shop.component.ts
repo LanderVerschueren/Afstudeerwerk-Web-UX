@@ -10,21 +10,19 @@ export class ShopComponent implements OnInit {
 
 	@Input() shop;
 	
-	backgroundimage:string = "assets/img/card/modern-butchers-shop.jpg";
-	backgroundimageUrl:string = "url('assets/img/card/modern-butchers-shop.jpg')";
+	backgroundimage:string;
+	backgroundimageUrl:string;
 
 	constructor() { }
 
 	ngOnInit() {
 		if(this.shop.image) {
-
-			let img = new Image();
-			img.onload = () => {
-				this.backgroundimage = img.src;
-				this.backgroundimageUrl = img.src;
-			};
-			img.src = this.shop.image;
-
+			this.backgroundimage = "assets/img/card/" + this.shop.image;
+			this.backgroundimageUrl = "url('assets/img/card/" + this.shop.image + "')";
+		}
+		else {
+			this.backgroundimage = "assets/img/bakkery_1.jpg";
+			this.backgroundimageUrl = "url('assets/img/card/butchery_1.jpg')";
 		}
 	}
 }

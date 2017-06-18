@@ -13,7 +13,7 @@ class Shop extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'phonenumber', 'email', 'street', 'number', 'postalCode', 'city', 'type',
+        'name', 'phonenumber', 'email', 'street', 'number', 'postalCode', 'city', 'type', 'image'
     ];
 
     /**

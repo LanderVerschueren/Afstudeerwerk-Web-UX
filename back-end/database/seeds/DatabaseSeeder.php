@@ -54,6 +54,7 @@ class DatabaseSeeder extends Seeder
             'number' => 72,
             'postalCode' => 9120,
             'city' => 'Beveren',
+            'image' => 'butchery_1.jpg',
             'password' => bcrypt('beenhouwerij_moortgat'),
         ]);
 
@@ -73,6 +74,7 @@ class DatabaseSeeder extends Seeder
             'number' => 56,
             'postalCode' => 1840,
             'city' => 'Londerzeel',
+            'image' => 'butchery_3.jpg',
             'password' => bcrypt('beenhouwerij_van_renterghem'),
         ]);
 
@@ -92,6 +94,7 @@ class DatabaseSeeder extends Seeder
             'number' => 110,
             'postalCode' => 1840,
             'city' => 'Londerzeel',
+            'image' => 'bakkery_2.jpg',
             'password' => bcrypt('bakkerij_meert'),
         ]);
 
@@ -111,6 +114,7 @@ class DatabaseSeeder extends Seeder
             'number' => 71,
             'postalCode' => 1840,
             'city' => 'Londerzeel',
+            'image' => 'bakkery_1.jpg',
             'password' => bcrypt('luverco'),
         ]);
 
@@ -130,6 +134,7 @@ class DatabaseSeeder extends Seeder
             'number' => 21,
             'postalCode' => 1840,
             'city' => 'Londerzeel',
+            'image' => 'butchery_2.jpg',
             'password' => bcrypt('renmans'),
         ]);
 
@@ -149,6 +154,7 @@ class DatabaseSeeder extends Seeder
             'number' => 82,
             'postalCode' => 1840,
             'city' => 'Londerzeel',
+            'image' => 'butchery_1.jpg',
             'password' => bcrypt('beenhouwerij_kil'),
         ]);
 

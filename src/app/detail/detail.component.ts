@@ -23,7 +23,6 @@ export class DetailComponent implements OnInit {
   	constructor( private route: ActivatedRoute, private router: Router, private generalService : GeneralService, private zone: NgZone ) { }
 
   	ngOnInit() {
-  		console.log( this.generalService.maxProducts );
   		this.route.queryParams.subscribe(params => {
 	    	if (params['shop']) {
 	    		this.id = params['shop'];
