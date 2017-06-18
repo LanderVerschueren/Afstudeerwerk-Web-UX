@@ -54,7 +54,7 @@ export class PayComponent implements OnInit {
 						if( this.customer['role'] == 'shop' ) {
 							this.payForm.controls['name'].setValue( this.customer['name'] );
 						}
-						else {
+						else if( this.customer['role'] == 'customer' || this.customer['role'] == 'admin' ){
 							this.payForm.controls['name'].setValue( this.customer['firstName'] + " " + this.customer['lastName'] );	
 						}
 						this.payForm.controls['email'].setValue( this.customer['email'] );

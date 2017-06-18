@@ -33,15 +33,15 @@
 
         <div class="form-group">
             <!--<button [disabled]="loading" [ngClass]="{'loading': loading}" class="btn_action">Registreer</button>-->
-            <button type="submit" [ngClass]="{'loading': loading}" class="btn_action">Registreer</button>
+            <button type="submit" [ngClass]="{'loading': loading}" class="btn_action"><p class="btn_inner">Registreer</p></button>
         </div>
     </form>
 
     <div class="success" *ngIf="success">
         <img src="assets/img/success.svg" alt="">
         <div class="success_inner">
-            <a class="btn_action" [routerLink]="['/login']">Inloggen</a>
-            <a class="btn_action" [routerLink]="['']">Home</a>
+            <a class="btn_action" [routerLink]="['/login']"><p class="btn_inner">Inloggen</p></a>
+            <a class="btn_action" [routerLink]="['']"><p class="btn_inner">Home</p></a>
         </div>
     </div>
 </div>

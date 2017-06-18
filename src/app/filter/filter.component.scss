@@ -3,6 +3,7 @@
 ul {
 	@extend .wfull;
 	@extend .flex;
+	@extend .hfull;
 }
 
 @include for-phone-only {

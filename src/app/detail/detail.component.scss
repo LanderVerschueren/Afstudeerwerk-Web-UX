@@ -72,7 +72,7 @@
 		}
 
 		.no_products {
-			p {
+			.no_p {
 				@extend .mb20;
 			}
 
@@ -170,7 +170,7 @@
 		@extend .white_bg_color;
 		@extend .br_normal;
 		@extend .shadow_light;
-		@extend .mb20;
+		@extend .mb50;
 
 		@extend .w_pct_desktop;
 		@extend .wmax;

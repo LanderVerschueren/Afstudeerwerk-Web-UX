@@ -378,6 +378,10 @@ small {
 	@extend .button_hand;
 	@extend .no_border;
 	box-sizing: border-box;
+
+	.btn_inner {
+		margin: 0 auto;
+	}
 }
 
 .btn_navigation {

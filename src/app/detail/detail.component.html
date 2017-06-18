@@ -35,13 +35,13 @@
 			</div>
 			<div class="summary">
 				<form>
-					<button type="button" (click)="placeOrder()" class="btn_action">Plaats bestelling: {{ generalService.cart[ id ].total_price | currency:'EUR':true:'1.2-2' }}</button>
+					<a type="button" (click)="placeOrder()" class="btn_action"><p class="btn_inner">Plaats bestelling: {{ generalService.cart[ id ].total_price | currency:'EUR':true:'1.2-2' }}</p></a>
 				</form>
 			</div>
 		</div>
 		<div class="no_products" *ngIf="!generalService.cart[id]">
-			<p>Er zitten nog geen producten in je winkelkarretje!</p>
-			<button (click)="toggleDisplayCart($event)" class="btn_action_shadow cart_close">Sluiten</button>
+			<p class="no_p">Er zitten nog geen producten in je winkelkarretje!</p>
+			<button (click)="toggleDisplayCart($event)" class="btn_action_shadow cart_close"><p class="btn_inner">Sluiten</p></button>
 		</div>
 	</div>
 </section>

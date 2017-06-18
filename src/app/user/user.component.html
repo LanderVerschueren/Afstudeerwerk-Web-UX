@@ -16,7 +16,7 @@
 				<h3>{{ name }}</h3>
 				<div class="user_info"><span class="tag_email"></span><p>{{ user.email }}</p></div>
 				<div class="user_info"><span class="tag_phone"></span><p>{{ user.phonenumber }}</p></div>
-				<button *ngIf="user.role != 'shop'" class="btn_action" (click)="change()">Wijzig gegevens</button>
+				<button *ngIf="user.role != 'shop'" class="btn_action" (click)="change()"><p class="btn_inner">Wijzig gegevens</p></button>
 				<p *ngIf="user.role == 'shop'">Om je gegevens te wijzigen kan je ons contacteren op het e-mailadres: <a href="mailto:verschueren@live.nl">verschueren@live.nl</a></p>
 			</div>
 			<div *ngIf="userchange">
@@ -47,7 +47,7 @@
 			        </div>
 
 			        <div class="form-group">
-			            <button type="submit" [ngClass]="{'loading': loading}" class="btn_action">Wijzig</button>
+			            <button type="submit" [ngClass]="{'loading': loading}" class="btn_action"><p class="btn_inner">Wijzig</p></button>
 			        </div>
 			    </form>
 			</div>

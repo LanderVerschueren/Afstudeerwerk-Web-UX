@@ -8,7 +8,7 @@
             <div *ngIf="!resetForm.controls['email'].hasError('required') && resetForm.controls['email'].hasError('emailNotValid') && resetForm.controls['email'].touched" class="alert-danger">E-mailadres is niet correct. <small>bv. example@test.com</small></div>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn_action">Reset</button>
+            <button type="submit" class="btn_action"><p class="btn_inner">Reset</p></button>
         </div>
     </form>
 </div>

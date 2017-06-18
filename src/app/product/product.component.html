@@ -9,7 +9,7 @@
 				<input class="input" (keyup)="inputChange($event)" placeholder="0" type="number" name="amount" [formControl]="productForm.controls['amount']" [ngClass]="{'has-error':productForm.controls['amount'].hasError('amountToLow') && productForm.controls['amount'].touched}">
 				<span *ngIf="type == 'beenhouwerij'">g</span>
 				<span *ngIf="type == 'bakkerij'">#</span>
-				<button type="submit" [disabled]="adding || generalService.maxProducts || generalService.maxPrice" class="btn_action">{{  total_price | currency:'EUR':true:'1.2-2'}}</button>
+				<button type="submit" [disabled]="adding || generalService.maxProducts || generalService.maxPrice" class="btn_action"><p class="btn_inner">{{  total_price | currency:'EUR':true:'1.2-2'}}</p></button>
 			</div>
 			<div *ngIf="added" class="success_text_color"><p>Toegevoegd!</p></div>
 			<div *ngIf="productForm.controls['amount'].hasError('amountToLow') && productForm.controls['amount'].touched" class="alert-danger">De hoeveelheid is te klein.</div>
