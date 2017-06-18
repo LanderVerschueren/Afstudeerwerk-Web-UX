@@ -119,7 +119,7 @@ export class UserComponent implements OnInit {
           if( r.message == true ) {
             window.location.reload();
           }
-        }, (error) => { console.log( error ) });
+        }, (error) => { });
     }
   }
 }

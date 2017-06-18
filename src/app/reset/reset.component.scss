@@ -21,4 +21,15 @@
 			min-height: 350px;
 		}
 	}
+
+	.sent {
+		@extend .p_normal;
+		@extend .br_normal;
+		@extend .sec_bg_color;
+		@extend .shadow_light;
+
+		p {
+			margin: 3px 0;
+		}
+	}
 }

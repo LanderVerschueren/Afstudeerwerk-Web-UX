@@ -14,6 +14,7 @@ import { ApicallService } from '../services/apicall.service';
 export class ResetComponent implements OnInit {
 
     resetForm: FormGroup;
+    resetSend:boolean = false;
  
     constructor(
         private router: Router,
@@ -43,7 +44,7 @@ export class ResetComponent implements OnInit {
 
     reset( value:any, valid:any ) {
     	this.apicallService.post( this.generalService.apilink + "reset", { 'email': value.email }, (r) => { 
-            console.log( r )
-        }, (error) => { console.log( error ) });
+            this.resetSend = true;
+        }, (error) => {});
     }
 }

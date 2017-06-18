@@ -100,8 +100,6 @@ export class PayComponent implements OnInit {
 	saveOrder(value:any, valid:boolean) {
 		this.submitted = true;
 
-		console.log( this.customer );
-
 		if( valid && this.submitted ) {
 			let details:any = {};
 

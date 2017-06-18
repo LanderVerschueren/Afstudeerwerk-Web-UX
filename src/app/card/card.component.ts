@@ -19,6 +19,7 @@ export class CardComponent implements OnInit
 	info:any;
 	token:string;
 	payment_success:boolean;
+	formHidden:boolean = true;
 
 	checkoutForm:FormGroup;
 
@@ -40,8 +41,6 @@ export class CardComponent implements OnInit
 	ngOnInit() {
 		this.info = JSON.parse( localStorage.getItem( 'info' ) );
 
-		console.log( this.info );
-
 		if( this.info ) {
 			localStorage.removeItem('info');
 
@@ -54,6 +53,7 @@ export class CardComponent implements OnInit
 				}
 				else {
 					this.payment_success = false;
+					this.formHidden = false;
 				}
 			}, (error) => { console.log(error) });
 		}
@@ -97,7 +97,6 @@ export class CardComponent implements OnInit
 	}
 
 	saveOrder() {
-		console.log( this.info );
 		let customer_id = this.info.customer_id;
 		let shop_id = this.info.shop_id;
 		let email = this.info.email;
@@ -111,9 +110,9 @@ export class CardComponent implements OnInit
 		let ip = this.ip;
 
 		this.apicallService.post( this.generalService.apilink + "storeOrder", {'customer_id': customer_id, 'shop_id': shop_id, 'email': email, 'phonenumber': phonenumber, 'name': name, 'payment_method': payment_method, 'date_pickup': date_pickup, 'period_pickup': period_pickup, 'products': products, 'ip': this.ip, 'total_price': total_price}, (r) => {
-			console.log( r );
 			if( r.message == true ) {
 				this.payment_success = true;
+				this.formHidden = true;
 				this.generalService.removeFromCart( this.info['shop_id'] );
 			}
 		}, (error) => {

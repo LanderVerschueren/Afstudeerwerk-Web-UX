@@ -18,7 +18,6 @@ export class GeneralService {
 	public cart: any = {};
 	public shops: any = [];
 	public filteredShops:any = [];
-	//public filteredShopsCallback:any = function(r:any){ console.log('godver', r); };
 	public userLocation:any;
 	public userLocationLatLng:any;
 	public numberResults:number;
@@ -199,7 +198,7 @@ export class GeneralService {
 		this.apicallService.get( this.apilink + "products/" + id, (r:any) => {
 			if( r ) { r.sort( this.compare( 'product_name' ) ) };
 			cb(r);
-		}, (error) => { console.log( error ) });
+		}, (error) => { });
 	}
 
 	addToCart( shop_id, order ) {

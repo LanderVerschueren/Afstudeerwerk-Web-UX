@@ -1,5 +1,5 @@
 <div class="reset_wrapper">
-    <form class="form_login_register" [formGroup]="resetForm" (ngSubmit)="reset(resetForm.value, resetForm.valid)">
+    <form *ngIf="!resetSend" class="form_login_register" [formGroup]="resetForm" (ngSubmit)="reset(resetForm.value, resetForm.valid)">
         <legend><h1>Paswoord reset:</h1></legend>
         <div class="form-group">
             <label for="email">E-mailadres</label>
@@ -11,4 +11,9 @@
             <button type="submit" class="btn_action"><p class="btn_inner">Reset</p></button>
         </div>
     </form>
+    <div class="sent" *ngIf="resetSend">
+        <p>Er is een mail verzonden naar je e-mailadres, check je inbox!</p>
+        <p>Geen mail ontvangen? Kijk zeker ook eens in je smap folder.</p>
+        <a class="btn_action" [routerLink]="['']"><p>Home</p></a>
+    </div>
 </div>
