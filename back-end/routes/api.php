@@ -15,6 +15,8 @@ Route::post(	'register', 'ApiController@register');
 Route::post(	'storeOrder', 'ApiController@storeOrder');
 Route::post(	'storeProducts', 'ApiController@storeProducts');
 Route::post(	'charge', 'ApiController@chargePayment');
+Route::post(	'reset', 'ApiController@resetPassword');
+Route::post(	'resetChange', 'ApiController@changePassword');
 Route::get(		'shops', 'ApiController@getShops');
 Route::get(		'shop/{id}', 'ApiController@getShop');
 Route::get(		'products/{id}', 'ApiController@getProducts');

@@ -12,9 +12,44 @@
 	</div>
 	<div class="content">
 		<div class="content_inner user" *ngIf="(tab == 'gegevens') && user">
-			<h3>{{ name }}</h3>
-			<div class="user_info"><span class="tag_email"></span><p>{{ user.email }}</p></div>
-			<div class="user_info"><span class="tag_phone"></span><p>{{ user.phonenumber }}</p></div>
+			<div *ngIf="!userchange">
+				<h3>{{ name }}</h3>
+				<div class="user_info"><span class="tag_email"></span><p>{{ user.email }}</p></div>
+				<div class="user_info"><span class="tag_phone"></span><p>{{ user.phonenumber }}</p></div>
+				<button class="btn_action" (click)="change()">Wijzig gegevens</button>
+			</div>
+			<div *ngIf="userchange">
+				<form class="form_login_register" [formGroup]="registerForm" (ngSubmit)="changeUser(registerForm.value, registerForm.valid)" *ngIf="!success">
+			        <legend><h3>Gegevens wijzigen:</h3></legend>
+			        <div class="form-group">
+			            <label for="firstName">Voornaam <span *ngIf="registerForm.controls['firstName'].hasError('required') && registerForm.controls['firstName'].touched" class="alert-danger">- Voornaam is verplicht.</span></label>
+			            <input name="firstName" type="text" placeholder="Voornaam" class="input_form" autofocus [formControl]="registerForm.controls['firstName']" [ngClass]="{'has-error':!registerForm.controls['firstName'].valid && registerForm.controls['firstName'].touched}">
+			        </div>
+			        <div class="form-group">
+			            <label for="">Achternaam</label>
+			            <input name="lastName" type="text" placeholder="Achternaam" class="input_form" [formControl]="registerForm.controls['lastName']" [ngClass]="{'has-error':!registerForm.controls['lastName'].valid && registerForm.controls['lastName'].touched}"><div *ngIf="registerForm.controls['lastName'].hasError('required') && registerForm.controls['lastName'].touched" class="alert-danger">Achternaam is verplicht.</div>
+			        </div>
+			        <div class="form-group">
+			            <label for="email">E-mailadres</label>
+			            <input name="email" type="text" placeholder="Email" class="input_form" [formControl]="registerForm.controls['email']" [ngClass]="{'has-error':!registerForm.controls['email'].valid && registerForm.controls['email'].touched}">
+			            <div *ngIf="registerForm.controls['email'].hasError('required') && registerForm.controls['email'].touched" class="alert-danger">Email is verplicht.</div>
+			            <div *ngIf="!registerForm.controls['email'].hasError('required') && registerForm.controls['email'].hasError('emailNotValid') && registerForm.controls['email'].touched" class="alert-danger">E-mailadres is niet correct. <small>bv. example@test.com</small></div>
+			        </div>
+			        <div class="form-group">
+			            <label for="phonenumber">Telefoonnummer</label>
+			            <input name="phonenumber" type="text" placeholder="Telefoonnummer" class="input_form" [formControl]="registerForm.controls['phonenumber']" [ngClass]="{'has-error':!registerForm.controls['phonenumber'].valid && registerForm.controls['phonenumber'].touched}">
+			            <div *ngIf="registerForm.controls['phonenumber'].hasError('required') && registerForm.controls['phonenumber'].touched" class="alert-danger">Telefoonnummer is verplicht.</div>
+			        </div>
+
+			        <div class="form-group" *ngIf="error" >
+			            <div class="alert-danger"><p>{{error}}</p></div>
+			        </div>
+
+			        <div class="form-group">
+			            <button type="submit" [ngClass]="{'loading': loading}" class="btn_action">Wijzig</button>
+			        </div>
+			    </form>
+			</div>
 		</div>
 		<div class="content_inner" *ngIf="(tab == 'bestellingen')">
 			<div class="orders" *ngIf="orders && ( generalService.loggedInUser['role'] == 'customer' || generalService.loggedInUser['role'] == 'admin' )">

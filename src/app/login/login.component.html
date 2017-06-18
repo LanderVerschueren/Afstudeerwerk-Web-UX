@@ -18,5 +18,9 @@
         <div class="form-group">
             <button type="submit" [ngClass]="{'loading': loading}" class="btn_action">Login</button>
         </div>
+        <div class="form-group">
+            <p><a class="no_style sec_text_color button_hand" (click)="reset($event)" [routerLink]="['/reset']">Wachtwoord vergeten?</a></p>
+        </div>
+
     </form>
 </div>

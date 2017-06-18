@@ -277,4 +277,41 @@ class ApiController extends Controller
 
         return response()->json(['message' => true]);
     }
+
+    public function resetPassword( Request $request ) {
+        $input = $request->all();
+        $token = str_random(64);
+
+        DB::table('password_resets')->insert(['email' => $input['email'], 'token' => $token]);
+
+        $link = "http://localhost:4200/resetpassword?token=" . $token;
+
+        Mail::send('emails.passwordReset', [ 'link' => $link], function ($message)
+        {
+
+            $message->from('verschueren@live.nl', 'Lander Verschueren');
+
+            $message->to('lander.verschueren@student.kdg.be');
+
+            $message->subject("Komiskes - Paswoord Reset");
+
+        });
+    }
+
+    public function changePassword( Request $request ) {
+        $input = $request->all();
+
+        $reset = DB::table('password_resets')->where('token', '=', $input['token'])->first();
+
+        if( $reset ) {
+            $password = Hash::make( $input['password'] );
+
+            $user = User::where('email', '=', $reset->email)->update(['password' => $password]);
+            
+            return response()->json(['message' => true]);
+        }
+        else {
+            return response()->json(['message' => false]);
+        }
+    }
 }

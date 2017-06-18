@@ -31,6 +31,8 @@ import { ApicallService               } from './services/apicall.service';
 import { PayService                   } from './services/pay.service';
 import { GeneralService               } from './services/general.service';
 import { CardComponent } from './card/card.component';
+import { ResetComponent } from './reset/reset.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 // import '../assets/scripts/pikaday.js';
 
@@ -59,7 +61,9 @@ import { CardComponent } from './card/card.component';
     SignupComponent,
     PayComponent,
     UserComponent,
-    CardComponent
+    CardComponent,
+    ResetComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

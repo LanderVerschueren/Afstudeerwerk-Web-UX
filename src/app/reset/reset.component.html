@@ -1,0 +1,14 @@
+<div class="reset_wrapper">
+    <form class="form_login_register" [formGroup]="resetForm" (ngSubmit)="reset(resetForm.value, resetForm.valid)">
+        <legend><h1>Paswoord reset:</h1></legend>
+        <div class="form-group">
+            <label for="email">E-mailadres</label>
+            <input type="text" class="input_form" name="email" placeholder="Email" autofocus [formControl]="resetForm.controls['email']" [ngClass]="{'has-error':!resetForm.controls['email'].valid && resetForm.controls['email'].touched}"/>
+            <div *ngIf="resetForm.controls['email'].hasError('required') && resetForm.controls['email'].touched" class="alert-danger">E-mailadres is verplicht.</div>
+            <div *ngIf="!resetForm.controls['email'].hasError('required') && resetForm.controls['email'].hasError('emailNotValid') && resetForm.controls['email'].touched" class="alert-danger">E-mailadres is niet correct. <small>bv. example@test.com</small></div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn_action">Reset</button>
+        </div>
+    </form>
+</div>

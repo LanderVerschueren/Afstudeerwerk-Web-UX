@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+
 import { GeneralService } from '../services/general.service';
 import { ApicallService } from '../services/apicall.service';
 
@@ -16,29 +18,58 @@ export class UserComponent implements OnInit {
 	orders:any;
 	name:string;
 	productSuccess:boolean = false;
+  userchange:boolean = false;
+  registerForm: FormGroup;
 
-  constructor( private apicallService: ApicallService, private generalService : GeneralService, private router : Router ) { }
+  constructor( 
+    private apicallService: ApicallService, 
+    private generalService : GeneralService, 
+    private router : Router,
+    private fb: FormBuilder
+    ){
+      this.registerForm = fb.group({
+        'firstName': [null, Validators.required],
+        'lastName': [null, Validators.required],
+        'email': [null, Validators.compose([Validators.required, this.isValidMailFormat])],
+        'phonenumber' : [null, Validators.required]
+     })
+  }
 
   ngOnInit() {
   	this.generalService.getUser( (res) => {
-		if( res ) {
-			this.user = res;
+  		if( res ) {
+  			this.user = res;
 
-			if( this.user.role == 'shop' ) {
-				this.name = this.user.name;
-			}
-			else {
-				this.name = this.user.firstName + " " + this.user.lastName;
-			}
+  			if( this.user.role == 'shop' ) {
+  				this.name = this.user.name;
+  			}
+  			else {
+  				this.name = this.user.firstName + " " + this.user.lastName;
 
-			this.generalService.getOrders( (res) => {
-				this.orders = res;
-			});
-		}
-		else {
-			this.router.navigate(['login']);
-		}
-	});
+          this.registerForm.controls['firstName'].setValue( this.user['firstName'] );
+          this.registerForm.controls['lastName'].setValue( this.user['lastName'] );
+          this.registerForm.controls['email'].setValue( this.user['email'] );
+          this.registerForm.controls['phonenumber'].setValue( this.user['phonenumber'] );
+  			}
+
+  			this.generalService.getOrders( (res) => {
+  				this.orders = res;
+  			});
+  		}
+  		else {
+  			this.router.navigate(['login']);
+  		}
+  	});
+  }
+
+  isValidMailFormat(control: FormControl){
+      let EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+
+      if (!EMAIL_REGEXP.test(control.value)) {
+          return { "emailNotValid": true };
+      }
+
+      return null;
   }
 
   changeTab( param ) {
@@ -59,6 +90,14 @@ export class UserComponent implements OnInit {
   				this.productSuccess = true;
   			}
   		}, (error) => {console.log( error )});
-	}
+	  }
+  }
+
+  change() {
+    ( this.userchange == true ) ? this.userchange = false : this.userchange = true;
+  }
+
+  changeUser( value:any, valid:any ) {
+    console.log( value );
   }
 }

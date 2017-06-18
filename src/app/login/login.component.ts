@@ -37,11 +37,6 @@ export class LoginComponent implements OnInit {
  
     ngOnInit() {
         this.generalService.logout();
-        this.zone.run(()=>{
-            this.generalService.logout();
-        });
-
-        console.log( this.generalService.loggedInUser );
     }
 
     isValidMailFormat(control: FormControl){
@@ -88,4 +83,7 @@ export class LoginComponent implements OnInit {
         }
     }
 
+    reset( event ) {
+        event.preventDefault();
+    } 
 }

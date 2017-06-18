@@ -1,6 +1,6 @@
 @import '../../assets/base.scss';
 
-.login_wrapper {
+.reset_wrapper {
 	@extend .flex;
 	@extend .flex_column;
 	@extend .flex_middle;
@@ -10,10 +10,6 @@
 	form {
 		@extend .p_normal;
 		@extend .sec_bg_color;
-	}
-
-	a {
-		padding: 5px 0;
 	}
 
 	@include for-phone-only {
