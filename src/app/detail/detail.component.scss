@@ -107,8 +107,7 @@
 .detail-top {
 	@extend .flex;
 	@extend .flex_column;
-	//@extend .flex_center; // <-- justify-content: center;
-	@extend .flex_middle; // <-- align-items: center;
+	@extend .flex_middle;
 	@extend .h300;
 
 	.container {

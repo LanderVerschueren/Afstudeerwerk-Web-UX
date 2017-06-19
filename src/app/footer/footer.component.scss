@@ -1,46 +1,5 @@
 @import "../../assets/base.scss";
 
-/* ul {
-	color: white;
-
-	h4 {
-		@extend .mb20;
-	}
-
-	li {
-		@extend .button_hand;
-		@extend .mb10;
-
-		&:hover {
-			a {
-				p {
-					@extend .font_bold;
-					transition: font-weight 0.12s;
-				}
-			}
-		}
-
-		&:active {
-			a {
-
-				p {
-					@extend .font_bold;
-				}
-			}
-		}
-
-		a {
-			@extend .no_style;
-			@extend .prim_text_color;
-
-			p {
-				@extend .font_light;
-				@extend .pl20;
-			}
-		}
-	}
-} */
-
 p {
 	color:white;
 }

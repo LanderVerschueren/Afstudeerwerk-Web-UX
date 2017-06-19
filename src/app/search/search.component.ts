@@ -27,7 +27,6 @@ export class SearchComponent implements OnInit {
 		}
 	}
 
-	//if screen size changes it'll update
 	@HostListener('window:resize', ['$event'])
 		resize(event) {
 		this.windowWidth = window.innerWidth;

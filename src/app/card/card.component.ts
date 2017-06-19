@@ -55,7 +55,7 @@ export class CardComponent implements OnInit
 					this.payment_success = false;
 					this.formHidden = false;
 				}
-			}, (error) => { console.log(error) });
+			}, (error) => {});
 		}
 		else {
 			this.router.navigate(['']);
@@ -91,7 +91,7 @@ export class CardComponent implements OnInit
 					if( r.message == true ) {
 						this.saveOrder();
 					}
-				}, (error) => { console.log( error ) });
+				}, (error) => {});
 			}
 		});
 	}
@@ -115,8 +115,6 @@ export class CardComponent implements OnInit
 				this.formHidden = true;
 				this.generalService.removeFromCart( this.info['shop_id'] );
 			}
-		}, (error) => {
-			console.log( error );
-		});
+		}, (error) => {});
 	}
 }

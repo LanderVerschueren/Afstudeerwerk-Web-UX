@@ -21,17 +21,6 @@
 						</tr>
 					</tbody>
 				</table>
-				<!--<ul>
-					<li *ngFor=" let product of generalService.cart[id].products ">
-						<div class="cart_inner_products_name">
-							<h4>{{ product.product_name }}</h4>
-						</div>
-						<div class="cart_inner_products_info">
-							<p>Aantal: {{ product.amount }}</p>
-							<p>Prijs: {{ product.total_price | currency:'EUR':true:'1.2-2' }}</p>
-						</div>
-					</li>
-				</ul>-->
 			</div>
 			<div class="summary">
 				<form>
@@ -152,11 +141,3 @@
 		</div>
 	</div>
 </div>
-
-
-
-
-<!-- <div class="warning" *ngIf="generalService.maxProducts || generalService.maxPrice">
-	<p *ngIf="generalService.maxProducts">Je hebt het maximum aantal producten bereikt! Voor grotere bestellingen contacteer je de winkel via e-mail of telefoon.</p>
-	<p *ngIf="generalService.maxPrice">Je hebt het maximum aantal producten bereikt! Voor grotere bestellingen contacteer je de winkel via e-mail of telefoon.</p>
-</div> -->

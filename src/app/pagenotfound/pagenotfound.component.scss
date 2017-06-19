@@ -1,0 +1,25 @@
+@import "../../assets/base.scss";
+
+.container {
+	@extend .sec_bg_color;
+	@extend .p_normal;
+	@extend .br_normal;
+	@extend .shadow_light;
+
+	h2 {
+		margin-bottom: 20px;
+	}
+
+	h3 {
+		margin-bottom: 10px;
+	}
+
+	highlight-component {
+		width: 100%;
+	}
+
+	img {
+		width:200px;
+		hiehgt: 200px;
+	}
+}

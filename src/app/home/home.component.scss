@@ -3,8 +3,7 @@
 .home_top {
 	@extend .flex;
 	@extend .flex_column;
-	//@extend .flex_center; // <-- justify-content: center;
-	@extend .flex_middle; // <-- align-items: center;
+	@extend .flex_middle;
 	@extend .hfull_vh;
 	@extend .mt_neg100;
 	@extend .ptb50;
@@ -64,12 +63,7 @@
 	}
 }
 
-.home_divider {
-	/* background: url( '/assets/img/bg_desktop_bottom-min.jpg' );
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;	
- */
+.home_divider {	
 	@extend .h300;
 
 	@include for-phone-only {

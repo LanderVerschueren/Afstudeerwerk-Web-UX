@@ -17,23 +17,5 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {}
 
-  ngAfterViewInit() {
-  	/*let geocoder = new google.maps.Geocoder;
-  	console.log( 'init' );
-  	if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition( (position) => {
-        this.pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-
-        geocoder.geocode({'location': this.pos}, (result, status) => {
-        	if (status === 'OK') {
-            	if (result[1]) {
-            	}
-            }
-        });
-      });
-    }*/
-  }
+  ngAfterViewInit() {}
 }

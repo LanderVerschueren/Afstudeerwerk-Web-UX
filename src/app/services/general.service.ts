@@ -92,7 +92,6 @@ export class GeneralService {
     }
  
     logout(): void {
-        // clear token remove user from local storage to log user out
         this.token = null;
         this.loggedIn = false;
         this.loggedInUser = null;
@@ -114,17 +113,6 @@ export class GeneralService {
     		cb( error );
     	})
     }
-
-
-    /*getShops() {
-    	return this.filteredShops;
-    }*/
-
-    /*getShops() {
-    	return this.subjectShops.asObservable();
-    }*/
-
-
 
   	loadShops( location ) {
   		this.userLocation = location;
