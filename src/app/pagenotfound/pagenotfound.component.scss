@@ -22,4 +22,8 @@
 		width:200px;
 		hiehgt: 200px;
 	}
+
+	@include for-phone-only {
+		margin: 20px 0;
+	}
 }
